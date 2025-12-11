@@ -10,31 +10,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/TagCloud@2.2.0/dist/TagCloud.min.js"></script>
     </head>
 <body>
     <!-- Navigation -->
     <nav>
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#sobre-mi">Sobre mí</a></li>
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#proyectos">Proyectos</a></li>
-            <li><a href="#cursos">Cursos</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
+        <div class="nav-container">
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#inicio" data-i18n="nav_home">Inicio</a></li>
+                <li><a href="#sobre-mi" data-i18n="nav_about">Sobre mí</a></li>
+                <li><a href="#servicios" data-i18n="nav_services">Servicios</a></li>
+                <li><a href="#proyectos" data-i18n="nav_projects">Proyectos</a></li>
+                <li><a href="#cursos" data-i18n="nav_courses">Cursos</a></li>
+                <li><a href="#contacto" data-i18n="nav_contact">Contacto</a></li>
+                <!-- Language Toggle -->
+                <li><button id="lang-toggle" class="lang-btn">EN</button></li>
+            </ul>
+        </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="inicio">
         <div class="hero-content">
-            <h1>Emanuel Zapata Hincapié</h1>
-            <p class="hero-subtitle">Desarrollador Web | HTML, CSS, JavaScript & Python</p>
-            <p>Portafolio en progreso</p>
+            <h1 data-i18n="hero_title">Emanuel Zapata Hincapié</h1>
+            <p class="hero-subtitle" data-i18n="hero_subtitle">Desarrollador Web Full Stack & Especialista en Automatización</p>
+            <p data-i18n="hero_status">Portafolio en progreso</p>
             <div class="hero-buttons">
-                <a href="#proyectos" class="cta-btn">Ver Mis Proyectos</a>
+                <a href="#proyectos" class="cta-btn" data-i18n="hero_cta">Ver Mis Proyectos</a>
                 <a href="https://drive.google.com/file/d/1txozKA39NHOoavJd0_fmmwyVscpOyLWU/view?usp=sharing" target="_blank" class="btn-cv premium-btn">
-                    <span>Descargar CV</span>
+                    <span data-i18n="hero_cv">Descargar CV</span>
                     <i class="fas fa-download"></i>
                 </a>
             </div>
@@ -43,7 +51,7 @@
 
     <!-- About Me & Skills Section (Redesigned) -->
     <section id="sobre-mi" class="about-section">
-        <h2 class="section-title">Sobre Mí & Habilidades</h2>
+        <h2 class="section-title" data-i18n="about_title">Sobre Mí</h2>
         <div class="about-container">
             
             <!-- Timeline Column -->
@@ -52,24 +60,24 @@
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
-                            <h3>2021 - El Comienzo de todo</h3>
-                            <p>Descubrí mi pasión por el código. Comencé con lógica de programación, Js y fundamentos de la web (HTML/CSS).</p>
+                            <h3 data-i18n="time_2021_title">2021 - El Comienzo de todo</h3>
+                            <p data-i18n="time_2021_desc">Descubrí mi pasión por el código. Comencé con lógica de programación, Js y fundamentos de la web (HTML/CSS).</p>
                         </div>
                     </div>
 
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
-                            <h3>2022 -2023 - AutoDescubrimiento</h3>
-                            <p>Habia dejado el codigo por un tiempo,pero luego decidi volver y explorar nuevas tecnologias.</p>
+                            <h3 data-i18n="time_2022_title">2022-2023 - La Búsqueda Profunda</h3>
+                            <p data-i18n="time_2022_desc">Un periodo de introspección y retorno. Entendí que programar no es solo escribir líneas, es diseñar estructuras con intención y propósito.</p>
                         </div>
                     </div>
 
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
-                            <h3>2024 - Desarrollo Full Stack</h3>
-                            <p>Me especialicé en el ecosistema Python (Flask) y JavaScript moderno. Creé mis primeros proyectos comerciales.</p>
+                            <h3 data-i18n="time_2024_title">2024 - Desarrollo Full Stack</h3>
+                            <p data-i18n="time_2024_desc">Me especialicé en el ecosistema Python (Flask) y JavaScript moderno. Creé mis primeros proyectos comerciales.</p>
                         </div>
                     </div>
 
@@ -77,53 +85,104 @@
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
-                            <h3>2025 - Actualidad</h3>
-                            <p>Desarrollador Freelance enfocado en soluciones a medida, automatización de procesos y experiencias web inmersivas.</p>
+                            <h3 data-i18n="time_2025_title">2025 - Actualidad</h3>
+                            <p data-i18n="time_2025_desc">Desarrollador Freelance enfocado en soluciones a medida, automatización de procesos y experiencias web inmersivas.</p>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- 3D Skills Orbit Column -->
-            <div class="skills-column">
-                <div class="tagcloud-container"></div>
+    <!-- Skills Section -->
+    <section id="habilidades" class="skills-section">
+        <h2 class="section-title" data-i18n="skills_title">Mis Herramientas</h2>
+        <div class="skills-column">
+            <div class="skills-bubbles">
+                <div class="skill-bubble">
+                    <i class="fab fa-html5" style="color: #e34c26;"></i>
+                    <span>HTML5</span>
+                </div>
+                <div class="skill-bubble">
+                    <i class="fab fa-css3-alt" style="color: #264de4;"></i>
+                    <span>CSS3</span>
+                </div>
+                <div class="skill-bubble">
+                    <i class="fab fa-js" style="color: #f7df1e;"></i>
+                    <span>JavaScript</span>
+                </div>
+                <div class="skill-bubble">
+                    <i class="fab fa-python" style="color: #3776ab;"></i>
+                    <span>Python</span>
+                </div>
+                <div class="skill-bubble">
+                    <i class="fas fa-flask" style="color: #fff;"></i>
+                    <span>Flask</span>
+                </div>
+                <div class="skill-bubble">
+                    <i class="fas fa-database" style="color: #00758f;"></i>
+                    <span>SQL</span>
+                </div>
+                <div class="skill-bubble">
+                    <i class="fab fa-git-alt" style="color: #f05032;"></i>
+                    <span>Git</span>
+                </div>
+                <div class="skill-bubble">
+                    <i class="fab fa-github" style="color: #fff;"></i>
+                    <span>GitHub</span>
+                </div>
+                <div class="skill-bubble">
+                    <i class="fab fa-bootstrap" style="color: #7952b3;"></i>
+                    <span>Bootstrap</span>
+                </div>
+                <div class="skill-bubble">
+                    <i class="fab fa-react" style="color: #61dafb;"></i>
+                    <span>React</span>
+                </div>
+                <div class="skill-bubble">
+                    <i class="fab fa-node-js" style="color: #339933;"></i>
+                    <span>Node.js</span>
+                </div>
+                <div class="skill-bubble">
+                    <i class="fab fa-linux" style="color: #fcc624;"></i>
+                    <span>Linux</span>
+                </div>
             </div>
-
         </div>
     </section>
 
     <!-- Services Section -->
     <section id="servicios">
-        <h2 class="section-title">Mis Servicios</h2>
+        <h2 class="section-title" data-i18n="services_title">Mis Servicios</h2>
         <div class="services-grid">
             <div class="service-card">
                 <div class="service-icon">💻</div>
-                <h3>Desarrollo Web</h3>
-                <p>Transformo tus ideas en sitios web modernos, rápidos y totalmente adaptables a cualquier dispositivo. No solo entrego código, sino una herramienta para potenciar tu presencia digital.</p>
+                <h3 data-i18n="serv_web_title">Desarrollo Web</h3>
+                <p data-i18n="serv_web_desc">Transformo tus ideas en sitios web modernos, rápidos y totalmente adaptables a cualquier dispositivo. No solo entrego código, sino una herramienta para potenciar tu presencia digital.</p>
                 <ul class="service-features">
-                    <li>Landing Pages de alta conversión</li>
-                    <li>Portafolios y Blogs personales</li>
-                    <li>Rediseño y optimización de sitios existentes</li>
+                    <li data-i18n="serv_web_f1">Landing Pages de alta conversión</li>
+                    <li data-i18n="serv_web_f2">Portafolios y Blogs personales</li>
+                    <li data-i18n="serv_web_f3">Rediseño y optimización de sitios existentes</li>
                 </ul>
             </div>
             <div class="service-card">
                  <div class="service-icon">🚀</div>
-                 <h3>Marketing Digital</h3>
-                 <p>Hago que tu marca sea visible y relevante. Diseño estrategias personalizadas para conectar con tu audiencia ideal y aumentar tus ventas a través de canales digitales.</p>
+                 <h3 data-i18n="serv_mkt_title">Marketing Digital</h3>
+                 <p data-i18n="serv_mkt_desc">Hago que tu marca sea visible y relevante. Diseño estrategias personalizadas para conectar con tu audiencia ideal y aumentar tus ventas a través de canales digitales.</p>
                  <ul class="service-features">
-                    <li>Gestión de Redes Sociales (Community Manager)</li>
-                    <li>Campañas de publicidad (Facebook & Instagram Ads)</li>
-                    <li>Estrategias de contenido y SEO básico</li>
+                    <li data-i18n="serv_mkt_f1">Gestión de Redes Sociales (Community Manager)</li>
+                    <li data-i18n="serv_mkt_f2">Campañas de publicidad (Facebook & Instagram Ads)</li>
+                    <li data-i18n="serv_mkt_f3">Estrategias de contenido y SEO básico</li>
                 </ul>
             </div>
             <div class="service-card">
                 <div class="service-icon">📊</div>
-                <h3>Bases de Datos & Automatización</h3>
-                <p>¿Tu negocio crece y Excel ya no es suficiente? Estructuro tu información para que tomes mejores decisiones. Olvídate del caos de archivos sueltos y datos perdidos.</p>
+                <h3 data-i18n="serv_auto_title">Bases de Datos & Automatización</h3>
+                <p data-i18n="serv_auto_desc">¿Tu negocio crece y Excel ya no es suficiente? Estructuro tu información para que tomes mejores decisiones. Olvídate del caos de archivos sueltos y datos perdidos.</p>
                 <ul class="service-features">
-                    <li>Migración de Excel a Bases de Datos (SQL)</li>
-                    <li>Creación de Dashboards y Reportes automáticos</li>
-                    <li>Limpieza y organización de datos empresariales</li>
+                    <li data-i18n="serv_auto_f1">Migración de Excel a Bases de Datos (SQL)</li>
+                    <li data-i18n="serv_auto_f2">Creación de Dashboards y Reportes automáticos</li>
+                    <li data-i18n="serv_auto_f3">Limpieza y organización de datos empresariales</li>
                 </ul>
             </div>
         </div>
@@ -131,15 +190,15 @@
 
     <!-- Projects Section -->
     <section id="proyectos">
-        <h2 class="section-title">Proyectos</h2>
+        <h2 class="section-title" data-i18n="projects_title">Proyectos</h2>
         <div class="projects-grid">
             <!-- Featured Project - Flask -->
             <div class="project-card featured">
-                <span class="featured-badge">Destacado</span>
+                <span class="featured-badge" data-i18n="proj_featured_badge">Destacado</span>
                 <div class="project-image">🐍</div>
                 <div class="project-content">
-                    <h3>Aplicación Flask</h3>
-                    <p>Aplicación web completa desarrollada con Python y Flask. Incluye base de datos, autenticación y API REST.</p>
+                    <h3 data-i18n="proj_flask_title">Aplicación Flask</h3>
+                    <p data-i18n="proj_flask_desc">Aplicación web completa desarrollada con Python y Flask. Incluye base de datos, autenticación y API REST.</p>
                     <div class="project-tech">
                         <span class="tech-tag">Python</span>
                         <span class="tech-tag">Flask</span>
@@ -147,8 +206,8 @@
                         <span class="tech-tag">HTML/CSS</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://tu-app-flask.com" class="project-btn" target="_blank">Ver Demo</a>
-                        <a href="https://github.com/tu-usuario/proyecto-flask" class="project-btn" target="_blank">Ver Código</a>
+                        <a href="https://tu-app-flask.com" class="project-btn" target="_blank" data-i18n="proj_flask_demo">Ver Demo</a>
+                        <a href="https://github.com/tu-usuario/proyecto-flask" class="project-btn" target="_blank" data-i18n="proj_flask_code">Ver Código</a>
                     </div>
                 </div>
             </div>
@@ -159,15 +218,15 @@
                     <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/VwJWKjb-800.jpg" alt="Landing Page Preview">
                 </div>
                 <div class="project-content">
-                    <h3>Landing Page De ropa</h3>
-                    <p>Página web responsive y moderna para un E-Comerce dedicado a la venta de ropa (Solo Visual).</p>
+                    <h3 data-i18n="proj_landing_title">Landing Page De ropa</h3>
+                    <p data-i18n="proj_landing_desc">Página web responsive y moderna para un E-Comerce dedicado a la venta de ropa (Solo Visual).</p>
                     <div class="project-tech">
                         <span class="tech-tag">HTML</span>
                         <span class="tech-tag">CSS</span>
                     </div>
                     <div class="project-links">
-                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/VwJWKjb" class="project-btn">Ver Demo</a>
-                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/VwJWKjb" class="project-btn">Ver Código</a>
+                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/VwJWKjb" class="project-btn" data-i18n="proj_flask_demo">Ver Demo</a>
+                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/VwJWKjb" class="project-btn" data-i18n="proj_flask_code">Ver Código</a>
                     </div>
                 </div>
             </div>
@@ -178,16 +237,16 @@
                     <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/jOoMpeX-800.jpg" alt="Secure Guard Preview">
                 </div>
                 <div class="project-content">
-                    <h3>Secure Guard</h3>
-                    <p>Página web minimalista y responsiva con funciones básicas que simulan ciberseguridad.</p>
+                    <h3 data-i18n="proj_secure_title">Secure Guard</h3>
+                    <p data-i18n="proj_secure_desc">Página web minimalista y responsiva con funciones básicas que simulan ciberseguridad.</p>
                     <div class="project-tech">
                         <span class="tech-tag">HTML</span>
                         <span class="tech-tag">CSS</span>
                         <span class="tech-tag">JavaScript</span>
                     </div>
                     <div class="project-links">
-                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/jOoMpeX" class="project-btn">Ver Demo</a>
-                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/jOoMpeX" class="project-btn">Ver Código</a>
+                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/jOoMpeX" class="project-btn" data-i18n="proj_flask_demo">Ver Demo</a>
+                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/jOoMpeX" class="project-btn" data-i18n="proj_flask_code">Ver Código</a>
                     </div>
                 </div>
             </div>
@@ -199,16 +258,16 @@
                     <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/raVjQoN-800.jpg" alt="Sabor Bagreño Preview">
                 </div>
                 <div class="project-content">
-                    <h3>Sabor Bagreño</h3>
-                    <p>Página web para restarante (En uso) para vision del menu y pedidos para whatsapp, principalmente desarrollado para dispositivos moviles</p>
+                    <h3 data-i18n="proj_bagre_title">Sabor Bagreño</h3>
+                    <p data-i18n="proj_bagre_desc">Página web para restarante (En uso) para vision del menu y pedidos para whatsapp, principalmente desarrollado para dispositivos moviles</p>
                     <div class="project-tech">
                         <span class="tech-tag">HTML</span>
                         <span class="tech-tag">CSS</span>
                         <span class="tech-tag">JavaScript</span>
                     </div>
                     <div class="project-links">
-                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/raVjQoN" class="project-btn">Ver Demo</a>
-                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/raVjQoN" class="project-btn">Ver Código</a>
+                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/raVjQoN" class="project-btn" data-i18n="proj_flask_demo">Ver Demo</a>
+                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/raVjQoN" class="project-btn" data-i18n="proj_flask_code">Ver Código</a>
                     </div>
                 </div>
             </div>
@@ -219,16 +278,16 @@
                     <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/VwJjMjp-800.jpg" alt="Web Nequi Preview">
                 </div>
                 <div class="project-content">
-                    <h3>Web Nequi(inspirada)</h3>
-                    <p>Pagina inspirada en el inicio de la aplicacion nequi, .</p>
+                    <h3 data-i18n="proj_nequi_title">Web Nequi(inspirada)</h3>
+                    <p data-i18n="proj_nequi_desc">Pagina inspirada en el inicio de la aplicacion nequi, .</p>
                     <div class="project-tech">
                         <span class="tech-tag">HTML</span>
                         <span class="tech-tag">CSS</span>
                         <span class="tech-tag">JavaScript</span>
                     </div>
                     <div class="project-links">
-                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/VwJjMjp" class="project-btn">Ver Demo</a>
-                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/VwJjMjp" class="project-btn">Ver Código</a>
+                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/VwJjMjp" class="project-btn" data-i18n="proj_flask_demo">Ver Demo</a>
+                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/VwJjMjp" class="project-btn" data-i18n="proj_flask_code">Ver Código</a>
                     </div>
                 </div>
             </div>
@@ -242,16 +301,16 @@
                     <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/abrKwVj-800.jpg" alt="Juego de formas Preview">
                 </div>
                 <div class="project-content">
-                    <h3>Pequeño juego de formas</h3>
-                    <p>Pagina donde puedes cambiar de forma y colores un pequeño cuadro, creada para practicar mejor JavaScript.</p>
+                    <h3 data-i18n="proj_shapes_title">Pequeño juego de formas</h3>
+                    <p data-i18n="proj_shapes_desc">Pagina donde puedes cambiar de forma y colores un pequeño cuadro, creada para practicar mejor JavaScript.</p>
                     <div class="project-tech">
                         <span class="tech-tag">HTML</span>
                         <span class="tech-tag">CSS</span>
                         <span class="tech-tag">JavaScript</span>
                     </div>
                     <div class="project-links">
-                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/abrKwVj" class="project-btn">Ver Demo</a>
-                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/abrKwVj" class="project-btn">Ver Código</a>
+                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/abrKwVj" class="project-btn" data-i18n="proj_flask_demo">Ver Demo</a>
+                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/abrKwVj" class="project-btn" data-i18n="proj_flask_code">Ver Código</a>
                     </div>
                 </div>
             </div>
@@ -261,23 +320,23 @@
 
     <!-- Courses Section -->
     <section id="cursos">
-        <h2 class="section-title">Aprende Conmigo</h2>
+        <h2 class="section-title" data-i18n="courses_title">Aprende Conmigo</h2>
         <div class="course-card-featured">
             <div class="course-content">
-                <span class="course-badge">Nuevo Lanzamiento</span>
-                <h3>Curso: Crea tu Página Web desde Cero</h3>
-                <p class="course-description">
+                <span class="course-badge" data-i18n="course_badge">Nuevo Lanzamiento</span>
+                <h3 data-i18n="course_title">Curso: Crea tu Página Web desde Cero</h3>
+                <p class="course-description" data-i18n="course_desc">
                     Aprende a desarrollar sitios web profesionales sin conocimientos previos. 
                     Te guiaré paso a paso desde HTML y CSS hasta publicar tu sitio en internet.
                 </p>
                 <ul class="course-features">
-                    <li>✅ HTML5 y CSS3 Moderno</li>
-                    <li>✅ Diseño Responsive (Móvil y PC)</li>
-                    <li>✅ Proyecto Real para tu Portafolio</li>
-                    <li>✅ Soporte y Comunidad</li>
+                    <li data-i18n="course_f1">✅ HTML5 y CSS3 Moderno</li>
+                    <li data-i18n="course_f2">✅ Diseño Responsive (Móvil y PC)</li>
+                    <li data-i18n="course_f3">✅ Proyecto Real para tu Portafolio</li>
+                    <li data-i18n="course_f4">✅ Soporte y Comunidad</li>
                 </ul>
                 <div class="course-cta">
-                    <a href="#contacto" class="btn course-btn">¡Quiero Aprender Más!</a>
+                    <a href="#contacto" class="btn course-btn" data-i18n="course_cta">¡Quiero Aprender Más!</a>
                 </div>
             </div>
             <div class="course-image">
@@ -293,25 +352,25 @@
 
     <!-- Contact Section -->
     <section id="contacto">
-        <h2 class="section-title">Contacto</h2>
+        <h2 class="section-title" data-i18n="contact_title">Contacto</h2>
         <div class="contact-content">
             <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
                 <!-- FormSubmit Configuration -->
                 <input type="hidden" name="_captcha" value="false">
                 
                 <div class="form-group">
-                    <label for="name">Nombre</label>
+                    <label for="name" data-i18n="label_name">Nombre</label>
                     <input type="text" id="name" name="name" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email" data-i18n="label_email">Email</label>
                     <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
-                    <label for="message">Mensaje</label>
+                    <label for="message" data-i18n="label_msg">Mensaje</label>
                     <textarea id="message" name="message" required></textarea>
                 </div>
-                <button type="submit" class="submit-btn" id="submitBtn">Enviar Mensaje</button>
+                <button type="submit" class="submit-btn" id="submitBtn" data-i18n="btn_send">Enviar Mensaje</button>
             </form>
         </div>
     </section>
@@ -320,23 +379,217 @@
     <div id="successModal" class="modal-overlay">
         <div class="modal-card">
             <div class="modal-icon">🎉</div>
-            <h3>¡Gracias por contactarme!</h3>
-            <p>He recibido tu mensaje correctamente. Te responderé a <strong>azhura.dev@gmail.com</strong> lo antes posible.</p>
-            <button onclick="closeModal()" class="btn modal-btn">Cerrar</button>
+            <h3 data-i18n="modal_title">¡Gracias por contactarme!</h3>
+            <p data-i18n="modal_msg">He recibido tu mensaje correctamente. Te responderé a <strong>azhura.dev@gmail.com</strong> lo antes posible.</p>
+            <button onclick="closeModal()" class="btn modal-btn" data-i18n="modal_close">Cerrar</button>
         </div>
     </div>
 
     <!-- Footer -->
     <footer>
         <div class="social-links">
-            <a href="https://github.com/tu-usuario" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-            <a href="https://instagram.com/tu-usuario" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-            <a href="https://linkedin.com/in/tu-usuario" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/Azhura0101" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com/azhura.dev/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="www.linkedin.com/in/emanuel-zapata-b7ba3639b" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
         </div>
-        <p>&copy; 2024 Azhura_-. Todos los derechos reservados.</p>
+        <p data-i18n="footer_copy">&copy; 2024 Azhura_-. Todos los derechos reservados.</p>
     </footer>
 
     <script>
+        // --- Translations ---
+        const translations = {
+            es: {
+                nav_home: "Inicio",
+                nav_about: "Sobre mí",
+                nav_services: "Servicios",
+                nav_projects: "Proyectos",
+                nav_courses: "Cursos",
+                nav_contact: "Contacto",
+                hero_title: "Emanuel Zapata Hincapié",
+                hero_subtitle: "Desarrollador Web Full Stack & Especialista en Automatización",
+                hero_status: "Portafolio en progreso",
+                hero_cta: "Ver Mis Proyectos",
+                hero_cv: "Descargar CV",
+                about_title: "Sobre Mí",
+                time_2021_title: "2021 - El Comienzo de todo",
+                time_2021_desc: "Descubrí mi pasión por el código. Comencé con lógica de programación, Js y fundamentos de la web (HTML/CSS).",
+                time_2022_title: "2022-2023 - La Búsqueda Profunda",
+                time_2022_desc: "Un periodo de introspección y retorno. Entendí que programar no es solo escribir líneas, es diseñar estructuras con intención y propósito.",
+                time_2024_title: "2024 - Desarrollo Full Stack",
+                time_2024_desc: "Me especialicé en el ecosistema Python (Flask) y JavaScript moderno. Creé mis primeros proyectos comerciales.",
+                time_2025_title: "2025 - Actualidad",
+                time_2025_desc: "Desarrollador Freelance enfocado en soluciones a medida, automatización de procesos y experiencias web inmersivas.",
+                skills_title: "Mis Herramientas",
+                services_title: "Mis Servicios",
+                serv_web_title: "Desarrollo Web",
+                serv_web_desc: "Transformo tus ideas en sitios web modernos, rápidos y totalmente adaptables a cualquier dispositivo. No solo entrego código, sino una herramienta para potenciar tu presencia digital.",
+                serv_web_f1: "Landing Pages de alta conversión",
+                serv_web_f2: "Portafolios y Blogs personales",
+                serv_web_f3: "Rediseño y optimización de sitios existentes",
+                serv_mkt_title: "Marketing Digital",
+                serv_mkt_desc: "Hago que tu marca sea visible y relevante. Diseño estrategias personalizadas para conectar con tu audiencia ideal y aumentar tus ventas a través de canales digitales.",
+                serv_mkt_f1: "Gestión de Redes Sociales (Community Manager)",
+                serv_mkt_f2: "Campañas de publicidad (Facebook & Instagram Ads)",
+                serv_mkt_f3: "Estrategias de contenido y SEO básico",
+                serv_auto_title: "Bases de Datos & Automatización",
+                serv_auto_desc: "¿Tu negocio crece y Excel ya no es suficiente? Estructuro tu información para que tomes mejores decisiones. Olvídate del caos de archivos sueltos y datos perdidos.",
+                serv_auto_f1: "Migración de Excel a Bases de Datos (SQL)",
+                serv_auto_f2: "Creación de Dashboards y Reportes automáticos",
+                serv_auto_f3: "Limpieza y organización de datos empresariales",
+                projects_title: "Proyectos",
+                proj_featured_badge: "Destacado",
+                proj_flask_title: "Aplicación Flask",
+                proj_flask_desc: "Aplicación web completa desarrollada con Python y Flask. Incluye base de datos, autenticación y API REST.",
+                proj_flask_demo: "Ver Demo",
+                proj_flask_code: "Ver Código",
+                proj_landing_title: "Landing Page De ropa",
+                proj_landing_desc: "Página web responsive y moderna para un E-Comerce dedicado a la venta de ropa (Solo Visual).",
+                proj_secure_title: "Secure Guard",
+                proj_secure_desc: "Página web minimalista y responsiva con funciones básicas que simulan ciberseguridad.",
+                proj_bagre_title: "Sabor Bagreño",
+                proj_bagre_desc: "Página web para restarante (En uso) para vision del menu y pedidos para whatsapp, principalmente desarrollado para dispositivos moviles",
+                proj_nequi_title: "Web Nequi(inspirada)",
+                proj_nequi_desc: "Pagina inspirada en el inicio de la aplicacion nequi, .",
+                proj_shapes_title: "Pequeño juego de formas",
+                proj_shapes_desc: "Pagina donde puedes cambiar de forma y colores un pequeño cuadro, creada para practicar mejor JavaScript.",
+                courses_title: "Aprende Conmigo",
+                course_badge: "Nuevo Lanzamiento",
+                course_title: "Curso: Crea tu Página Web desde Cero",
+                course_desc: "Aprende a desarrollar sitios web profesionales sin conocimientos previos. Te guiaré paso a paso desde HTML y CSS hasta publicar tu sitio en internet.",
+                course_f1: "✅ HTML5 y CSS3 Moderno",
+                course_f2: "✅ Diseño Responsive (Móvil y PC)",
+                course_f3: "✅ Proyecto Real para tu Portafolio",
+                course_f4: "✅ Soporte y Comunidad",
+                course_cta: "¡Quiero Aprender Más!",
+                contact_title: "Contacto",
+                label_name: "Nombre",
+                label_email: "Email",
+                label_msg: "Mensaje",
+                btn_send: "Enviar Mensaje",
+                modal_title: "¡Gracias por contactarme!",
+                modal_msg: "He recibido tu mensaje correctamente. Te responderé a <strong>azhura.dev@gmail.com</strong> lo antes posible.",
+                modal_close: "Cerrar",
+                footer_copy: "&copy; 2024 Azhura_-. Todos los derechos reservados."
+            },
+            en: {
+                nav_home: "Home",
+                nav_about: "About Me",
+                nav_services: "Services",
+                nav_projects: "Projects",
+                nav_courses: "Courses",
+                nav_contact: "Contact",
+                hero_title: "Emanuel Zapata Hincapié",
+                hero_subtitle: "Full Stack Web Developer & Automation Specialist",
+                hero_status: "Portfolio in progress",
+                hero_cta: "View My Projects",
+                hero_cv: "Download CV",
+                about_title: "About Me",
+                time_2021_title: "2021 - The Beginning of Everything",
+                time_2021_desc: "I discovered my passion for code. Started with programming logic, JS, and web fundamentals (HTML/CSS).",
+                time_2022_title: "2022-2023 - Deep Search",
+                time_2022_desc: "A period of introspection and return. I understood that programming is not just writing lines, it's designing structures with intention and purpose.",
+                time_2024_title: "2024 - Full Stack Development",
+                time_2024_desc: "Specialized in the Python (Flask) ecosystem and modern JavaScript. Created my first commercial projects.",
+                time_2025_title: "2025 - Currently",
+                time_2025_desc: "Freelance Developer focused on custom solutions, process automation, and immersive web experiences.",
+                skills_title: "My Tools",
+                services_title: "My Services",
+                serv_web_title: "Web Development",
+                serv_web_desc: "I transform your ideas into modern, fast, and fully responsive websites. I don't just deliver code, but a tool to boost your digital presence.",
+                serv_web_f1: "High-conversion Landing Pages",
+                serv_web_f2: "Personal Portfolios and Blogs",
+                serv_web_f3: "Redesign and optimization of existing sites",
+                serv_mkt_title: "Digital Marketing",
+                serv_mkt_desc: "I make your brand visible and relevant. I design custom strategies to connect with your ideal audience and increase your sales through digital channels.",
+                serv_mkt_f1: "Social Media Management (Community Manager)",
+                serv_mkt_f2: "Ad Campaigns (Facebook & Instagram Ads)",
+                serv_mkt_f3: "Content Strategies and Basic SEO",
+                serv_auto_title: "Databases & Automation",
+                serv_auto_desc: "Is your business growing and Excel is no longer enough? I structure your information so you can make better decisions. Forget the chaos of loose files and lost data.",
+                serv_auto_f1: "Excel to Database Migration (SQL)",
+                serv_auto_f2: "Creation of automated Dashboards and Reports",
+                serv_auto_f3: "Cleaning and organization of business data",
+                projects_title: "Projects",
+                proj_featured_badge: "Featured",
+                proj_flask_title: "Flask Application",
+                proj_flask_desc: "Complete web application developed with Python and Flask. Includes database, authentication, and REST API.",
+                proj_flask_demo: "View Demo",
+                proj_flask_code: "View Code",
+                proj_landing_title: "Clothing Landing Page",
+                proj_landing_desc: "Responsive and modern web page for a clothing E-Commerce (Visual Only).",
+                proj_secure_title: "Secure Guard",
+                proj_secure_desc: "Minimalist and responsive website with basic functions simulating cybersecurity.",
+                proj_bagre_title: "Sabor Bagreño",
+                proj_bagre_desc: "Restaurant website (In use) for menu viewing and WhatsApp orders, mainly developed for mobile devices.",
+                proj_nequi_title: "Nequi Web (Inspired)",
+                proj_nequi_desc: "Page inspired by the login of the Nequi application.",
+                proj_shapes_title: "Small Shapes Game",
+                proj_shapes_desc: "Page where you can change the shape and colors of a small box, created to practice JavaScript better.",
+                courses_title: "Learn With Me",
+                course_badge: "New Launch",
+                course_title: "Course: Create Your Website from Scratch",
+                course_desc: "Learn to develop professional websites without prior knowledge. I will guide you step by step from HTML and CSS to publishing your site on the internet.",
+                course_f1: "✅ Modern HTML5 and CSS3",
+                course_f2: "✅ Responsive Design (Mobile & PC)",
+                course_f3: "✅ Real Project for your Portfolio",
+                course_f4: "✅ Support and Community",
+                course_cta: "I Want to Learn More!",
+                contact_title: "Contact",
+                label_name: "Name",
+                label_email: "Email",
+                label_msg: "Message",
+                btn_send: "Send Message",
+                modal_title: "Thanks for contacting me!",
+                modal_msg: "I have received your message correctly. I will reply to <strong>azhura.dev@gmail.com</strong> as soon as possible.",
+                modal_close: "Close",
+                footer_copy: "&copy; 2024 Azhura_-. All rights reserved."
+            }
+        };
+
+        let currentLang = localStorage.getItem('selectedLang') || 'es';
+
+        function updateLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('selectedLang', lang);
+            
+            // Update Text
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        // Handle placeholders if needed, though labels are usually preferred
+                    } else {
+                        // Check for innerHTML if tag contains HTML (like the modal message)
+                        if (translations[lang][key].includes('<')) {
+                            element.innerHTML = translations[lang][key];
+                        } else {
+                            element.textContent = translations[lang][key];
+                        }
+                    }
+                }
+            });
+
+            // Update Toggle Button Text
+            const toggleBtn = document.getElementById('lang-toggle');
+            if (toggleBtn) {
+                toggleBtn.textContent = lang === 'es' ? 'EN' : 'ES'; // Show the OTHER option
+            }
+        }
+
+        // Initialize Language
+        document.addEventListener('DOMContentLoaded', () => {
+            updateLanguage(currentLang);
+            
+            // Attach Toggle Listener
+            const toggleBtn = document.getElementById('lang-toggle');
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', () => {
+                    const newLang = currentLang === 'es' ? 'en' : 'es';
+                    updateLanguage(newLang);
+                });
+            }
+        });
+
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -455,25 +708,22 @@
             observer.observe(el);
         });
 
-        // Initialize 3D Tag Cloud
-        const myTags = [
-            'HTML5', 'CSS3', 'JavaScript',
-            'Python', 'Flask',
-            'Git', 'GitHub', 'SQL',
-            'Bootstrap', 'React', 'Node.js',
-            'Linux', 'Bash'
-        ];
+        // Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.querySelector('.nav-menu');
 
-        var tagCloud = TagCloud('.tagcloud-container', myTags, {
-            radius: 200,
-            maxSpeed: 'normal',
-            initSpeed: 'normal',
-            direction: 135,
-            keep: true
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            navMenu.classList.toggle('active');
         });
 
-        // Coloring text in JS or handled by CSS class .tagcloud
-        // document.querySelector('.tagcloud').style.color = '#00ff41'; 
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-menu li a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
     </script>
 </body>
 </html>
