@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Portafolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     </head>
 <body>
@@ -13,7 +17,9 @@
             <li><a href="#inicio">Inicio</a></li>
             <li><a href="#sobre-mi">Sobre mí</a></li>
             <li><a href="#habilidades">Habilidades</a></li>
+            <li><a href="#servicios">Servicios</a></li>
             <li><a href="#proyectos">Proyectos</a></li>
+            <li><a href="#cursos">Cursos</a></li>
             <li><a href="#contacto">Contacto</a></li>
         </ul>
     </nav>
@@ -62,6 +68,43 @@
             <div class="skill-card">
                 <h3>Git</h3>
                 <p>Control de versiones</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios">
+        <h2 class="section-title">Mis Servicios</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">💻</div>
+                <h3>Desarrollo Web</h3>
+                <p>Transformo tus ideas en sitios web modernos, rápidos y totalmente adaptables a cualquier dispositivo. No solo entrego código, sino una herramienta para potenciar tu presencia digital.</p>
+                <ul class="service-features">
+                    <li>Landing Pages de alta conversión</li>
+                    <li>Portafolios y Blogs personales</li>
+                    <li>Rediseño y optimización de sitios existentes</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                 <div class="service-icon">🚀</div>
+                 <h3>Marketing Digital</h3>
+                 <p>Hago que tu marca sea visible y relevante. Diseño estrategias personalizadas para conectar con tu audiencia ideal y aumentar tus ventas a través de canales digitales.</p>
+                 <ul class="service-features">
+                    <li>Gestión de Redes Sociales (Community Manager)</li>
+                    <li>Campañas de publicidad (Facebook & Instagram Ads)</li>
+                    <li>Estrategias de contenido y SEO básico</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Bases de Datos & Automatización</h3>
+                <p>¿Tu negocio crece y Excel ya no es suficiente? Estructuro tu información para que tomes mejores decisiones. Olvídate del caos de archivos sueltos y datos perdidos.</p>
+                <ul class="service-features">
+                    <li>Migración de Excel a Bases de Datos (SQL)</li>
+                    <li>Creación de Dashboards y Reportes automáticos</li>
+                    <li>Limpieza y organización de datos empresariales</li>
+                </ul>
             </div>
         </div>
     </section>
@@ -186,6 +229,38 @@
 
     </section>
 
+    <!-- Courses Section -->
+    <section id="cursos">
+        <h2 class="section-title">Aprende Conmigo</h2>
+        <div class="course-card-featured">
+            <div class="course-content">
+                <span class="course-badge">Nuevo Lanzamiento</span>
+                <h3>Curso: Crea tu Página Web desde Cero</h3>
+                <p class="course-description">
+                    Aprende a desarrollar sitios web profesionales sin conocimientos previos. 
+                    Te guiaré paso a paso desde HTML y CSS hasta publicar tu sitio en internet.
+                </p>
+                <ul class="course-features">
+                    <li>✅ HTML5 y CSS3 Moderno</li>
+                    <li>✅ Diseño Responsive (Móvil y PC)</li>
+                    <li>✅ Proyecto Real para tu Portafolio</li>
+                    <li>✅ Soporte y Comunidad</li>
+                </ul>
+                <div class="course-cta">
+                    <a href="#contacto" class="btn course-btn">¡Quiero Aprender Más!</a>
+                </div>
+            </div>
+            <div class="course-image">
+                <div class="code-preview">
+                    <code>
+                        <span class="tag">&lt;h1&gt;</span>Hola Mundo<span class="tag">&lt;/h1&gt;</span><br>
+                        <span class="tag">&lt;p&gt;</span>Aprendiendo a programar...<span class="tag">&lt;/p&gt;</span>
+                    </code>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contacto">
         <h2 class="section-title">Contacto</h2>
@@ -210,6 +285,11 @@
 
     <!-- Footer -->
     <footer>
+        <div class="social-links">
+            <a href="https://github.com/tu-usuario" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+            <a href="https://instagram.com/tu-usuario" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com/in/tu-usuario" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+        </div>
         <p>&copy; 2024 Azhura_-. Todos los derechos reservados.</p>
     </footer>
 
