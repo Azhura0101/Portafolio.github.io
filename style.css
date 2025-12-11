@@ -631,14 +631,247 @@
             }
         }
 
-        /* Animation Keyframes */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-card {
+            background: var(--bg-card);
+            border: 1px solid var(--primary);
+            padding: 3rem;
+            border-radius: 24px;
+            text-align: center;
+            max-width: 400px;
+            transform: scale(0.8);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 50px rgba(147, 51, 234, 0.3);
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1);
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: bounce 1s infinite;
+        }
+
+        .modal-card h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .modal-card p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .modal-btn {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* --- Premium CV Button --- */
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .cta-btn {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px -10px rgba(147, 51, 234, 0.5);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: #fff;
+            opacity: 0.1;
+            transition: width 0.3s ease;
+            z-index: -1;
+            transform: skewX(-20deg);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px -10px rgba(147, 51, 234, 0.7);
+        }
+
+        .cta-btn:hover::before {
+            width: 150%;
+        }
+
+        .premium-btn {
+            position: relative;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--primary);
+            border-radius: 50px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .premium-btn:hover {
+            box-shadow: 0 0 20px var(--primary);
+            transform: translateY(-3px);
+            background: var(--primary);
+            color: #000;
+        }
+
+        /* Shine Effect */
+        .premium-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .premium-btn:hover::before {
+            left: 100%;
+        }
+
+        /* --- About Me Grid --- */
+        .about-section {
+            padding: 2rem; /* Ensure standard padding */
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- Timeline --- */
+        .timeline {
+            position: relative;
+            border-left: 2px solid var(--primary);
+            padding-left: 2rem;
+            margin-left: 3rem; /* Increased from 1rem to 3rem to accommodate -2.6rem dots */
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2.65rem; /* Adjusted for alignment */
+            top: 0;
+            width: 1.2rem;
+            height: 1.2rem;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .timeline-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* --- 3D Skills Orbit --- */
+        .skills-column {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 400px;
+            width: 100%; /* Ensure full width */
+            overflow: hidden; /* Prevent spillover */
+        }
+
+        .tagcloud-container {
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-family: 'Share Tech Mono', monospace;
+            display: inline-block; /* Ensure it renders */
+        }
+        
+        /* TagCloud Items Style */
+        .tagcloud {
+            color: var(--primary);
+        }
+
+        .tagcloud--item:hover {
+            color: #fff;
+            text-shadow: 0 0 10px var(--primary);
+            cursor: pointer;
+        }
+
+        /* Responsive About Me */
+        @media (max-width: 768px) {
+            .about-container {
+                grid-template-columns: 1fr;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
             }
         }

@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/TagCloud@2.2.0/dist/TagCloud.min.js"></script>
     </head>
 <body>
     <!-- Navigation -->
@@ -16,7 +18,6 @@
         <ul>
             <li><a href="#inicio">Inicio</a></li>
             <li><a href="#sobre-mi">Sobre mí</a></li>
-            <li><a href="#habilidades">Habilidades</a></li>
             <li><a href="#servicios">Servicios</a></li>
             <li><a href="#proyectos">Proyectos</a></li>
             <li><a href="#cursos">Cursos</a></li>
@@ -28,48 +29,66 @@
     <section id="inicio">
         <div class="hero-content">
             <h1>Emanuel Zapata Hincapié</h1>
-            <p>Desarrollador Web | HTML, CSS, JavaScript & Python</p>
+            <p class="hero-subtitle">Desarrollador Web | HTML, CSS, JavaScript & Python</p>
             <p>Portafolio en progreso</p>
-            <a href="#proyectos" class="btn">Ver Proyectos</a>
+            <div class="hero-buttons">
+                <a href="#proyectos" class="cta-btn">Ver Mis Proyectos</a>
+                <a href="https://drive.google.com/file/d/1txozKA39NHOoavJd0_fmmwyVscpOyLWU/view?usp=sharing" target="_blank" class="btn-cv premium-btn">
+                    <span>Descargar CV</span>
+                    <i class="fas fa-download"></i>
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="sobre-mi">
-        <h2 class="section-title">Sobre Mí</h2>
-        <div class="about-content">
-            <p>Soy un desarrollador web apasionado por crear experiencias digitales elegantes y funcionales. Me especializo en desarrollo frontend con HTML, CSS y JavaScript, y también tengo experiencia en backend con Python y Flask. Mi enfoque es crear soluciones que combinen diseño limpio con código eficiente.</p>
-        </div>
-    </section>
+    <!-- About Me & Skills Section (Redesigned) -->
+    <section id="sobre-mi" class="about-section">
+        <h2 class="section-title">Sobre Mí & Habilidades</h2>
+        <div class="about-container">
+            
+            <!-- Timeline Column -->
+            <div class="timeline-column">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>2021 - El Comienzo de todo</h3>
+                            <p>Descubrí mi pasión por el código. Comencé con lógica de programación, Js y fundamentos de la web (HTML/CSS).</p>
+                        </div>
+                    </div>
 
-    <!-- Skills Section -->
-    <section id="habilidades">
-        <h2 class="section-title">Habilidades</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <h3>HTML5</h3>
-                <p>Estructura semántica</p>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>2022 -2023 - AutoDescubrimiento</h3>
+                            <p>Habia dejado el codigo por un tiempo,pero luego decidi volver y explorar nuevas tecnologias.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>2024 - Desarrollo Full Stack</h3>
+                            <p>Me especialicé en el ecosistema Python (Flask) y JavaScript moderno. Creé mis primeros proyectos comerciales.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>2025 - Actualidad</h3>
+                            <p>Desarrollador Freelance enfocado en soluciones a medida, automatización de procesos y experiencias web inmersivas.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="skill-card">
-                <h3>CSS3</h3>
-                <p>Diseño responsive</p>
+
+            <!-- 3D Skills Orbit Column -->
+            <div class="skills-column">
+                <div class="tagcloud-container"></div>
             </div>
-            <div class="skill-card">
-                <h3>JavaScript</h3>
-                <p>Interactividad</p>
-            </div>
-            <div class="skill-card">
-                <h3>Python</h3>
-                <p>Backend & Scripts</p>
-            </div>
-            <div class="skill-card">
-                <h3>Flask</h3>
-                <p>Web Framework</p>
-            </div>
-            <div class="skill-card">
-                <h3>Git</h3>
-                <p>Control de versiones</p>
-            </div>
+
         </div>
     </section>
 
@@ -136,7 +155,9 @@
 
             <!-- Static Project 1 -->
             <div class="project-card">
-                <div class="project-image">🌐</div>
+                <div class="project-image">
+                    <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/VwJWKjb-800.jpg" alt="Landing Page Preview">
+                </div>
                 <div class="project-content">
                     <h3>Landing Page De ropa</h3>
                     <p>Página web responsive y moderna para un E-Comerce dedicado a la venta de ropa (Solo Visual).</p>
@@ -145,7 +166,7 @@
                         <span class="tech-tag">CSS</span>
                     </div>
                     <div class="project-links">
-                        <a target="_blank"  href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/VwJWKjb" class="project-btn">Ver Demo</a>
+                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/VwJWKjb" class="project-btn">Ver Demo</a>
                         <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/VwJWKjb" class="project-btn">Ver Código</a>
                     </div>
                 </div>
@@ -153,7 +174,9 @@
 
             <!-- Static Project 2 -->
             <div class="project-card">
-                <div class="project-image">📱</div>
+                <div class="project-image">
+                    <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/jOoMpeX-800.jpg" alt="Secure Guard Preview">
+                </div>
                 <div class="project-content">
                     <h3>Secure Guard</h3>
                     <p>Página web minimalista y responsiva con funciones básicas que simulan ciberseguridad.</p>
@@ -172,7 +195,9 @@
 
             <!-- Static Project 3 -->
             <div class="project-card">
-                <div class="project-image">📱</div>
+                <div class="project-image">
+                    <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/raVjQoN-800.jpg" alt="Sabor Bagreño Preview">
+                </div>
                 <div class="project-content">
                     <h3>Sabor Bagreño</h3>
                     <p>Página web para restarante (En uso) para vision del menu y pedidos para whatsapp, principalmente desarrollado para dispositivos moviles</p>
@@ -190,7 +215,9 @@
 
             <!-- Static Project 4 -->
             <div class="project-card">
-                <div class="project-image">🎮</div>
+                <div class="project-image">
+                    <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/VwJjMjp-800.jpg" alt="Web Nequi Preview">
+                </div>
                 <div class="project-content">
                     <h3>Web Nequi(inspirada)</h3>
                     <p>Pagina inspirada en el inicio de la aplicacion nequi, .</p>
@@ -200,8 +227,8 @@
                         <span class="tech-tag">JavaScript</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/VwJjMjp" class="project-btn">Ver Demo</a>
-                        <a href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/VwJjMjp" class="project-btn">Ver Código</a>
+                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/VwJjMjp" class="project-btn">Ver Demo</a>
+                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/VwJjMjp" class="project-btn">Ver Código</a>
                     </div>
                 </div>
             </div>
@@ -211,7 +238,9 @@
 
             <!-- Static Project 5 -->
             <div class="project-card">
-                <div class="project-image"><img src='https://i.postimg.cc/N9cVJY76/image.png' border='0' alt='image'></div>
+                <div class="project-image">
+                    <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/abrKwVj-800.jpg" alt="Juego de formas Preview">
+                </div>
                 <div class="project-content">
                     <h3>Pequeño juego de formas</h3>
                     <p>Pagina donde puedes cambiar de forma y colores un pequeño cuadro, creada para practicar mejor JavaScript.</p>
@@ -221,8 +250,8 @@
                         <span class="tech-tag">JavaScript</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/abrKwVj" class="project-btn">Ver Demo</a>
-                        <a href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/abrKwVj" class="project-btn">Ver Código</a>
+                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/abrKwVj" class="project-btn">Ver Demo</a>
+                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/abrKwVj" class="project-btn">Ver Código</a>
                     </div>
                 </div>
             </div>
@@ -266,7 +295,10 @@
     <section id="contacto">
         <h2 class="section-title">Contacto</h2>
         <div class="contact-content">
-            <form class="contact-form" onsubmit="handleSubmit(event)">
+            <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+                <!-- FormSubmit Configuration -->
+                <input type="hidden" name="_captcha" value="false">
+                
                 <div class="form-group">
                     <label for="name">Nombre</label>
                     <input type="text" id="name" name="name" required>
@@ -279,10 +311,20 @@
                     <label for="message">Mensaje</label>
                     <textarea id="message" name="message" required></textarea>
                 </div>
-                <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                <button type="submit" class="submit-btn" id="submitBtn">Enviar Mensaje</button>
             </form>
         </div>
     </section>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-icon">🎉</div>
+            <h3>¡Gracias por contactarme!</h3>
+            <p>He recibido tu mensaje correctamente. Te responderé a <strong>azhura.dev@gmail.com</strong> lo antes posible.</p>
+            <button onclick="closeModal()" class="btn modal-btn">Cerrar</button>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -330,11 +372,69 @@
             });
         });
 
-        // Form submission
+        // Form submission with Confetti
         function handleSubmit(e) {
             e.preventDefault();
-            alert('¡Mensaje enviado! (Configura tu backend para procesar el formulario)');
-            e.target.reset();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = 'Enviando...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData(e.target);
+
+            fetch("https://formsubmit.co/ajax/azhura.dev@gmail.com", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Reset button
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+                
+                // Show modal
+                document.getElementById('successModal').classList.add('active');
+                e.target.reset();
+
+                // Launch Confetti
+                launchConfetti();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                submitBtn.innerText = 'Error, intenta de nuevo';
+                submitBtn.disabled = false;
+                setTimeout(() => {
+                    submitBtn.innerText = originalText;
+                }, 3000);
+            });
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('active');
+        }
+
+        function launchConfetti() {
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 3000 };
+
+            function randomInRange(min, max) {
+              return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function() {
+              var timeLeft = animationEnd - Date.now();
+
+              if (timeLeft <= 0) {
+                return clearInterval(interval);
+              }
+
+              var particleCount = 50 * (timeLeft / duration);
+              // since particles fall down, start a bit higher than random
+              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: randomInRange(0.2, 0.4) } }));
+              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: randomInRange(0.2, 0.4) } }));
+            }, 250);
         }
 
         // Animate on scroll
@@ -354,6 +454,26 @@
         document.querySelectorAll('.project-card, .skill-card').forEach(el => {
             observer.observe(el);
         });
+
+        // Initialize 3D Tag Cloud
+        const myTags = [
+            'HTML5', 'CSS3', 'JavaScript',
+            'Python', 'Flask',
+            'Git', 'GitHub', 'SQL',
+            'Bootstrap', 'React', 'Node.js',
+            'Linux', 'Bash'
+        ];
+
+        var tagCloud = TagCloud('.tagcloud-container', myTags, {
+            radius: 200,
+            maxSpeed: 'normal',
+            initSpeed: 'normal',
+            direction: 135,
+            keep: true
+        });
+
+        // Coloring text in JS or handled by CSS class .tagcloud
+        // document.querySelector('.tagcloud').style.color = '#00ff41'; 
     </script>
 </body>
 </html>
