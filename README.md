@@ -70,9 +70,9 @@ Si deseas usar este template para tu propio portafolio:
 
 Si te gusta mi trabajo o quieres colaborar:
 
-*   **GitHub**: [github.com/tu-usuario](https://github.com/tu-usuario)
-*   **LinkedIn**: [linkedin.com/in/tu-usuario](https://linkedin.com/in/tu-usuario)
-*   **Instagram**: [@tu-usuario](https://instagram.com/tu-usuario)
+*   **GitHub**: [github.com/tu-usuario]([https://github.com/tu-usuario](https://github.com/Azhura0101))
+*   **LinkedIn**: [linkedin.com/in/tu-usuario](www.linkedin.com/in/emanuel-zapata-b7ba3639b)
+*   **Instagram**: [@tu-usuario]([https://instagram.com/tu-usuario](https://www.instagram.com/azhura.dev/))
 
 ---
 © 2024 Emanuel Zapata Hincapié. Todos los derechos reservados.
