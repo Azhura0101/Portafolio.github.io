@@ -1028,3 +1028,41 @@
                 gap: 1rem;
             }
         }
+/* Featured Badge Style - Added by Assistant */
+.featured-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 5px 15px rgba(147, 51, 234, 0.4);
+    z-index: 10;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+}
+
+.project-card.featured {
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 30px rgba(147, 51, 234, 0.15);
+}
+
+.demo-warning {
+    color: #ffcc00;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    display: block;
+    background: rgba(255, 204, 0, 0.1);
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 204, 0, 0.3);
+}
+
+.demo-warning i {
+    margin-right: 5px;
+}

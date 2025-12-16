@@ -9,7 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1005/1005141.png" />
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
     </head>
 <body>
     <!-- Navigation -->
@@ -195,10 +197,16 @@
             <!-- Featured Project - Flask -->
             <div class="project-card featured">
                 <span class="featured-badge" data-i18n="proj_featured_badge">Destacado</span>
-                <div class="project-image">🐍</div>
+                <div class="project-image">
+                    <!-- Aspect ratio maintained via CSS or auto height -->
+                    <img src="https://i.postimg.cc/zb2V2R3z/image.png" alt="Sistema Base Demo Preview" style="width: 100%; height: auto; object-fit: cover;">
+                </div>
                 <div class="project-content">
-                    <h3 data-i18n="proj_flask_title">Aplicación Flask</h3>
-                    <p data-i18n="proj_flask_desc">Aplicación web completa desarrollada con Python y Flask. Incluye base de datos, autenticación y API REST.</p>
+                    <h3>Sistema de Gestión Empresarial</h3>
+                    <p>
+                        Solución integral (RRHH y Finanzas) con dashboards interactivos, control de empleados y registro de transacciones. Demuestra arquitectura MVC y seguridad.
+                        <span class="demo-warning"><i class="fas fa-info-circle"></i> <strong>Nota:</strong> Como es una demo gratuita, el servidor puede tardar unos 30-50 segundos en despertar. Ten paciencia, ¡vale la pena! 🚀</span>
+                    </p>
                     <div class="project-tech">
                         <span class="tech-tag">Python</span>
                         <span class="tech-tag">Flask</span>
@@ -206,8 +214,8 @@
                         <span class="tech-tag">HTML/CSS</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://tu-app-flask.com" class="project-btn" target="_blank" data-i18n="proj_flask_demo">Ver Demo</a>
-                        <a href="https://github.com/tu-usuario/proyecto-flask" class="project-btn" target="_blank" data-i18n="proj_flask_code">Ver Código</a>
+                        <a href="https://sistema-base-demo.onrender.com/login?next=https://sistema-base-demo.onrender.com/" class="project-btn" target="_blank" data-i18n="proj_flask_demo">Ver Demo</a>
+                        <a href="https://sistema-base-demo.onrender.com/login?next=https://sistema-base-demo.onrender.com/code-showcase"class="project-btn" target="_blank" data-i18n="proj_flask_code">Ver Código</a>
                     </div>
                 </div>
             </div>
