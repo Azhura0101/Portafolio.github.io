@@ -72,7 +72,7 @@ Si te gusta mi trabajo o quieres colaborar:
 
 *   **GitHub**: [https://github.com/Azhura0101](https://github.com/Azhura0101)
 *   **LinkedIn**: [linkedin.com/in/emanue-zapata-b7ba3639b](www.linkedin.com/in/emanuel-zapata-b7ba3639b)
-*   **Instagram**: [@azhura.dev]([https://instagram.com/azhura.dev])
+*   **Instagram**: [@azhura.dev](https://instagram.com/azhura.dev)
 
 ---
 © 2024 Emanuel Zapata Hincapié. Todos los derechos reservados.
