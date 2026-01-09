@@ -362,7 +362,38 @@
     <section id="contacto">
         <h2 class="section-title" data-i18n="contact_title">Contacto</h2>
         <div class="contact-content">
-            <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+            <p style="margin-bottom: 2rem; color: var(--text-muted);" data-i18n="contact_intro">¿Tienes alguna idea o proyecto en mente? ¡Hablemos!</p>
+            <button class="btn" onclick="openContactModal()" data-i18n="btn_send">Enviar Mensaje</button>
+            
+            <div class="direct-contact">
+                <a href="mailto:azhura.dev@gmail.com" class="contact-pill">
+                    <i class="fas fa-envelope"></i> azhura.dev@gmail.com
+                </a>
+                <a href="https://www.instagram.com/azhura.dev/" target="_blank" class="contact-pill">
+                    <i class="fab fa-instagram"></i> @azhura.dev
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-icon">🎉</div>
+            <h3 data-i18n="modal_title">¡Gracias por contactarme!</h3>
+            <p data-i18n="modal_msg">He recibido tu mensaje correctamente. Te responderé a <strong>azhura.dev@gmail.com</strong> lo antes posible.</p>
+            <button onclick="closeModal()" class="btn modal-btn" data-i18n="modal_close">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal-overlay">
+        <div class="modal-card">
+            <div style="text-align: right; width: 100%;">
+                <button onclick="closeContactModal()" style="background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            </div>
+            <h3 data-i18n="contact_title">Contacto</h3>
+            <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)" style="text-align: left;">
                 <!-- FormSubmit Configuration -->
                 <input type="hidden" name="_captcha" value="false">
                 
@@ -378,18 +409,23 @@
                     <label for="message" data-i18n="label_msg">Mensaje</label>
                     <textarea id="message" name="message" required></textarea>
                 </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms" data-i18n-html="terms_checkbox">Acepto los <span class="terms-link" onclick="openTerms()">Términos y Condiciones</span></label>
+                </div>
                 <button type="submit" class="submit-btn" id="submitBtn" data-i18n="btn_send">Enviar Mensaje</button>
             </form>
         </div>
-    </section>
+    </div>
 
-    <!-- Success Modal -->
-    <div id="successModal" class="modal-overlay">
+    <!-- Terms Modal -->
+    <div id="termsModal" class="modal-overlay">
         <div class="modal-card">
-            <div class="modal-icon">🎉</div>
-            <h3 data-i18n="modal_title">¡Gracias por contactarme!</h3>
-            <p data-i18n="modal_msg">He recibido tu mensaje correctamente. Te responderé a <strong>azhura.dev@gmail.com</strong> lo antes posible.</p>
-            <button onclick="closeModal()" class="btn modal-btn" data-i18n="modal_close">Cerrar</button>
+            <h3 data-i18n="terms_title">Términos y Condiciones</h3>
+            <div class="terms-content" data-i18n="terms_content">
+                <!-- Content injected via JS -->
+            </div>
+            <button onclick="closeTerms()" class="btn modal-btn" data-i18n="modal_close">Cerrar</button>
         </div>
     </div>
 
@@ -401,6 +437,9 @@
             <a href="www.linkedin.com/in/emanuel-zapata-b7ba3639b" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
         </div>
         <p data-i18n="footer_copy">&copy; 2024 Azhura_-. Todos los derechos reservados.</p>
+        <div style="margin-top: 1rem;">
+            <a href="#" onclick="openTerms(); return false;" style="color: var(--text-muted); text-decoration: underline; font-size: 0.9rem;" data-i18n="footer_terms">Términos y Condiciones</a>
+        </div>
     </footer>
 
     <script>
@@ -477,7 +516,18 @@
                 modal_title: "¡Gracias por contactarme!",
                 modal_msg: "He recibido tu mensaje correctamente. Te responderé a <strong>azhura.dev@gmail.com</strong> lo antes posible.",
                 modal_close: "Cerrar",
-                footer_copy: "&copy; 2024 Azhura_-. Todos los derechos reservados."
+                footer_copy: "&copy; 2024 Azhura_-. Todos los derechos reservados.",
+                terms_title: "Términos y Condiciones",
+                contact_intro: "¿Tienes alguna idea o proyecto en mente? ¡Hablemos!",
+                terms_checkbox: "Acepto los <span class=\"terms-link\" onclick=\"openTerms()\">Términos y Condiciones</span>",
+                footer_terms: "Términos y Condiciones",
+                terms_content: `
+                    <p><strong>1. Recolección de Datos:</strong> Al utilizar este formulario, aceptas que recolectemos tu nombre, correo electrónico y el mensaje proporcionado con el único fin de establecer comunicación.</p>
+                    <p><strong>2. Uso de la Información:</strong> Los datos serán utilizados exclusivamente para responder a tu consulta o solicitud de servicios. No compartimos, vendemos ni alquilamos tu información personal a terceros bajo ninguna circunstancia.</p>
+                    <p><strong>3. Protección de Datos:</strong> Implementamos medidas de seguridad razonables para proteger tu información contra acceso no autorizado, alteración o destrucción.</p>
+                    <p><strong>4. Derechos del Usuario:</strong> Tienes derecho a acceder, rectificar o solicitar la eliminación de tus datos en cualquier momento enviando un correo a <strong>azhura.dev@gmail.com</strong>.</p>
+                    <p><strong>5. Responsabilidad:</strong> Este sitio es un portafolio profesional. Aunque nos esforzamos por mantener la información actualizada y precisa, no garantizamos la disponibilidad continua del servicio ni nos hacemos responsables por errores u omisiones.</p>
+                `
             },
             en: {
                 nav_home: "Home",
@@ -550,7 +600,18 @@
                 modal_title: "Thanks for contacting me!",
                 modal_msg: "I have received your message correctly. I will reply to <strong>azhura.dev@gmail.com</strong> as soon as possible.",
                 modal_close: "Close",
-                footer_copy: "&copy; 2024 Azhura_-. All rights reserved."
+                footer_copy: "&copy; 2024 Azhura_-. All rights reserved.",
+                terms_title: "Terms and Conditions",
+                contact_intro: "Do you have an idea or project in mind? Let's talk!",
+                terms_checkbox: "I accept the <span class=\"terms-link\" onclick=\"openTerms()\">Terms and Conditions</span>",
+                footer_terms: "Terms and Conditions",
+                terms_content: `
+                    <p><strong>1. Data Collection:</strong> By using this form, you agree that we collect your name, email, and the provided message solely for the purpose of establishing communication.</p>
+                    <p><strong>2. Use of Information:</strong> The data will be used exclusively to respond to your inquiry or service request. We do not share, sell, or rent your personal information to third parties under any circumstances.</p>
+                    <p><strong>3. Data Protection:</strong> We implement reasonable security measures to protect your information against unauthorized access, alteration, or destruction.</p>
+                    <p><strong>4. User Rights:</strong> You have the right to access, rectify, or request the deletion of your data at any time by sending an email to <strong>azhura.dev@gmail.com</strong>.</p>
+                    <p><strong>5. Liability:</strong> This site is a professional portfolio. While we strive to keep information updated and accurate, we do not guarantee continuous service availability nor are we liable for errors or omissions.</p>
+                `
             }
         };
 
@@ -574,6 +635,14 @@
                             element.textContent = translations[lang][key];
                         }
                     }
+                }
+            });
+
+            // Update HTML content elements (like the terms checkbox with embedded span)
+            document.querySelectorAll('[data-i18n-html]').forEach(element => {
+                const key = element.getAttribute('data-i18n-html');
+                if (translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
                 }
             });
 
@@ -731,6 +800,37 @@
                 mobileMenu.classList.remove('active');
                 navMenu.classList.remove('active');
             });
+        });
+        // Terms Modal Logic
+        function openTerms() {
+            document.getElementById('termsModal').classList.add('active');
+        }
+
+        function closeTerms() {
+            document.getElementById('termsModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('termsModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeTerms();
+            }
+        });
+
+        // Contact Modal Logic
+        function openContactModal() {
+            document.getElementById('contactModal').classList.add('active');
+        }
+
+        function closeContactModal() {
+            document.getElementById('contactModal').classList.remove('active');
+        }
+
+        // Close contact modal when clicking outside
+        document.getElementById('contactModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeContactModal();
+            }
         });
     </script>
 </body>
