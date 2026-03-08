@@ -1,79 +1,91 @@
+# Azhura.dev — Portfolio Personal
 
-# 🚀 Portafolio Web Personal - Emanuel Zapata Hincapié
+> Portafolio personal de **Emanuel Zapata** (alias Azhura), Desarrollador Web Full Stack con base en Colombia.
 
-¡Bienvenido al repositorio de mi portafolio personal! Este proyecto es una presentación interactiva de mis habilidades, servicios y proyectos como Desarrollador Web.
-
-**🔗 [Ver Demo en Vivo](https://azhura0101.github.io/Portafolio.github.io/)**
-
-![Design Preview](https://via.placeholder.com/800x400?text=Preview+Portafolio) *(Reemplaza este link con una captura real de tu sitio)*
-
-## ✨ Características Principales
-
-*   **Diseño Premium**: Estilo "Cyberpunk/Futuristic" con una paleta de colores oscuros, neones y un fondo animado de nebulosa.
-*   **Glassmorphism 2.0**: Tarjetas con efectos de cristal esmerilado, bordes brillantes y sombras dinámicas.
-*   **Totalmente Responsive**: Se adapta perfectamente a móviles, tablets y escritorios.
-*   **Animaciones Suaves**: Micro-interacciones en botones, enlaces y tarjetas para una experiencia de usuario fluida.
-*   **Secciones Completas**:
-    *   **Inicio**: Hero section con llamada a la acción.
-    *   **Sobre Mí**: Breve biografía profesional.
-    *   **Habilidades**: Grid de competencias técnicas.
-    *   **Servicios**: Oferta de valor detallada.
-    *   **Proyectos**: Galería de trabajos con links a demos y código.
-    *   **Cursos**: Sección destacada para infoproductos o enseñanza.
-    *   **Contacto**: Formulario funcional visualmente.
-
-## 🛠️ Tecnologías Usadas
-
-*   **HTML5**: Estructura semántica y moderna.
-*   **CSS3**:
-    *   Variables CSS (`:root`) para temas de color.
-    *   Flexbox y CSS Grid para layouts.
-    *   Animaciones y Transiciones (`@keyframes`).
-    *   Glassmorphism Effects (`backdrop-filter`).
-*   **JavaScript (Vanilla)**:
-    *   Scroll suave entre secciones.
-    *   Menú de navegación activo al hacer scroll.
-    *   Efectos de aparición (`IntersectionObserver`).
-*   **Iconos & Fuentes**:
-    *   [FontAwesome 6](https://fontawesome.com/) para iconos sociales.
-    *   [Google Fonts](https://fonts.google.com/) (Familia 'Outfit').
-
-## 🚀 Cómo Usar / Instalación
-
-1.  **Clonar el repositorio**:
-    ```bash
-    git clone https://github.com/tu-usuario/portafolio.git
-    ```
-2.  **Abrir el proyecto**:
-    Navega a la carpeta y abre el archivo `index.html` en tu navegador web favorito.
-
-3.  **No requiere instalación**: Al ser tecnologías web estándar, no necesitas instalar dependencias de Node.js ni servidores complejos para verlo funcionar localmente.
-
-## 🎨 Personalización
-
-Si deseas usar este template para tu propio portafolio:
-
-1.  **Editar HTML**: Abre `index.html` y busca los textos para reemplazar:
-    *   Tu nombre en el `<h1>`.
-    *   Tus enlaces de redes sociales en el `<footer>`.
-    *   Tus proyectos en la sección `#proyectos`.
-2.  **Cambiar Colores**: Abre `style.css` y modifica las variables en `:root` al inicio del archivo:
-    ```css
-    :root {
-        --primary: #tu-color-favorito;
-        /* ... */
-    }
-    ```
-3.  **Imágenes**: Reemplaza las imágenes de los proyectos en la carpeta o actualiza las URLs en el HTML.
-
-## 📬 Contacto
-
-Si te gusta mi trabajo o quieres colaborar:
-
-*   **GitHub**: [https://github.com/Azhura0101](https://github.com/Azhura0101)
-*   **LinkedIn**: [linkedin.com/in/emanue-zapata-b7ba3639b](www.linkedin.com/in/emanuel-zapata-b7ba3639b)
-*   **Instagram**: [@azhura.dev](https://instagram.com/azhura.dev)
+**Demo en vivo:** [azhura0101.github.io/Portafolio](https://azhura0101.github.io/Portafolio) *(o abrir `index.html` localmente)*
 
 ---
-© 2024 Emanuel Zapata Hincapié. Todos los derechos reservados.
 
+## Sobre el Proyecto
+
+Este portafolio es un sitio web estático de una sola página (SPA-like) construido completamente con **HTML, CSS y JavaScript Vanilla**, sin frameworks ni dependencias de build. Fue diseñado desde cero con un enfoque en animaciones modernas, experiencia de usuario premium y una estética dark glassmorphism completamente personalizada.
+
+---
+
+## Caracteristicas
+
+- **Diseño Dark Glassmorphism** — paleta morada profunda con efectos de vidrio esmerilado, blurs y bordes con glow
+- **Canvas de Partículas** — red animada de puntos conectados que cubre toda la página como fondo digital
+- **Formas Decorativas Globales** — 8 blobs animados + 3 anillos giratorios distribuidos en toda la longitud de la página
+- **Hero con Typing Effect** — animación de escritura con múltiples roles (Python & Flask, Backend, etc.)
+- **Sección Sobre Mi con Timeline** — historial 2021→2026 incluyendo el inicio en Ingeniería de Sistemas en el ITM
+- **Skills como Tarjetas de Íconos** — grid con reveleo escalonado y efecto radial al hover
+- **Proyecto Destacado con Borde Animado** — gradiente morado que recorre el borde en loop
+- **Sección de Servicios** — 3 tarjetas con line-reveal en hover e icono con glow ring
+- **6 Proyectos** — con imágenes Live desde CodePen, links a demos reales y overlay de color al hover
+- **Contadores Animados** — los números de estadísticas se animan al entrar al viewport
+- **Formulario de Contacto Funcional** — integrado con FormSubmit + confetti al enviar
+- **Bilingüe ES / EN** — todo el contenido conmutable sin recarga, persistido en localStorage
+- **Navbar Adaptativa** — transparente, se vuelve sólida con blur al hacer scroll; links con underline animado
+- **Totalmente Responsive** — menú hamburguesa en móvil, grid fluido en proyectos y skills
+
+---
+
+## Stack
+
+| Capa | Tecnología |
+|------|-----------|
+| Estructura | HTML5 Semántico |
+| Estilos | CSS3 Vanilla (Variables, Grid, Flexbox, Animaciones) |
+| Lógica | JavaScript Vanilla (ES6+) |
+| Tipografía | Google Fonts — Outfit + JetBrains Mono |
+| Iconos | Font Awesome 6 |
+| Formulario | FormSubmit (sin backend propio) |
+| Confetti | canvas-confetti CDN |
+| Deploy | GitHub Pages |
+
+---
+
+## Proyectos Incluidos
+
+| Proyecto | Stack | Link |
+|---------|-------|------|
+| Sistema de Gestión Empresarial | Python, Flask, SQLAlchemy | [Demo](https://sistema-base-demo.onrender.com/login) |
+| Landing Page de Ropa | HTML, CSS | [CodePen](https://codepen.io/EMANUEL-ZAPATA-the-looper/full/VwJWKjb) |
+| Secure Guard | HTML, CSS, JS | [CodePen](https://codepen.io/EMANUEL-ZAPATA-the-looper/full/jOoMpeX) |
+| Sabor Bagreño | HTML, CSS, JS | [CodePen](https://codepen.io/EMANUEL-ZAPATA-the-looper/full/raVjQoN) |
+| Web Nequi (inspirada) | HTML, CSS, JS | [CodePen](https://codepen.io/EMANUEL-ZAPATA-the-looper/full/VwJjMjp) |
+| Playground de Formas | HTML, CSS, JS | [CodePen](https://codepen.io/EMANUEL-ZAPATA-the-looper/full/abrKwVj) |
+
+---
+
+## Estructura de Archivos
+
+```
+Portafolio/
+├── index.html     # Toda la estructura y lógica JS
+├── style.css      # Sistema de diseño completo
+└── README.md      # Este archivo
+```
+
+---
+
+## Uso Local
+
+```bash
+# Solo abre el archivo en tu navegador
+open index.html
+# o en Linux:
+xdg-open index.html
+```
+
+No necesita servidor, npm, ni compilación. Funciona directo desde el sistema de archivos.
+
+---
+
+## Contacto
+
+- Email: [azhura.dev@gmail.com](mailto:azhura.dev@gmail.com)
+- Instagram: [@azhura.dev](https://www.instagram.com/azhura.dev/)
+- GitHub: [Azhura0101](https://github.com/Azhura0101)
+- LinkedIn: [Emanuel Zapata](https://www.linkedin.com/in/emanuel-zapata-b7ba3639b)

@@ -3,20 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Portafolio</title>
+    <title>Azhura.dev — Emanuel Zapata | Desarrollador Web & Backend</title>
+    <meta name="description" content="Portfolio de Emanuel Zapata (Azhura), Desarrollador Web Full Stack especializado en Python, Flask, SQL y experiencias web modernas. Disponible para proyectos freelance.">
+    <meta property="og:title" content="Azhura.dev — Emanuel Zapata">
+    <meta property="og:description" content="Desarrollador Web & Backend. Python · Flask · SQL · JavaScript.">
+    <meta property="og:type" content="website">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1005/1005141.png" />
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-    </head>
+</head>
 <body>
+    <!-- Global particle canvas background -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Global floating shapes background -->
+    <div class="global-shapes" aria-hidden="true">
+        <div class="gs gs-1"></div>
+        <div class="gs gs-2"></div>
+        <div class="gs gs-3"></div>
+        <div class="gs gs-4"></div>
+        <div class="gs gs-5"></div>
+        <div class="gs gs-6"></div>
+        <div class="gs gs-7"></div>
+        <div class="gs gs-8"></div>
+        <div class="gs gs-ring gs-r1"></div>
+        <div class="gs gs-ring gs-r2"></div>
+        <div class="gs gs-ring gs-r3"></div>
+    </div>
+
     <!-- Navigation -->
-    <nav>
+    <nav id="navbar">
         <div class="nav-container">
+            <a href="#inicio" class="nav-logo">azhura.dev</a>
             <div class="menu-toggle" id="mobile-menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -29,7 +52,6 @@
                 <li><a href="#proyectos" data-i18n="nav_projects">Proyectos</a></li>
                 <li><a href="#cursos" data-i18n="nav_courses">Cursos</a></li>
                 <li><a href="#contacto" data-i18n="nav_contact">Contacto</a></li>
-                <!-- Language Toggle -->
                 <li><button id="lang-toggle" class="lang-btn">EN</button></li>
             </ul>
         </div>
@@ -37,58 +59,84 @@
 
     <!-- Hero Section -->
     <section id="inicio">
+        <!-- Floating geometric shapes -->
+        <div class="hero-shapes" aria-hidden="true">
+            <div class="hero-shape shape-1"></div>
+            <div class="hero-shape shape-2"></div>
+            <div class="hero-shape shape-3"></div>
+        </div>
         <div class="hero-content">
-            <h1 data-i18n="hero_title">Emanuel Zapata Hincapié</h1>
-            <p class="hero-subtitle" data-i18n="hero_subtitle">Desarrollador Web | HTML, CSS, JavaScript & Python</p>
-            <p data-i18n="hero_status">Portafolio en progreso</p>
+            <div class="hero-badge" data-i18n="hero_badge">Disponible para proyectos</div>
+            <h1>
+                <span class="hero-name-gradient">Emanuel Zapata</span><br>
+                <span style="font-size: 0.75em; font-weight: 700; opacity: 0.9;" data-i18n="hero_alias">Azhura</span>
+            </h1>
+            <div class="hero-typing-wrapper">
+                <span data-i18n="hero_prefix">Especialista en </span><span class="typing-text" id="typing-target"></span><span class="cursor"></span>
+            </div>
+            <p class="hero-desc" data-i18n="hero_desc">
+                Construyo herramientas digitales que resuelven problemas reales. Backend sólido, interfaces modernas y una obsesión por el código limpio.
+            </p>
             <div class="hero-buttons">
-                <a href="#proyectos" class="cta-btn" data-i18n="hero_cta">Ver Mis Proyectos</a>
-                <a href="https://drive.google.com/file/d/1txozKA39NHOoavJd0_fmmwyVscpOyLWU/view?usp=sharing" target="_blank" class="btn-cv premium-btn">
-                    <span data-i18n="hero_cv">Descargar CV</span>
-                    <i class="fas fa-download"></i>
+                <a href="#proyectos" class="btn-primary" data-i18n="hero_cta">Ver Mis Proyectos</a>
+                <a href="https://drive.google.com/file/d/1txozKA39NHOoavJd0_fmmwyVscpOyLWU/view?usp=sharing" target="_blank" class="btn-ghost" data-i18n="hero_cv">
+                    <i class="fas fa-download"></i> Descargar CV
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- About Me & Skills Section (Redesigned) -->
-    <section id="sobre-mi" class="about-section">
-        <h2 class="section-title" data-i18n="about_title">Sobre Mí</h2>
-        <div class="about-container">
-            
-            <!-- Timeline Column -->
-            <div class="timeline-column">
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h3 data-i18n="time_2021_title">2021 - El Comienzo de todo</h3>
-                            <p data-i18n="time_2021_desc">Descubrí mi pasión por el código. Comencé con lógica de programación, Js y fundamentos de la web (HTML/CSS).</p>
+    <!-- About & Timeline -->
+    <section id="sobre-mi">
+        <div class="section-inner">
+            <span class="section-label" data-i18n="section_label_about">mi historia</span>
+            <h2 class="section-title" data-i18n="about_title">Sobre Mí</h2>
+            <div class="section-divider"></div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p data-i18n="about_p1">Soy un <strong>desarrollador web autodidacta</strong> con base en Colombia, apasionado por construir soluciones que van desde simples landing pages hasta sistemas completos de gestión empresarial.</p>
+                    <p data-i18n="about_p2">Mi stack central es <strong>Python + Flask</strong> para el backend, con <strong>SQLAlchemy</strong> como ORM de confianza y <strong>Bootstrap/CSS personalizado</strong> en el frontend. No me limito a templates: entiendo la arquitectura que hay detrás.</p>
+                    <p data-i18n="about_p3">Me interesa especialmente la intersección entre <strong>usabilidad, performance y diseño</strong>. Creo que un buen software debe ser rápido, confiable y, sobre todo, útil.</p>
+                    <div class="about-stats">
+                        <div class="stat-card">
+                            <span class="number" data-count="4">0+</span>
+                            <span class="label" data-i18n="stat_exp">Años aprendiendo</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="number" data-count="10">0+</span>
+                            <span class="label" data-i18n="stat_proj">Proyectos completados</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="number" data-count="3">0</span>
+                            <span class="label" data-i18n="stat_clients">Clientes satisfechos</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="number">100%</span>
+                            <span class="label" data-i18n="stat_commit">Compromiso</span>
                         </div>
                     </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h3 data-i18n="time_2022_title">2022-2023 - La Búsqueda Profunda</h3>
-                            <p data-i18n="time_2022_desc">Un periodo de introspección y retorno. Entendí que programar no es solo escribir líneas, es diseñar estructuras con intención y propósito.</p>
+                </div>
+                <div>
+                    <div class="timeline">
+                        <div class="timeline-item reveal">
+                            <h3 data-i18n="time_2021_title">2021 — El Comienzo</h3>
+                            <p data-i18n="time_2021_desc">Descubrí mi pasión por el código. Empecé con lógica de programación, fundamentos de la web (HTML/CSS) y mis primeros pasos en JavaScript.</p>
                         </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h3 data-i18n="time_2024_title">2024 - Desarrollo Full Stack</h3>
-                            <p data-i18n="time_2024_desc">Me especialicé en el ecosistema Python (Flask) y JavaScript moderno. Creé mis primeros proyectos comerciales.</p>
+                        <div class="timeline-item reveal">
+                            <h3 data-i18n="time_2022_title">2022–2023 — Profundidad</h3>
+                            <p data-i18n="time_2022_desc">Un periodo de introspección. Entendí que programar es diseñar estructuras con intención, no solo escribir líneas. Descubrí Python.</p>
                         </div>
-                    </div>
-
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h3 data-i18n="time_2025_title">2025 - Actualidad</h3>
-                            <p data-i18n="time_2025_desc">Desarrollador Freelance enfocado en soluciones a medida, automatización de procesos y experiencias web inmersivas.</p>
+                        <div class="timeline-item reveal">
+                            <h3 data-i18n="time_2024_title">2024 — Full Stack</h3>
+                            <p data-i18n="time_2024_desc">Me especialicé en el ecosistema Python/Flask. Construí mis primeros proyectos comerciales y empecé a trabajar con clientes reales.</p>
+                        </div>
+                        <div class="timeline-item reveal">
+                            <h3 data-i18n="time_2025_title">2025 — Consolidación</h3>
+                            <p data-i18n="time_2025_desc">Desarrollador freelance enfocado en soluciones a medida, automatización de procesos y sistemas web con dashboards interactivos.</p>
+                        </div>
+                        <div class="timeline-item reveal" style="--dot-color: #a78bfa;">
+                            <h3 data-i18n="time_2026_title">2026 — Formación Profesional</h3>
+                            <p data-i18n="time_2026_desc">Inicio de mi formación profesional en <strong>Ingeniería de Sistemas en el ITM</strong>, combinando los fundamentos académicos con la experiencia práctica que ya he acumulado como desarrollador independiente.</p>
                         </div>
                     </div>
                 </div>
@@ -96,282 +144,295 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="habilidades" class="skills-section">
-        <h2 class="section-title" data-i18n="skills_title">Mis Herramientas</h2>
-        <div class="skills-column">
-            <div class="skills-bubbles">
-                <div class="skill-bubble">
-                    <i class="fab fa-html5" style="color: #e34c26;"></i>
-                    <span>HTML5</span>
-                </div>
-                <div class="skill-bubble">
-                    <i class="fab fa-css3-alt" style="color: #264de4;"></i>
-                    <span>CSS3</span>
-                </div>
-                <div class="skill-bubble">
-                    <i class="fab fa-js" style="color: #f7df1e;"></i>
-                    <span>JavaScript</span>
-                </div>
-                <div class="skill-bubble">
-                    <i class="fab fa-python" style="color: #3776ab;"></i>
-                    <span>Python</span>
-                </div>
-                <div class="skill-bubble">
-                    <i class="fas fa-flask" style="color: #fff;"></i>
-                    <span>Flask</span>
-                </div>
-                <div class="skill-bubble">
-                    <i class="fas fa-database" style="color: #00758f;"></i>
-                    <span>SQL</span>
-                </div>
-                <div class="skill-bubble">
-                    <i class="fab fa-git-alt" style="color: #f05032;"></i>
-                    <span>Git</span>
-                </div>
-                <div class="skill-bubble">
-                    <i class="fab fa-github" style="color: #fff;"></i>
-                    <span>GitHub</span>
-                </div>
-                <div class="skill-bubble">
-                    <i class="fab fa-bootstrap" style="color: #7952b3;"></i>
-                    <span>Bootstrap</span>
-                </div>
-                <div class="skill-bubble">
-                    <i class="fab fa-react" style="color: #61dafb;"></i>
-                    <span>React</span>
-                </div>
-                <div class="skill-bubble">
-                    <i class="fab fa-node-js" style="color: #339933;"></i>
-                    <span>Node.js</span>
-                </div>
-                <div class="skill-bubble">
-                    <i class="fab fa-linux" style="color: #fcc624;"></i>
-                    <span>Linux</span>
+    <!-- Skills -->
+    <section id="habilidades">
+        <div class="section-inner">
+            <span class="section-label" data-i18n="section_label_skills">stack técnico</span>
+            <h2 class="section-title" data-i18n="skills_title">Mis Herramientas</h2>
+            <div class="section-divider"></div>
+            <div class="skills-grid">
+                <div class="skill-pill reveal"><span class="skill-icon"><i class="fab fa-python" style="color: #3776ab;"></i></span> Python</div>
+                <div class="skill-pill reveal"><span class="skill-icon"><i class="fas fa-flask" style="color: #a78bfa;"></i></span> Flask</div>
+                <div class="skill-pill reveal"><span class="skill-icon"><i class="fas fa-database" style="color: #38bdf8;"></i></span> SQLAlchemy</div>
+                <div class="skill-pill reveal"><span class="skill-icon"><i class="fab fa-js" style="color: #f7df1e;"></i></span> JavaScript</div>
+                <div class="skill-pill reveal"><span class="skill-icon"><i class="fab fa-html5" style="color: #e34c26;"></i></span> HTML5</div>
+                <div class="skill-pill reveal"><span class="skill-icon"><i class="fab fa-css3-alt" style="color: #60a5fa;"></i></span> CSS3</div>
+                <div class="skill-pill reveal"><span class="skill-icon"><i class="fab fa-bootstrap" style="color: #a855f7;"></i></span> Bootstrap</div>
+                <div class="skill-pill reveal"><span class="skill-icon"><i class="fab fa-git-alt" style="color: #f05032;"></i></span> Git</div>
+                <div class="skill-pill reveal"><span class="skill-icon"><i class="fab fa-github" style="color: #e2e8f0;"></i></span> GitHub</div>
+                <div class="skill-pill reveal"><span class="skill-icon"><i class="fab fa-linux" style="color: #fbbf24;"></i></span> Linux</div>
+                <div class="skill-pill reveal"><span class="skill-icon" style="color: #c084fc;"><i class="fas fa-plug"></i></span> REST APIs</div>
+                <div class="skill-pill reveal"><span class="skill-icon" style="color: #f0abfc;"><i class="fas fa-shield-alt"></i></span> Seguridad Web</div>
+                <div class="skill-pill reveal skill-wip">
+                    <span class="skill-icon" style="color: #f89820;"><i class="fab fa-java"></i></span>
+                    Java
+                    <span class="wip-badge">En progreso</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Services -->
     <section id="servicios">
-        <h2 class="section-title" data-i18n="services_title">Mis Servicios</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">💻</div>
-                <h3 data-i18n="serv_web_title">Desarrollo Web</h3>
-                <p data-i18n="serv_web_desc">Transformo tus ideas en sitios web modernos, rápidos y totalmente adaptables a cualquier dispositivo. No solo entrego código, sino una herramienta para potenciar tu presencia digital.</p>
-                <ul class="service-features">
-                    <li data-i18n="serv_web_f1">Landing Pages de alta conversión</li>
-                    <li data-i18n="serv_web_f2">Portafolios y Blogs personales</li>
-                    <li data-i18n="serv_web_f3">Rediseño y optimización de sitios existentes</li>
-                </ul>
-            </div>
-            <div class="service-card">
-                 <div class="service-icon">🚀</div>
-                 <h3 data-i18n="serv_mkt_title">Marketing Digital</h3>
-                 <p data-i18n="serv_mkt_desc">Hago que tu marca sea visible y relevante. Diseño estrategias personalizadas para conectar con tu audiencia ideal y aumentar tus ventas a través de canales digitales.</p>
-                 <ul class="service-features">
-                    <li data-i18n="serv_mkt_f1">Gestión de Redes Sociales (Community Manager)</li>
-                    <li data-i18n="serv_mkt_f2">Campañas de publicidad (Facebook & Instagram Ads)</li>
-                    <li data-i18n="serv_mkt_f3">Estrategias de contenido y SEO básico</li>
-                </ul>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">📊</div>
-                <h3 data-i18n="serv_auto_title">Bases de Datos & Automatización</h3>
-                <p data-i18n="serv_auto_desc">¿Tu negocio crece y Excel ya no es suficiente? Estructuro tu información para que tomes mejores decisiones. Olvídate del caos de archivos sueltos y datos perdidos.</p>
-                <ul class="service-features">
-                    <li data-i18n="serv_auto_f1">Migración de Excel a Bases de Datos (SQL)</li>
-                    <li data-i18n="serv_auto_f2">Creación de Dashboards y Reportes automáticos</li>
-                    <li data-i18n="serv_auto_f3">Limpieza y organización de datos empresariales</li>
-                </ul>
+        <div class="section-inner">
+            <span class="section-label" data-i18n="section_label_services">qué ofrezco</span>
+            <h2 class="section-title" data-i18n="services_title">Mis Servicios</h2>
+            <div class="section-divider"></div>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon-wrap">💻</div>
+                    <h3 data-i18n="serv_web_title">Desarrollo Web</h3>
+                    <p data-i18n="serv_web_desc">Transformo tus ideas en sitios web modernos, rápidos y responsivos. No solo entrego código, sino una herramienta para potenciar tu presencia digital.</p>
+                    <ul class="service-features">
+                        <li data-i18n="serv_web_f1">Landing Pages de alta conversión</li>
+                        <li data-i18n="serv_web_f2">Portafolios y Blogs personales</li>
+                        <li data-i18n="serv_web_f3">Rediseño y optimización de sitios existentes</li>
+                    </ul>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon-wrap">⚙️</div>
+                    <h3 data-i18n="serv_app_title">Aplicaciones Web & Backend</h3>
+                    <p data-i18n="serv_app_desc">Creo sistemas web completos con autenticación, bases de datos relacionales, dashboards y APIs. Arquitectura MVC clara y código mantenible.</p>
+                    <ul class="service-features">
+                        <li data-i18n="serv_app_f1">Sistemas de gestión empresarial</li>
+                        <li data-i18n="serv_app_f2">APIs REST con Flask/Python</li>
+                        <li data-i18n="serv_app_f3">Dashboards con métricas en tiempo real</li>
+                    </ul>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon-wrap">📊</div>
+                    <h3 data-i18n="serv_auto_title">Bases de Datos & Automatización</h3>
+                    <p data-i18n="serv_auto_desc">¿Tu negocio crece y Excel ya no es suficiente? Estructuro tu información para que tomes mejores decisiones y automatizo procesos repetitivos.</p>
+                    <ul class="service-features">
+                        <li data-i18n="serv_auto_f1">Migración de Excel a Bases de Datos</li>
+                        <li data-i18n="serv_auto_f2">Reportes automáticos y exportación CSV</li>
+                        <li data-i18n="serv_auto_f3">Scripts Python para automatización</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects -->
     <section id="proyectos">
-        <h2 class="section-title" data-i18n="projects_title">Proyectos</h2>
-        <div class="projects-grid">
-            <!-- Featured Project - Flask -->
-            <div class="project-card featured">
-                <span class="featured-badge" data-i18n="proj_featured_badge">Destacado</span>
-                <div class="project-image">
-                    <!-- Aspect ratio maintained via CSS or auto height -->
-                    <img src="https://i.postimg.cc/zb2V2R3z/image.png" alt="Sistema Base Demo Preview" style="width: 100%; height: auto; object-fit: cover;">
-                </div>
-                <div class="project-content">
-                    <h3>Sistema de Gestión Empresarial</h3>
-                    <p>
-                        Solución integral (RRHH y Finanzas) con dashboards interactivos, control de empleados y registro de transacciones. Demuestra arquitectura MVC y seguridad.
-                        <span class="demo-warning"><i class="fas fa-info-circle"></i> <strong>Nota:</strong> Como es una demo gratuita, el servidor puede tardar unos 30-50 segundos en despertar. Ten paciencia, ¡vale la pena! 🚀</span>
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Flask</span>
-                        <span class="tech-tag">SQLite</span>
-                        <span class="tech-tag">HTML/CSS</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://sistema-base-demo.onrender.com/login?next=https://sistema-base-demo.onrender.com/" class="project-btn" target="_blank" data-i18n="proj_flask_demo">Ver Demo</a>
-                        <a href="https://sistema-base-demo.onrender.com/login?next=https://sistema-base-demo.onrender.com/code-showcase"class="project-btn" target="_blank" data-i18n="proj_flask_code">Ver Código</a>
-                    </div>
-                </div>
-            </div>
+        <div class="section-inner">
+            <span class="section-label" data-i18n="section_label_projects">trabajo reciente</span>
+            <h2 class="section-title" data-i18n="projects_title">Proyectos</h2>
+            <div class="section-divider"></div>
+            <div class="projects-grid">
 
-            <!-- Static Project 1 -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/VwJWKjb-800.jpg" alt="Landing Page Preview">
-                </div>
-                <div class="project-content">
-                    <h3 data-i18n="proj_landing_title">Landing Page De ropa</h3>
-                    <p data-i18n="proj_landing_desc">Página web responsive y moderna para un E-Comerce dedicado a la venta de ropa (Solo Visual).</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
+                <!-- Featured Project -->
+                <div class="project-card featured reveal">
+                    <div class="project-image">
+                        <span class="featured-badge" data-i18n="proj_featured_badge">Destacado</span>
+                        <img src="https://i.postimg.cc/zb2V2R3z/image.png" alt="Sistema de Gestión Empresarial Preview" loading="lazy">
                     </div>
-                    <div class="project-links">
-                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/VwJWKjb" class="project-btn" data-i18n="proj_flask_demo">Ver Demo</a>
-                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/VwJWKjb" class="project-btn" data-i18n="proj_flask_code">Ver Código</a>
+                    <div class="project-content">
+                        <h3 data-i18n="proj_flask_title">Sistema de Gestión Empresarial</h3>
+                        <p data-i18n="proj_flask_desc">
+                            Solución integral de RRHH y Finanzas: control de empleados, alertas automáticas, bitácoras, registro de transacciones multi-cuenta con categorización, sistema de auditoría por IP y dashboard interactivo con caché optimizado.
+                        </p>
+                        <span class="demo-warning" data-i18n="proj_flask_warning">
+                            <i class="fas fa-info-circle"></i> Demo gratuita en Render — el servidor puede tardar 30-50s en despertar.
+                        </span>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">SQLAlchemy</span>
+                            <span class="tech-tag">SQLite / PostgreSQL</span>
+                            <span class="tech-tag">Bootstrap 5</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://sistema-base-demo.onrender.com/login" class="project-btn" target="_blank" data-i18n="proj_view_demo">Ver Demo</a>
+                            <a href="https://sistema-base-demo.onrender.com/code-showcase" class="project-btn" target="_blank" data-i18n="proj_view_code">Ver Código</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Static Project 2 -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/jOoMpeX-800.jpg" alt="Secure Guard Preview">
-                </div>
-                <div class="project-content">
-                    <h3 data-i18n="proj_secure_title">Secure Guard</h3>
-                    <p data-i18n="proj_secure_desc">Página web minimalista y responsiva con funciones básicas que simulan ciberseguridad.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JavaScript</span>
+                <!-- Project 2 -->
+                <div class="project-card reveal">
+                    <div class="project-image">
+                        <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/VwJWKjb-800.jpg" alt="Landing Page Ropa" loading="lazy">
                     </div>
-                    <div class="project-links">
-                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/jOoMpeX" class="project-btn" data-i18n="proj_flask_demo">Ver Demo</a>
-                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/jOoMpeX" class="project-btn" data-i18n="proj_flask_code">Ver Código</a>
+                    <div class="project-content">
+                        <h3 data-i18n="proj_landing_title">Landing Page de Ropa</h3>
+                        <p data-i18n="proj_landing_desc">E-commerce visual responsivo y moderno para tienda de ropa, con navegación fluida y diseño orientado a conversión.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                        </div>
+                        <div class="project-links">
+                            <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/VwJWKjb" class="project-btn" data-i18n="proj_view_demo">Ver Demo</a>
+                            <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/VwJWKjb" class="project-btn" data-i18n="proj_view_code">Ver Código</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
+                <!-- Project 3 -->
+                <div class="project-card reveal">
+                    <div class="project-image">
+                        <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/jOoMpeX-800.jpg" alt="Secure Guard" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                        <h3 data-i18n="proj_secure_title">Secure Guard</h3>
+                        <p data-i18n="proj_secure_desc">Página web minimalista y responsiva con funcionalidades simuladas de ciberseguridad — scanner de red, cifrado y más.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/jOoMpeX" class="project-btn" data-i18n="proj_view_demo">Ver Demo</a>
+                            <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/jOoMpeX" class="project-btn" data-i18n="proj_view_code">Ver Código</a>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Static Project 3 -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/raVjQoN-800.jpg" alt="Sabor Bagreño Preview">
-                </div>
-                <div class="project-content">
-                    <h3 data-i18n="proj_bagre_title">Sabor Bagreño</h3>
-                    <p data-i18n="proj_bagre_desc">Página web para restarante (En uso) para vision del menu y pedidos para whatsapp, principalmente desarrollado para dispositivos moviles</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JavaScript</span>
+                <!-- Project 4 -->
+                <div class="project-card reveal">
+                    <div class="project-image">
+                        <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/raVjQoN-800.jpg" alt="Sabor Bagreño" loading="lazy">
                     </div>
-                    <div class="project-links">
-                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/raVjQoN" class="project-btn" data-i18n="proj_flask_demo">Ver Demo</a>
-                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/raVjQoN" class="project-btn" data-i18n="proj_flask_code">Ver Código</a>
+                    <div class="project-content">
+                        <h3 data-i18n="proj_bagre_title">Sabor Bagreño</h3>
+                        <p data-i18n="proj_bagre_desc">Web para restaurante en uso real: menú digital y pedidos directo a WhatsApp. Optimizada para móviles.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/raVjQoN" class="project-btn" data-i18n="proj_view_demo">Ver Demo</a>
+                            <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/raVjQoN" class="project-btn" data-i18n="proj_view_code">Ver Código</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Static Project 4 -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/VwJjMjp-800.jpg" alt="Web Nequi Preview">
-                </div>
-                <div class="project-content">
-                    <h3 data-i18n="proj_nequi_title">Web Nequi(inspirada)</h3>
-                    <p data-i18n="proj_nequi_desc">Pagina inspirada en el inicio de la aplicacion nequi, .</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JavaScript</span>
+                <!-- Project 5 -->
+                <div class="project-card reveal">
+                    <div class="project-image">
+                        <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/VwJjMjp-800.jpg" alt="Web Nequi Inspired" loading="lazy">
                     </div>
-                    <div class="project-links">
-                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/VwJjMjp" class="project-btn" data-i18n="proj_flask_demo">Ver Demo</a>
-                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/VwJjMjp" class="project-btn" data-i18n="proj_flask_code">Ver Código</a>
+                    <div class="project-content">
+                        <h3 data-i18n="proj_nequi_title">Web Nequi (Inspirada)</h3>
+                        <p data-i18n="proj_nequi_desc">Recreación visual del login de Nequi con animaciones propias y UI minimalista.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/VwJjMjp" class="project-btn" data-i18n="proj_view_demo">Ver Demo</a>
+                            <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/VwJjMjp" class="project-btn" data-i18n="proj_view_code">Ver Código</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-       
-  
 
-
-            <!-- Static Project 5 -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/abrKwVj-800.jpg" alt="Juego de formas Preview">
-                </div>
-                <div class="project-content">
-                    <h3 data-i18n="proj_shapes_title">Pequeño juego de formas</h3>
-                    <p data-i18n="proj_shapes_desc">Pagina donde puedes cambiar de forma y colores un pequeño cuadro, creada para practicar mejor JavaScript.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JavaScript</span>
+                <!-- Project 6 -->
+                <div class="project-card reveal">
+                    <div class="project-image">
+                        <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/abrKwVj-800.jpg" alt="Juego de formas" loading="lazy">
                     </div>
-                    <div class="project-links">
-                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/abrKwVj" class="project-btn" data-i18n="proj_flask_demo">Ver Demo</a>
-                        <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/abrKwVj" class="project-btn" data-i18n="proj_flask_code">Ver Código</a>
+                    <div class="project-content">
+                        <h3 data-i18n="proj_shapes_title">Playground de Formas</h3>
+                        <p data-i18n="proj_shapes_desc">Mini-juego interactivo para explorar figuras geométricas y paletas de colores en tiempo real. Creado para dominar el DOM.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/abrKwVj" class="project-btn" data-i18n="proj_view_demo">Ver Demo</a>
+                            <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/abrKwVj" class="project-btn" data-i18n="proj_view_code">Ver Código</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </section>
 
-    <!-- Courses Section -->
+    <!-- Courses -->
     <section id="cursos">
-        <h2 class="section-title" data-i18n="courses_title">Aprende Conmigo</h2>
-        <div class="course-card-featured">
-            <div class="course-content">
-                <span class="course-badge" data-i18n="course_badge">Nuevo Lanzamiento</span>
-                <h3 data-i18n="course_title">Curso: Crea tu Página Web desde Cero</h3>
-                <p class="course-description" data-i18n="course_desc">
-                    Aprende a desarrollar sitios web profesionales sin conocimientos previos. 
-                    Te guiaré paso a paso desde HTML y CSS hasta publicar tu sitio en internet.
-                </p>
-                <ul class="course-features">
-                    <li data-i18n="course_f1">✅ HTML5 y CSS3 Moderno</li>
-                    <li data-i18n="course_f2">✅ Diseño Responsive (Móvil y PC)</li>
-                    <li data-i18n="course_f3">✅ Proyecto Real para tu Portafolio</li>
-                    <li data-i18n="course_f4">✅ Soporte y Comunidad</li>
-                </ul>
-                <div class="course-cta">
-                    <a href="#contacto" class="btn course-btn" data-i18n="course_cta">¡Quiero Aprender Más!</a>
+        <div class="section-inner">
+            <span class="section-label" data-i18n="section_label_courses">comparte el conocimiento</span>
+            <h2 class="section-title" data-i18n="courses_title">Aprende Conmigo</h2>
+            <div class="section-divider"></div>
+            <div class="course-card reveal">
+                <div>
+                    <span class="course-badge" data-i18n="course_badge">Próximo Lanzamiento</span>
+                    <h3 data-i18n="course_title">Crea tu Página Web desde Cero</h3>
+                    <p class="desc" data-i18n="course_desc">Aprende a construir sitios web profesionales sin conocimientos previos. Te guío paso a paso desde HTML & CSS hasta publicar en internet tu primer proyecto real.</p>
+                    <ul class="course-features">
+                        <li data-i18n="course_f1">HTML5 y CSS3 moderno</li>
+                        <li data-i18n="course_f2">Diseño responsive (Móvil y PC)</li>
+                        <li data-i18n="course_f3">Proyecto real para tu portafolio</li>
+                        <li data-i18n="course_f4">Soporte y comunidad activa</li>
+                    </ul>
+                    <a href="#contacto" class="btn-primary" data-i18n="course_cta">Quiero más info</a>
                 </div>
-            </div>
-            <div class="course-image">
-                <div class="code-preview">
-                    <code>
-                        <span class="tag">&lt;h1&gt;</span>Hola Mundo<span class="tag">&lt;/h1&gt;</span><br>
-                        <span class="tag">&lt;p&gt;</span>Aprendiendo a programar...<span class="tag">&lt;/p&gt;</span>
-                    </code>
+                <div class="code-preview-box">
+                    <span class="comment">// Tu primera línea de código</span><br>
+                    <span class="tag">&lt;html&gt;</span><br>
+                    &nbsp;&nbsp;<span class="tag">&lt;head&gt;</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;title&gt;</span>Mi Web<span class="tag">&lt;/title&gt;</span><br>
+                    &nbsp;&nbsp;<span class="tag">&lt;/head&gt;</span><br>
+                    &nbsp;&nbsp;<span class="tag">&lt;body&gt;</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;h1&gt;</span>Hola Mundo&nbsp;<span class="tag">&lt;/h1&gt;</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;p&gt;</span>Empezando a programar...<span class="tag">&lt;/p&gt;</span><br>
+                    &nbsp;&nbsp;<span class="tag">&lt;/body&gt;</span><br>
+                    <span class="tag">&lt;/html&gt;</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact -->
     <section id="contacto">
-        <h2 class="section-title" data-i18n="contact_title">Contacto</h2>
-        <div class="contact-content">
-            <p style="margin-bottom: 2rem; color: var(--text-muted);" data-i18n="contact_intro">¿Tienes alguna idea o proyecto en mente? ¡Hablemos!</p>
-            <button class="btn" onclick="openContactModal()" data-i18n="btn_send">Enviar Mensaje</button>
-            
-            <div class="direct-contact">
-                <a href="mailto:azhura.dev@gmail.com" class="contact-pill">
-                    <i class="fas fa-envelope"></i> azhura.dev@gmail.com
-                </a>
-                <a href="https://www.instagram.com/azhura.dev/" target="_blank" class="contact-pill">
-                    <i class="fab fa-instagram"></i> @azhura.dev
-                </a>
+        <div class="section-inner">
+            <span class="section-label" data-i18n="section_label_contact">hablemos</span>
+            <h2 class="section-title" data-i18n="contact_title">Contacto</h2>
+            <div class="section-divider"></div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3 data-i18n="contact_heading">Tienes un proyecto en mente?</h3>
+                    <p data-i18n="contact_intro">Estoy disponible para proyectos freelance, consultas técnicas y colaboraciones. Escríbeme y te respondo en menos de 24h.</p>
+                    <div class="contact-pills">
+                        <a href="mailto:azhura.dev@gmail.com" class="contact-pill">
+                            <i class="fas fa-envelope"></i> azhura.dev@gmail.com
+                        </a>
+                        <a href="https://www.instagram.com/azhura.dev/" target="_blank" class="contact-pill">
+                            <i class="fab fa-instagram"></i> @azhura.dev
+                        </a>
+                        <a href="https://github.com/Azhura0101" target="_blank" class="contact-pill">
+                            <i class="fab fa-github"></i> github.com/Azhura0101
+                        </a>
+                        <a href="https://www.linkedin.com/in/emanuel-zapata-b7ba3639b" target="_blank" class="contact-pill">
+                            <i class="fab fa-linkedin-in"></i> LinkedIn
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form-wrap reveal">
+                    <form id="contactForm" onsubmit="handleSubmit(event)">
+                        <input type="hidden" name="_captcha" value="false">
+                        <div class="form-group">
+                            <label for="name" data-i18n="label_name">Nombre</label>
+                            <input type="text" id="name" name="name" placeholder="Tu nombre completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" data-i18n="label_email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" data-i18n="label_msg">Mensaje</label>
+                            <textarea id="message" name="message" placeholder="Cuéntame sobre tu proyecto..." required></textarea>
+                        </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms" data-i18n-html="terms_checkbox">Acepto los <span class="terms-link" onclick="openTerms()">Términos y Condiciones</span></label>
+                        </div>
+                        <button type="submit" class="submit-btn" id="submitBtn" data-i18n="btn_send">Enviar Mensaje</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -380,52 +441,20 @@
     <div id="successModal" class="modal-overlay">
         <div class="modal-card">
             <div class="modal-icon">🎉</div>
-            <h3 data-i18n="modal_title">¡Gracias por contactarme!</h3>
-            <p data-i18n="modal_msg">He recibido tu mensaje correctamente. Te responderé a <strong>azhura.dev@gmail.com</strong> lo antes posible.</p>
-            <button onclick="closeModal()" class="btn modal-btn" data-i18n="modal_close">Cerrar</button>
+            <h3 data-i18n="modal_title">¡Mensaje recibido!</h3>
+            <p data-i18n="modal_msg">Gracias por contactarme. Te responderé a <strong>azhura.dev@gmail.com</strong> lo antes posible.</p>
+            <button onclick="closeModal()" class="modal-btn" data-i18n="modal_close">Cerrar</button>
         </div>
     </div>
 
-    <!-- Contact Modal -->
-    <div id="contactModal" class="modal-overlay">
-        <div class="modal-card">
-            <div style="text-align: right; width: 100%;">
-                <button onclick="closeContactModal()" style="background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">&times;</button>
-            </div>
-            <h3 data-i18n="contact_title">Contacto</h3>
-            <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)" style="text-align: left;">
-                <!-- FormSubmit Configuration -->
-                <input type="hidden" name="_captcha" value="false">
-                
-                <div class="form-group">
-                    <label for="name" data-i18n="label_name">Nombre</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email" data-i18n="label_email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message" data-i18n="label_msg">Mensaje</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <div class="checkbox-wrapper">
-                    <input type="checkbox" id="terms" name="terms" required>
-                    <label for="terms" data-i18n-html="terms_checkbox">Acepto los <span class="terms-link" onclick="openTerms()">Términos y Condiciones</span></label>
-                </div>
-                <button type="submit" class="submit-btn" id="submitBtn" data-i18n="btn_send">Enviar Mensaje</button>
-            </form>
-        </div>
-    </div>
-
+    <!-- Contact Modal (unused, inline form now) -->
     <!-- Terms Modal -->
     <div id="termsModal" class="modal-overlay">
-        <div class="modal-card">
-            <h3 data-i18n="terms_title">Términos y Condiciones</h3>
-            <div class="terms-content" data-i18n="terms_content">
-                <!-- Content injected via JS -->
-            </div>
-            <button onclick="closeTerms()" class="btn modal-btn" data-i18n="modal_close">Cerrar</button>
+        <div class="modal-card" style="text-align:left;">
+            <button class="modal-close-btn" onclick="closeTerms()">&times;</button>
+            <h3 style="margin-bottom:1rem;" data-i18n="terms_title">Términos y Condiciones</h3>
+            <div class="terms-content" data-i18n="terms_content"></div>
+            <button onclick="closeTerms()" class="modal-btn" data-i18n="modal_close">Cerrar</button>
         </div>
     </div>
 
@@ -434,404 +463,396 @@
         <div class="social-links">
             <a href="https://github.com/Azhura0101" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
             <a href="https://www.instagram.com/azhura.dev/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-            <a href="www.linkedin.com/in/emanuel-zapata-b7ba3639b" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.linkedin.com/in/emanuel-zapata-b7ba3639b" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
         </div>
-        <p data-i18n="footer_copy">&copy; 2024 Azhura_-. Todos los derechos reservados.</p>
-        <div style="margin-top: 1rem;">
-            <a href="#" onclick="openTerms(); return false;" style="color: var(--text-muted); text-decoration: underline; font-size: 0.9rem;" data-i18n="footer_terms">Términos y Condiciones</a>
-        </div>
+        <p data-i18n="footer_copy">&copy; 2025 Azhura.dev — Todos los derechos reservados.</p>
+        <a href="#" onclick="openTerms(); return false;" data-i18n="footer_terms">Términos y Condiciones</a>
     </footer>
 
     <script>
-        // --- Translations ---
-        const translations = {
-            es: {
-                nav_home: "Inicio",
-                nav_about: "Sobre mí",
-                nav_services: "Servicios",
-                nav_projects: "Proyectos",
-                nav_courses: "Cursos",
-                nav_contact: "Contacto",
-                hero_title: "Emanuel Zapata Hincapié",
-                hero_subtitle: "Desarrollador Web | HTML, CSS, JavaScript & Python",
-                hero_status: "Portafolio en progreso",
-                hero_cta: "Ver Mis Proyectos",
-                hero_cv: "Descargar CV",
-                about_title: "Sobre Mí",
-                time_2021_title: "2021 - El Comienzo de todo",
-                time_2021_desc: "Descubrí mi pasión por el código. Comencé con lógica de programación, Js y fundamentos de la web (HTML/CSS).",
-                time_2022_title: "2022-2023 - La Búsqueda Profunda",
-                time_2022_desc: "Un periodo de introspección y retorno. Entendí que programar no es solo escribir líneas, es diseñar estructuras con intención y propósito.",
-                time_2024_title: "2024 - Desarrollo Full Stack",
-                time_2024_desc: "Me especialicé en el ecosistema Python (Flask) y JavaScript moderno. Creé mis primeros proyectos comerciales.",
-                time_2025_title: "2025 - Actualidad",
-                time_2025_desc: "Desarrollador Freelance enfocado en soluciones a medida, automatización de procesos y experiencias web inmersivas.",
-                skills_title: "Mis Herramientas",
-                services_title: "Mis Servicios",
-                serv_web_title: "Desarrollo Web",
-                serv_web_desc: "Transformo tus ideas en sitios web modernos, rápidos y totalmente adaptables a cualquier dispositivo. No solo entrego código, sino una herramienta para potenciar tu presencia digital.",
-                serv_web_f1: "Landing Pages de alta conversión",
-                serv_web_f2: "Portafolios y Blogs personales",
-                serv_web_f3: "Rediseño y optimización de sitios existentes",
-                serv_mkt_title: "Marketing Digital",
-                serv_mkt_desc: "Hago que tu marca sea visible y relevante. Diseño estrategias personalizadas para conectar con tu audiencia ideal y aumentar tus ventas a través de canales digitales.",
-                serv_mkt_f1: "Gestión de Redes Sociales (Community Manager)",
-                serv_mkt_f2: "Campañas de publicidad (Facebook & Instagram Ads)",
-                serv_mkt_f3: "Estrategias de contenido y SEO básico",
-                serv_auto_title: "Bases de Datos & Automatización",
-                serv_auto_desc: "¿Tu negocio crece y Excel ya no es suficiente? Estructuro tu información para que tomes mejores decisiones. Olvídate del caos de archivos sueltos y datos perdidos.",
-                serv_auto_f1: "Migración de Excel a Bases de Datos (SQL)",
-                serv_auto_f2: "Creación de Dashboards y Reportes automáticos",
-                serv_auto_f3: "Limpieza y organización de datos empresariales",
-                projects_title: "Proyectos",
-                proj_featured_badge: "Destacado",
-                proj_flask_title: "Aplicación Flask",
-                proj_flask_desc: "Aplicación web completa desarrollada con Python y Flask. Incluye base de datos, autenticación y API REST.",
-                proj_flask_demo: "Ver Demo",
-                proj_flask_code: "Ver Código",
-                proj_landing_title: "Landing Page De ropa",
-                proj_landing_desc: "Página web responsive y moderna para un E-Comerce dedicado a la venta de ropa (Solo Visual).",
-                proj_secure_title: "Secure Guard",
-                proj_secure_desc: "Página web minimalista y responsiva con funciones básicas que simulan ciberseguridad.",
-                proj_bagre_title: "Sabor Bagreño",
-                proj_bagre_desc: "Página web para restarante (En uso) para vision del menu y pedidos para whatsapp, principalmente desarrollado para dispositivos moviles",
-                proj_nequi_title: "Web Nequi(inspirada)",
-                proj_nequi_desc: "Pagina inspirada en el inicio de la aplicacion nequi, .",
-                proj_shapes_title: "Pequeño juego de formas",
-                proj_shapes_desc: "Pagina donde puedes cambiar de forma y colores un pequeño cuadro, creada para practicar mejor JavaScript.",
-                courses_title: "Aprende Conmigo",
-                course_badge: "Nuevo Lanzamiento",
-                course_title: "Curso: Crea tu Página Web desde Cero",
-                course_desc: "Aprende a desarrollar sitios web profesionales sin conocimientos previos. Te guiaré paso a paso desde HTML y CSS hasta publicar tu sitio en internet.",
-                course_f1: "✅ HTML5 y CSS3 Moderno",
-                course_f2: "✅ Diseño Responsive (Móvil y PC)",
-                course_f3: "✅ Proyecto Real para tu Portafolio",
-                course_f4: "✅ Soporte y Comunidad",
-                course_cta: "¡Quiero Aprender Más!",
-                contact_title: "Contacto",
-                label_name: "Nombre",
-                label_email: "Email",
-                label_msg: "Mensaje",
-                btn_send: "Enviar Mensaje",
-                modal_title: "¡Gracias por contactarme!",
-                modal_msg: "He recibido tu mensaje correctamente. Te responderé a <strong>azhura.dev@gmail.com</strong> lo antes posible.",
-                modal_close: "Cerrar",
-                footer_copy: "&copy; 2024 Azhura_-. Todos los derechos reservados.",
-                terms_title: "Términos y Condiciones",
-                contact_intro: "¿Tienes alguna idea o proyecto en mente? ¡Hablemos!",
-                terms_checkbox: "Acepto los <span class=\"terms-link\" onclick=\"openTerms()\">Términos y Condiciones</span>",
-                footer_terms: "Términos y Condiciones",
-                terms_content: `
-                    <p><strong>1. Recolección de Datos:</strong> Al utilizar este formulario, aceptas que recolectemos tu nombre, correo electrónico y el mensaje proporcionado con el único fin de establecer comunicación.</p>
-                    <p><strong>2. Uso de la Información:</strong> Los datos serán utilizados exclusivamente para responder a tu consulta o solicitud de servicios. No compartimos, vendemos ni alquilamos tu información personal a terceros bajo ninguna circunstancia.</p>
-                    <p><strong>3. Protección de Datos:</strong> Implementamos medidas de seguridad razonables para proteger tu información contra acceso no autorizado, alteración o destrucción.</p>
-                    <p><strong>4. Derechos del Usuario:</strong> Tienes derecho a acceder, rectificar o solicitar la eliminación de tus datos en cualquier momento enviando un correo a <strong>azhura.dev@gmail.com</strong>.</p>
-                    <p><strong>5. Responsabilidad:</strong> Este sitio es un portafolio profesional. Aunque nos esforzamos por mantener la información actualizada y precisa, no garantizamos la disponibilidad continua del servicio ni nos hacemos responsables por errores u omisiones.</p>
-                `
-            },
-            en: {
-                nav_home: "Home",
-                nav_about: "About Me",
-                nav_services: "Services",
-                nav_projects: "Projects",
-                nav_courses: "Courses",
-                nav_contact: "Contact",
-                hero_title: "Emanuel Zapata Hincapié",
-                hero_subtitle: "Web Developer | HTML, CSS, JavaScript & Python",
-                hero_status: "Portfolio in progress",
-                hero_cta: "View My Projects",
-                hero_cv: "Download CV",
-                about_title: "About Me",
-                time_2021_title: "2021 - The Beginning of Everything",
-                time_2021_desc: "I discovered my passion for code. Started with programming logic, JS, and web fundamentals (HTML/CSS).",
-                time_2022_title: "2022-2023 - Deep Search",
-                time_2022_desc: "A period of introspection and return. I understood that programming is not just writing lines, it's designing structures with intention and purpose.",
-                time_2024_title: "2024 - Full Stack Development",
-                time_2024_desc: "Specialized in the Python (Flask) ecosystem and modern JavaScript. Created my first commercial projects.",
-                time_2025_title: "2025 - Currently",
-                time_2025_desc: "Freelance Developer focused on custom solutions, process automation, and immersive web experiences.",
-                skills_title: "My Tools",
-                services_title: "My Services",
-                serv_web_title: "Web Development",
-                serv_web_desc: "I transform your ideas into modern, fast, and fully responsive websites. I don't just deliver code, but a tool to boost your digital presence.",
-                serv_web_f1: "High-conversion Landing Pages",
-                serv_web_f2: "Personal Portfolios and Blogs",
-                serv_web_f3: "Redesign and optimization of existing sites",
-                serv_mkt_title: "Digital Marketing",
-                serv_mkt_desc: "I make your brand visible and relevant. I design custom strategies to connect with your ideal audience and increase your sales through digital channels.",
-                serv_mkt_f1: "Social Media Management (Community Manager)",
-                serv_mkt_f2: "Ad Campaigns (Facebook & Instagram Ads)",
-                serv_mkt_f3: "Content Strategies and Basic SEO",
-                serv_auto_title: "Databases & Automation",
-                serv_auto_desc: "Is your business growing and Excel is no longer enough? I structure your information so you can make better decisions. Forget the chaos of loose files and lost data.",
-                serv_auto_f1: "Excel to Database Migration (SQL)",
-                serv_auto_f2: "Creation of automated Dashboards and Reports",
-                serv_auto_f3: "Cleaning and organization of business data",
-                projects_title: "Projects",
-                proj_featured_badge: "Featured",
-                proj_flask_title: "Flask Application",
-                proj_flask_desc: "Complete web application developed with Python and Flask. Includes database, authentication, and REST API.",
-                proj_flask_demo: "View Demo",
-                proj_flask_code: "View Code",
-                proj_landing_title: "Clothing Landing Page",
-                proj_landing_desc: "Responsive and modern web page for a clothing E-Commerce (Visual Only).",
-                proj_secure_title: "Secure Guard",
-                proj_secure_desc: "Minimalist and responsive website with basic functions simulating cybersecurity.",
-                proj_bagre_title: "Sabor Bagreño",
-                proj_bagre_desc: "Restaurant website (In use) for menu viewing and WhatsApp orders, mainly developed for mobile devices.",
-                proj_nequi_title: "Nequi Web (Inspired)",
-                proj_nequi_desc: "Page inspired by the login of the Nequi application.",
-                proj_shapes_title: "Small Shapes Game",
-                proj_shapes_desc: "Page where you can change the shape and colors of a small box, created to practice JavaScript better.",
-                courses_title: "Learn With Me",
-                course_badge: "New Launch",
-                course_title: "Course: Create Your Website from Scratch",
-                course_desc: "Learn to develop professional websites without prior knowledge. I will guide you step by step from HTML and CSS to publishing your site on the internet.",
-                course_f1: "✅ Modern HTML5 and CSS3",
-                course_f2: "✅ Responsive Design (Mobile & PC)",
-                course_f3: "✅ Real Project for your Portfolio",
-                course_f4: "✅ Support and Community",
-                course_cta: "I Want to Learn More!",
-                contact_title: "Contact",
-                label_name: "Name",
-                label_email: "Email",
-                label_msg: "Message",
-                btn_send: "Send Message",
-                modal_title: "Thanks for contacting me!",
-                modal_msg: "I have received your message correctly. I will reply to <strong>azhura.dev@gmail.com</strong> as soon as possible.",
-                modal_close: "Close",
-                footer_copy: "&copy; 2024 Azhura_-. All rights reserved.",
-                terms_title: "Terms and Conditions",
-                contact_intro: "Do you have an idea or project in mind? Let's talk!",
-                terms_checkbox: "I accept the <span class=\"terms-link\" onclick=\"openTerms()\">Terms and Conditions</span>",
-                footer_terms: "Terms and Conditions",
-                terms_content: `
-                    <p><strong>1. Data Collection:</strong> By using this form, you agree that we collect your name, email, and the provided message solely for the purpose of establishing communication.</p>
-                    <p><strong>2. Use of Information:</strong> The data will be used exclusively to respond to your inquiry or service request. We do not share, sell, or rent your personal information to third parties under any circumstances.</p>
-                    <p><strong>3. Data Protection:</strong> We implement reasonable security measures to protect your information against unauthorized access, alteration, or destruction.</p>
-                    <p><strong>4. User Rights:</strong> You have the right to access, rectify, or request the deletion of your data at any time by sending an email to <strong>azhura.dev@gmail.com</strong>.</p>
-                    <p><strong>5. Liability:</strong> This site is a professional portfolio. While we strive to keep information updated and accurate, we do not guarantee continuous service availability nor are we liable for errors or omissions.</p>
-                `
-            }
-        };
+    // =============================================
+    // CANVAS PARTICLES
+    // =============================================
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
 
-        let currentLang = localStorage.getItem('selectedLang') || 'es';
+    function resizeCanvas() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
 
-        function updateLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('selectedLang', lang);
-            
-            // Update Text
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if (translations[lang][key]) {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        // Handle placeholders if needed, though labels are usually preferred
-                    } else {
-                        // Check for innerHTML if tag contains HTML (like the modal message)
-                        if (translations[lang][key].includes('<')) {
-                            element.innerHTML = translations[lang][key];
-                        } else {
-                            element.textContent = translations[lang][key];
-                        }
-                    }
+    const PARTICLE_COUNT = 55;
+    const particles = [];
+
+    class Particle {
+        constructor() { this.reset(); }
+        reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.r = Math.random() * 1.8 + 0.5;
+            this.vx = (Math.random() - 0.5) * 0.4;
+            this.vy = (Math.random() - 0.5) * 0.4;
+            this.alpha = Math.random() * 0.5 + 0.2;
+        }
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+        }
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(167, 139, 250, ${this.alpha})`;
+            ctx.fill();
+        }
+    }
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+    function drawConnections() {
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 120) {
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = `rgba(139, 92, 246, ${0.12 * (1 - dist / 120)})`;
+                    ctx.lineWidth = 0.7;
+                    ctx.stroke();
                 }
-            });
-
-            // Update HTML content elements (like the terms checkbox with embedded span)
-            document.querySelectorAll('[data-i18n-html]').forEach(element => {
-                const key = element.getAttribute('data-i18n-html');
-                if (translations[lang][key]) {
-                    element.innerHTML = translations[lang][key];
-                }
-            });
-
-            // Update Toggle Button Text
-            const toggleBtn = document.getElementById('lang-toggle');
-            if (toggleBtn) {
-                toggleBtn.textContent = lang === 'es' ? 'EN' : 'ES'; // Show the OTHER option
             }
         }
+    }
 
-        // Initialize Language
-        document.addEventListener('DOMContentLoaded', () => {
-            updateLanguage(currentLang);
-            
-            // Attach Toggle Listener
-            const toggleBtn = document.getElementById('lang-toggle');
-            if (toggleBtn) {
-                toggleBtn.addEventListener('click', () => {
-                    const newLang = currentLang === 'es' ? 'en' : 'es';
-                    updateLanguage(newLang);
-                });
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        drawConnections();
+        requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // =============================================
+    // STATS COUNTER ANIMATION
+    // =============================================
+    function animateCounter(el, target, suffix) {
+        let start = 0;
+        const duration = 1500;
+        const step = timestamp => {
+            if (!start) start = timestamp;
+            const progress = Math.min((timestamp - start) / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.floor(ease * target) + suffix;
+            if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+    }
+
+    const counterObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                const el = e.target;
+                const target = parseInt(el.dataset.count);
+                const suffix = el.textContent.includes('+') ? '+' : '';
+                animateCounter(el, target, suffix);
+                counterObserver.unobserve(el);
             }
         });
+    }, { threshold: 0.5 });
 
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+    document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
+    // =============================================
+    // TYPING EFFECT
+    // =============================================
+    const typingStrings = {
+        es: ['Python & Flask', 'Desarrollo Backend', 'Sistemas Web', 'Automatización', 'Bases de datos'],
+        en: ['Python & Flask', 'Backend Development', 'Web Systems', 'Automation', 'Databases']
+    };
+
+    let typingIndex = 0, charIndex = 0, isDeleting = false;
+    const typingEl = document.getElementById('typing-target');
+
+    function typeEffect() {
+        const lang = currentLang || 'es';
+        const words = typingStrings[lang] || typingStrings.es;
+        const currentWord = words[typingIndex % words.length];
+        const speed = isDeleting ? 60 : 110;
+
+        if (!isDeleting) {
+            typingEl.textContent = currentWord.substring(0, charIndex + 1);
+            charIndex++;
+            if (charIndex === currentWord.length) {
+                isDeleting = true;
+                setTimeout(typeEffect, 2200);
+                return;
+            }
+        } else {
+            typingEl.textContent = currentWord.substring(0, charIndex - 1);
+            charIndex--;
+            if (charIndex === 0) {
+                isDeleting = false;
+                typingIndex = (typingIndex + 1) % words.length;
+            }
+        }
+        setTimeout(typeEffect, speed);
+    }
+    setTimeout(typeEffect, 800);
+
+    // =============================================
+    // TRANSLATIONS
+    // =============================================
+    const translations = {
+        es: {
+            nav_home: "Inicio", nav_about: "Sobre mí", nav_services: "Servicios",
+            nav_projects: "Proyectos", nav_courses: "Cursos", nav_contact: "Contacto",
+            hero_badge: "Disponible para proyectos",
+            hero_alias: "Azhura",
+            hero_prefix: "Especialista en ",
+            hero_desc: "Construyo herramientas digitales que resuelven problemas reales. Backend sólido, interfaces modernas y una obsesión por el código limpio.",
+            hero_cta: "Ver Mis Proyectos", hero_cv: "Descargar CV",
+            section_label_about: "mi historia", section_label_skills: "stack técnico",
+            section_label_services: "qué ofrezco", section_label_projects: "trabajo reciente",
+            section_label_courses: "comparte el conocimiento", section_label_contact: "hablemos",
+            about_title: "Sobre Mí",
+            about_p1: "Soy un <strong>desarrollador web autodidacta</strong> con base en Colombia, apasionado por construir soluciones que van desde simples landing pages hasta sistemas completos de gestión empresarial.",
+            about_p2: "Mi stack central es <strong>Python + Flask</strong> para el backend, con <strong>SQLAlchemy</strong> como ORM de confianza y <strong>Bootstrap/CSS personalizado</strong> en el frontend.",
+            about_p3: "Me interesa especialmente la intersección entre <strong>usabilidad, performance y diseño</strong>. Creo que un buen software debe ser rápido, confiable y, sobre todo, útil.",
+            stat_exp: "Años aprendiendo", stat_proj: "Proyectos completados", stat_clients: "Clientes satisfechos", stat_commit: "Compromiso",
+            time_2021_title: "2021 — El Comienzo",
+            time_2021_desc: "Descubrí mi pasión por el código. Empecé con lógica de programación, fundamentos de la web (HTML/CSS) y mis primeros pasos en JavaScript.",
+            time_2022_title: "2022–2023 — Profundidad",
+            time_2022_desc: "Un periodo de introspección. Entendí que programar es diseñar estructuras con intención, no solo escribir líneas. Descubrí Python.",
+            time_2024_title: "2024 — Full Stack",
+            time_2024_desc: "Me especialicé en el ecosistema Python/Flask. Construí mis primeros proyectos comerciales y empecé a trabajar con clientes reales.",
+            time_2025_title: "2025 — Consolidación",
+            time_2025_desc: "Desarrollador freelance enfocado en soluciones a medida, automatización de procesos y sistemas web con dashboards interactivos.",
+            time_2026_title: "2026 — Formación Profesional",
+            time_2026_desc: "Inicio de mi carrera universitaria en <strong>Ingeniería de Sistemas en el ITM</strong>, integrando la formación académica formal con los años de experiencia práctica que ya construyó Azhura como desarrollador autodidacta.",
+            skills_title: "Mis Herramientas",
+            services_title: "Mis Servicios",
+            serv_web_title: "Desarrollo Web", serv_web_desc: "Transformo tus ideas en sitios web modernos, rápidos y responsivos. No solo entrego código, sino una herramienta para potenciar tu presencia digital.",
+            serv_web_f1: "Landing Pages de alta conversión", serv_web_f2: "Portafolios y Blogs personales", serv_web_f3: "Rediseño y optimización de sitios existentes",
+            serv_app_title: "Aplicaciones Web & Backend", serv_app_desc: "Creo sistemas web completos con autenticación, bases de datos relacionales, dashboards y APIs. Arquitectura MVC clara y código mantenible.",
+            serv_app_f1: "Sistemas de gestión empresarial", serv_app_f2: "APIs REST con Flask/Python", serv_app_f3: "Dashboards con métricas en tiempo real",
+            serv_auto_title: "Bases de Datos & Automatización", serv_auto_desc: "¿Tu negocio crece y Excel ya no es suficiente? Estructuro tu información para que tomes mejores decisiones y automatizo procesos repetitivos.",
+            serv_auto_f1: "Migración de Excel a Bases de Datos", serv_auto_f2: "Reportes automáticos y exportación CSV", serv_auto_f3: "Scripts Python para automatización",
+            projects_title: "Proyectos", proj_featured_badge: "Destacado",
+            proj_flask_title: "Sistema de Gestión Empresarial",
+            proj_flask_desc: "Solución integral de RRHH y Finanzas: control de empleados, alertas automáticas, bitácoras, registro de transacciones multi-cuenta con categorización, sistema de auditoría por IP y dashboard interactivo con caché optimizado.",
+            proj_flask_warning: "Demo gratuita en Render — el servidor puede tardar 30-50s en despertar.",
+            proj_landing_title: "Landing Page de Ropa", proj_landing_desc: "E-commerce visual responsivo y moderno para tienda de ropa, con navegación fluida y diseño orientado a conversión.",
+            proj_secure_title: "Secure Guard", proj_secure_desc: "Página web minimalista y responsiva con funcionalidades simuladas de ciberseguridad.",
+            proj_bagre_title: "Sabor Bagreño", proj_bagre_desc: "Web para restaurante en uso real: menú digital y pedidos directo a WhatsApp. Optimizada para móviles.",
+            proj_nequi_title: "Web Nequi (Inspirada)", proj_nequi_desc: "Recreación visual del login de Nequi con animaciones propias y UI minimalista.",
+            proj_shapes_title: "Playground de Formas", proj_shapes_desc: "Mini-juego interactivo para explorar figuras geométricas y paletas de colores en tiempo real.",
+            proj_view_demo: "Ver Demo", proj_view_code: "Ver Código",
+            courses_title: "Aprende Conmigo", course_badge: "Próximo Lanzamiento",
+            course_title: "Crea tu Página Web desde Cero",
+            course_desc: "Aprende a construir sitios web profesionales sin conocimientos previos. Te guío paso a paso desde HTML & CSS hasta publicar en internet tu primer proyecto real.",
+            course_f1: "HTML5 y CSS3 moderno", course_f2: "Diseño responsive (Móvil y PC)", course_f3: "Proyecto real para tu portafolio", course_f4: "Soporte y comunidad activa",
+            course_cta: "Quiero más info",
+            contact_title: "Contacto", contact_heading: "¿Tienes un proyecto en mente?",
+            contact_intro: "Estoy disponible para proyectos freelance, consultas técnicas y colaboraciones. Escríbeme y te respondo en menos de 24h.",
+            label_name: "Nombre", label_email: "Email", label_msg: "Mensaje", btn_send: "Enviar Mensaje",
+            modal_title: "¡Mensaje recibido!", modal_msg: `Gracias por contactarme. Te responderé a <strong>azhura.dev@gmail.com</strong> lo antes posible.`,
+            modal_close: "Cerrar",
+            footer_copy: "© 2025 Azhura.dev — Todos los derechos reservados.",
+            terms_title: "Términos y Condiciones",
+            terms_checkbox: "Acepto los <span class=\"terms-link\" onclick=\"openTerms()\">Términos y Condiciones</span>",
+            footer_terms: "Términos y Condiciones",
+            terms_content: `<p><strong>1. Recolección de Datos:</strong> Al usar este formulario, aceptas que recolectemos tu nombre, correo y mensaje para establecer comunicación.</p><p><strong>2. Uso de la Información:</strong> Los datos serán usados exclusivamente para responder tu consulta. No compartimos tu información con terceros.</p><p><strong>3. Protección de Datos:</strong> Implementamos medidas de seguridad razonables para proteger tu información.</p><p><strong>4. Derechos del Usuario:</strong> Puedes solicitar la eliminación de tus datos enviando un correo a azhura.dev@gmail.com.</p>`
+        },
+        en: {
+            nav_home: "Home", nav_about: "About", nav_services: "Services",
+            nav_projects: "Projects", nav_courses: "Courses", nav_contact: "Contact",
+            hero_badge: "Available for projects",
+            hero_alias: "Azhura",
+            hero_prefix: "Specialist in ",
+            hero_desc: "I build digital tools that solve real problems. Solid backend, modern interfaces, and an obsession with clean code.",
+            hero_cta: "View My Projects", hero_cv: "Download CV",
+            section_label_about: "my story", section_label_skills: "tech stack",
+            section_label_services: "what I offer", section_label_projects: "recent work",
+            section_label_courses: "share knowledge", section_label_contact: "let's talk",
+            about_title: "About Me",
+            about_p1: "I'm a <strong>self-taught web developer</strong> based in Colombia, passionate about building solutions ranging from simple landing pages to full business management systems.",
+            about_p2: "My core stack is <strong>Python + Flask</strong> for the backend, with <strong>SQLAlchemy</strong> as my go-to ORM and <strong>Bootstrap/custom CSS</strong> on the frontend.",
+            about_p3: "I'm especially interested in the intersection between <strong>usability, performance and design</strong>. Good software should be fast, reliable and above all, useful.",
+            stat_exp: "Years learning", stat_proj: "Completed projects", stat_clients: "Happy clients", stat_commit: "Commitment",
+            time_2021_title: "2021 — The Beginning", time_2021_desc: "Discovered my passion for code. Started with programming logic, web fundamentals (HTML/CSS) and first steps in JavaScript.",
+            time_2022_title: "2022–2023 — Depth", time_2022_desc: "A period of introspection. I understood that programming means designing structures with intention. Discovered Python.",
+            time_2024_title: "2024 — Full Stack", time_2024_desc: "Specialized in the Python/Flask ecosystem. Built my first commercial projects and started working with real clients.",
+            time_2025_title: "2025 — Consolidation",
+            time_2025_desc: "Freelance developer focused on custom solutions, process automation and web systems with interactive dashboards.",
+            time_2026_title: "2026 — Professional Studies",
+            time_2026_desc: "Beginning of my university journey in <strong>Systems Engineering at ITM</strong>, integrating formal academic training with the years of hands-on experience already built as a self-taught developer.",
+            skills_title: "My Tools",
+            services_title: "My Services",
+            serv_web_title: "Web Development", serv_web_desc: "I transform your ideas into modern, fast, responsive websites. Not just code — a tool to boost your digital presence.",
+            serv_web_f1: "High-conversion Landing Pages", serv_web_f2: "Personal Portfolios and Blogs", serv_web_f3: "Redesign and optimization of existing sites",
+            serv_app_title: "Web Apps & Backend", serv_app_desc: "I build complete web systems with authentication, relational databases, dashboards and APIs. Clear MVC architecture and maintainable code.",
+            serv_app_f1: "Business management systems", serv_app_f2: "REST APIs with Flask/Python", serv_app_f3: "Dashboards with real-time metrics",
+            serv_auto_title: "Databases & Automation", serv_auto_desc: "Growing business and Excel is no longer enough? I structure your data for better decisions and automate repetitive processes.",
+            serv_auto_f1: "Excel to Database migration", serv_auto_f2: "Automated reports and CSV export", serv_auto_f3: "Python scripts for automation",
+            projects_title: "Projects", proj_featured_badge: "Featured",
+            proj_flask_title: "Business Management System",
+            proj_flask_desc: "Full HR & Finance solution: employee control, automatic alerts, activity logs, multi-account transaction tracking, IP-based audit system, and optimized interactive dashboard.",
+            proj_flask_warning: "Free demo on Render — server may take 30-50s to wake up.",
+            proj_landing_title: "Clothing Landing Page", proj_landing_desc: "Responsive modern e-commerce visual for a clothing store, with smooth navigation and conversion-oriented design.",
+            proj_secure_title: "Secure Guard", proj_secure_desc: "Minimalist responsive website with simulated cybersecurity functionalities.",
+            proj_bagre_title: "Sabor Bagreño", proj_bagre_desc: "Live restaurant website: digital menu and WhatsApp ordering. Mobile-first.",
+            proj_nequi_title: "Nequi Web (Inspired)", proj_nequi_desc: "Visual recreation of the Nequi login with custom animations and minimalist UI.",
+            proj_shapes_title: "Shapes Playground", proj_shapes_desc: "Interactive mini-game to explore geometric shapes and color palettes in real time.",
+            proj_view_demo: "View Demo", proj_view_code: "View Code",
+            courses_title: "Learn With Me", course_badge: "Coming Soon",
+            course_title: "Build Your Website from Scratch",
+            course_desc: "Learn to build professional websites with no prior knowledge. I guide you step by step from HTML & CSS to publishing your first real project online.",
+            course_f1: "Modern HTML5 and CSS3", course_f2: "Responsive design (Mobile & PC)", course_f3: "Real project for your portfolio", course_f4: "Active community support",
+            course_cta: "I want more info",
+            contact_title: "Contact", contact_heading: "Have a project in mind?",
+            contact_intro: "I'm available for freelance projects, technical consultations and collaborations. Write to me and I'll respond within 24h.",
+            label_name: "Name", label_email: "Email", label_msg: "Message", btn_send: "Send Message",
+            modal_title: "Message received!", modal_msg: `Thanks for reaching out. I'll reply to <strong>azhura.dev@gmail.com</strong> as soon as possible.`,
+            modal_close: "Close",
+            footer_copy: "© 2025 Azhura.dev — All rights reserved.",
+            terms_title: "Terms and Conditions",
+            terms_checkbox: "I accept the <span class=\"terms-link\" onclick=\"openTerms()\">Terms and Conditions</span>",
+            footer_terms: "Terms and Conditions",
+            terms_content: `<p><strong>1. Data Collection:</strong> By using this form, you agree that we collect your name, email and message to establish communication.</p><p><strong>2. Use of Information:</strong> Data will be used exclusively to respond to your inquiry. We do not share your information with third parties.</p><p><strong>3. Data Protection:</strong> We implement reasonable security measures to protect your information.</p><p><strong>4. User Rights:</strong> You can request deletion of your data by emailing azhura.dev@gmail.com.</p>`
+        }
+    };
+
+    let currentLang = localStorage.getItem('selectedLang') || 'es';
+
+    function updateLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('selectedLang', lang);
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            const val = translations[lang][key];
+            if (val !== undefined) {
+                if (val.includes('<')) el.innerHTML = val;
+                else el.textContent = val;
+            }
         });
-
-        // Active nav link
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const sections = document.querySelectorAll('section');
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            document.querySelectorAll('nav a').forEach(a => {
-                a.classList.remove('active');
-                if (a.getAttribute('href') === `#${current}`) {
-                    a.classList.add('active');
-                }
-            });
+        document.querySelectorAll('[data-i18n-html]').forEach(el => {
+            const key = el.getAttribute('data-i18n-html');
+            if (translations[lang][key]) el.innerHTML = translations[lang][key];
         });
+        const btn = document.getElementById('lang-toggle');
+        if (btn) btn.textContent = lang === 'es' ? 'EN' : 'ES';
+    }
 
-        // Form submission with Confetti
-        function handleSubmit(e) {
-            e.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            const originalText = submitBtn.innerText;
-            submitBtn.innerText = 'Enviando...';
-            submitBtn.disabled = true;
+    document.addEventListener('DOMContentLoaded', () => {
+        updateLanguage(currentLang);
+        document.getElementById('lang-toggle').addEventListener('click', () => {
+            updateLanguage(currentLang === 'es' ? 'en' : 'es');
+        });
+    });
 
-            const formData = new FormData(e.target);
+    // =============================================
+    // NAVBAR SCROLL
+    // =============================================
+    window.addEventListener('scroll', () => {
+        const navbar = document.getElementById('navbar');
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
 
-            fetch("https://formsubmit.co/ajax/azhura.dev@gmail.com", {
-                method: "POST",
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Reset button
-                submitBtn.innerText = originalText;
-                submitBtn.disabled = false;
-                
-                // Show modal
+        // Active link
+        let current = '';
+        document.querySelectorAll('section').forEach(s => {
+            if (pageYOffset >= s.offsetTop - 200) current = s.getAttribute('id');
+        });
+        document.querySelectorAll('nav a').forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === `#${current}`);
+        });
+    });
+
+    // =============================================
+    // SMOOTH SCROLL
+    // =============================================
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const target = document.querySelector(a.getAttribute('href'));
+            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+        });
+    });
+
+    // =============================================
+    // MOBILE MENU
+    // =============================================
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navMenu = document.querySelector('.nav-menu');
+    mobileMenu.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-menu li a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+
+    // =============================================
+    // SCROLL REVEAL
+    // =============================================
+    const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // =============================================
+    // FORM SUBMISSION
+    // =============================================
+    function handleSubmit(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.textContent = 'Enviando...';
+        btn.disabled = true;
+        fetch("https://formsubmit.co/ajax/azhura.dev@gmail.com", { method: "POST", body: new FormData(e.target) })
+            .then(r => r.json())
+            .then(() => {
+                btn.textContent = translations[currentLang]?.btn_send || 'Enviar Mensaje';
+                btn.disabled = false;
                 document.getElementById('successModal').classList.add('active');
                 e.target.reset();
-
-                // Launch Confetti
                 launchConfetti();
             })
-            .catch(error => {
-                console.error('Error:', error);
-                submitBtn.innerText = 'Error, intenta de nuevo';
-                submitBtn.disabled = false;
-                setTimeout(() => {
-                    submitBtn.innerText = originalText;
-                }, 3000);
+            .catch(() => {
+                btn.textContent = 'Error — intenta de nuevo';
+                btn.disabled = false;
+                setTimeout(() => { btn.textContent = translations[currentLang]?.btn_send || 'Enviar Mensaje'; }, 3000);
             });
-        }
+    }
 
-        function closeModal() {
-            document.getElementById('successModal').classList.remove('active');
-        }
+    function closeModal() { document.getElementById('successModal').classList.remove('active'); }
+    function openTerms() {
+        const el = document.querySelector('#termsModal .terms-content');
+        el.innerHTML = translations[currentLang].terms_content;
+        document.getElementById('termsModal').classList.add('active');
+    }
+    function closeTerms() { document.getElementById('termsModal').classList.remove('active'); }
+    document.querySelectorAll('.modal-overlay').forEach(m => {
+        m.addEventListener('click', e => { if (e.target === m) m.classList.remove('active'); });
+    });
 
-        function launchConfetti() {
-            var duration = 3 * 1000;
-            var animationEnd = Date.now() + duration;
-            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 3000 };
-
-            function randomInRange(min, max) {
-              return Math.random() * (max - min) + min;
-            }
-
-            var interval = setInterval(function() {
-              var timeLeft = animationEnd - Date.now();
-
-              if (timeLeft <= 0) {
-                return clearInterval(interval);
-              }
-
-              var particleCount = 50 * (timeLeft / duration);
-              // since particles fall down, start a bit higher than random
-              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: randomInRange(0.2, 0.4) } }));
-              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: randomInRange(0.2, 0.4) } }));
-            }, 250);
-        }
-
-        // Animate on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.project-card, .skill-card').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Mobile Menu Toggle
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navMenu = document.querySelector('.nav-menu');
-
-        mobileMenu.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-menu li a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-        // Terms Modal Logic
-        function openTerms() {
-            document.getElementById('termsModal').classList.add('active');
-        }
-
-        function closeTerms() {
-            document.getElementById('termsModal').classList.remove('active');
-        }
-
-        // Close modal when clicking outside
-        document.getElementById('termsModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeTerms();
-            }
-        });
-
-        // Contact Modal Logic
-        function openContactModal() {
-            document.getElementById('contactModal').classList.add('active');
-        }
-
-        function closeContactModal() {
-            document.getElementById('contactModal').classList.remove('active');
-        }
-
-        // Close contact modal when clicking outside
-        document.getElementById('contactModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeContactModal();
-            }
-        });
+    // =============================================
+    // CONFETTI
+    // =============================================
+    function launchConfetti() {
+        const end = Date.now() + 3000;
+        const interval = setInterval(() => {
+            if (Date.now() > end) return clearInterval(interval);
+            const count = 50 * ((end - Date.now()) / 3000);
+            confetti({ particleCount: count, origin: { x: Math.random() * 0.4, y: Math.random() * 0.4 } });
+            confetti({ particleCount: count, origin: { x: 0.6 + Math.random() * 0.4, y: Math.random() * 0.4 } });
+        }, 250);
+    }
     </script>
 </body>
 </html>
