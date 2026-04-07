@@ -89,3 +89,6 @@ No necesita servidor, npm, ni compilación. Funciona directo desde el sistema de
 - Instagram: [@azhura.dev](https://www.instagram.com/azhura.dev/)
 - GitHub: [Azhura0101](https://github.com/Azhura0101)
 - LinkedIn: [Emanuel Zapata](https://www.linkedin.com/in/emanuel-zapata-b7ba3639b)
+
+<img width="1568" height="960" alt="image" src="https://github.com/user-attachments/assets/dfe3ad44-971d-4cee-a039-db46e92cc557" />
+
