@@ -1638,3 +1638,8 @@ footer a:hover { color: var(--accent-cyan); }
   .course-features { grid-template-columns: 1fr; }
   .contact-pills { gap: 0.6rem; }
 }
+
+/* Credly Badge Overrides */
+#badge-name {
+  color: #ffffff !important;
+}

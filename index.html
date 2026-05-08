@@ -268,25 +268,7 @@
                     </div>
                 </div>
 
-                <!-- Project 3 -->
-                <div class="project-card reveal">
-                    <div class="project-image">
-                        <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/jOoMpeX-800.jpg" alt="Secure Guard" loading="lazy">
-                    </div>
-                    <div class="project-content">
-                        <h3 data-i18n="proj_secure_title">Secure Guard</h3>
-                        <p data-i18n="proj_secure_desc">Página web minimalista y responsiva con funcionalidades simuladas de ciberseguridad — scanner de red, cifrado y más.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
-                        <div class="project-links">
-                            <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/jOoMpeX" class="project-btn" data-i18n="proj_view_demo">Ver Demo</a>
-                            <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/jOoMpeX" class="project-btn" data-i18n="proj_view_code">Ver Código</a>
-                        </div>
-                    </div>
-                </div>
+
 
                 <!-- Project 4 -->
                 <div class="project-card reveal">
@@ -308,45 +290,7 @@
                     </div>
                 </div>
 
-                <!-- Project 5 -->
-                <div class="project-card reveal">
-                    <div class="project-image">
-                        <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/VwJjMjp-800.jpg" alt="Web Nequi Inspired" loading="lazy">
-                    </div>
-                    <div class="project-content">
-                        <h3 data-i18n="proj_nequi_title">Web Nequi (Inspirada)</h3>
-                        <p data-i18n="proj_nequi_desc">Recreación visual del login de Nequi con animaciones propias y UI minimalista.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
-                        <div class="project-links">
-                            <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/VwJjMjp" class="project-btn" data-i18n="proj_view_demo">Ver Demo</a>
-                            <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/VwJjMjp" class="project-btn" data-i18n="proj_view_code">Ver Código</a>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Project 6 -->
-                <div class="project-card reveal">
-                    <div class="project-image">
-                        <img src="https://shots.codepen.io/EMANUEL-ZAPATA-the-looper/pen/abrKwVj-800.jpg" alt="Juego de formas" loading="lazy">
-                    </div>
-                    <div class="project-content">
-                        <h3 data-i18n="proj_shapes_title">Playground de Formas</h3>
-                        <p data-i18n="proj_shapes_desc">Mini-juego interactivo para explorar figuras geométricas y paletas de colores en tiempo real. Creado para dominar el DOM.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
-                        <div class="project-links">
-                            <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/abrKwVj" class="project-btn" data-i18n="proj_view_demo">Ver Demo</a>
-                            <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/abrKwVj" class="project-btn" data-i18n="proj_view_code">Ver Código</a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -460,10 +404,17 @@
 
     <!-- Footer -->
     <footer>
-        <div class="social-links">
-            <a href="https://github.com/Azhura0101" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-            <a href="https://www.instagram.com/azhura.dev/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/in/emanuel-zapata-b7ba3639b" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+            <div class="social-links" style="margin-bottom: 0;">
+                <a href="https://github.com/Azhura0101" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/azhura.dev/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/emanuel-zapata-b7ba3639b" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="footer-certs" style="width: 68px; height: 121px; position: relative;">
+                <div style="transform: scale(0.45); transform-origin: top left; position: absolute; top: 0; left: 0; display: flex; gap: 1rem;">
+                    <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="590c0de6-1fcb-4fc5-b361-fdb1b17bee84" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+                </div>
+            </div>
         </div>
         <p data-i18n="footer_copy">&copy; 2025 Azhura.dev — Todos los derechos reservados.</p>
         <a href="#" onclick="openTerms(); return false;" data-i18n="footer_terms">Términos y Condiciones</a>
@@ -635,6 +586,7 @@
             time_2026_title: "2026 — Formación Profesional",
             time_2026_desc: "Inicio de mi carrera universitaria en <strong>Ingeniería de Sistemas en el ITM</strong>, integrando la formación académica formal con los años de experiencia práctica que ya construyó Azhura como desarrollador autodidacta.",
             skills_title: "Mis Herramientas",
+            certs_title: "Certificaciones",
             services_title: "Mis Servicios",
             serv_web_title: "Desarrollo Web", serv_web_desc: "Transformo tus ideas en sitios web modernos, rápidos y responsivos. No solo entrego código, sino una herramienta para potenciar tu presencia digital.",
             serv_web_f1: "Landing Pages de alta conversión", serv_web_f2: "Portafolios y Blogs personales", serv_web_f3: "Rediseño y optimización de sitios existentes",
@@ -692,6 +644,7 @@
             time_2026_title: "2026 — Professional Studies",
             time_2026_desc: "Beginning of my university journey in <strong>Systems Engineering at ITM</strong>, integrating formal academic training with the years of hands-on experience already built as a self-taught developer.",
             skills_title: "My Tools",
+            certs_title: "Certifications",
             services_title: "My Services",
             serv_web_title: "Web Development", serv_web_desc: "I transform your ideas into modern, fast, responsive websites. Not just code — a tool to boost your digital presence.",
             serv_web_f1: "High-conversion Landing Pages", serv_web_f2: "Personal Portfolios and Blogs", serv_web_f3: "Redesign and optimization of existing sites",
