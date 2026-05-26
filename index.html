@@ -14,10 +14,48 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1005/1005141.png" />
+    <link rel="icon" style="background-color: white;"   href="https://cdn-icons-png.flaticon.com/512/2910/2910815.png" />
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
+
+     <!-- Cursor Glow Effect -->
+    <div id="cursor-glow"></div>
+
+    <!-- Particle Canvas Background -->
+    <canvas id="particle-canvas"></canvas>
+
+
+
+    <!-- AI Chat Widget -->
+    <button id="chat-toggle" class="chat-toggle" aria-label="Abrir chat">
+        <span class="chat-toggle-icon">💬</span>
+        <span class="chat-toggle-close">✕</span>
+        <span class="chat-pulse"></span>
+    </button>
+
+    <div id="chat-widget" class="chat-widget">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="chat-avatar">🤖</div>
+                <div>
+                    <h4>Azhura AI Assistant</h4>
+                    <span class="chat-status"><span class="status-dot"></span> Online</span>
+                </div>
+            </div>
+        </div>
+        <div id="chat-messages" class="chat-messages">
+            <div class="chat-msg bot">
+                <span>¡Hola! 👋 Bienvenido a Azhura.dev. ¿Cómo te llamas?</span>
+            </div>
+        </div>
+        <div id="chat-chips" class="chat-chips" style="display: none;"></div>
+        <form id="chat-form" class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Escribe tu nombre..." autocomplete="off">
+            <button type="submit" class="chat-send">➤</button>
+        </form>
+    </div>
+
     <!-- Global particle canvas background -->
     <canvas id="particle-canvas"></canvas>
 
@@ -327,7 +365,7 @@
             <div class="section-divider"></div>
             <div class="course-card reveal">
                 <div>
-                    <span class="course-badge" data-i18n="course_badge">Próximo Lanzamiento</span>
+                    <span class="course-badge" data-i18n="course_badge">NUEVO LANZAMIENTO 🚀</span>
                     <h3 data-i18n="course_title">Crea tu Página Web desde Cero</h3>
                     <p class="desc" data-i18n="course_desc">Aprende a construir sitios web profesionales sin conocimientos previos. Te guío paso a paso desde HTML & CSS hasta publicar en internet tu primer proyecto real.</p>
                     <ul class="course-features">
@@ -426,25 +464,82 @@
         </div>
     </div>
 
+    <!-- Social icons -->
+    <div class="social-icons-container">
+        <div class="social-links" style="margin-bottom: 0;">
+            <a href="https://github.com/Azhura0101" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com/azhura.dev/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/emanuel-zapata-b7ba3639b" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+
+
+
     <!-- Footer -->
     <footer>
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
-            <div class="social-links" style="margin-bottom: 0;">
-                <a href="https://github.com/Azhura0101" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-                <a href="https://www.instagram.com/azhura.dev/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/in/emanuel-zapata-b7ba3639b" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+        <div class="footer-content">
+            <div class="footer-col">
+                <a href="#inicio" class="nav-logo footer-logo">Azhura<span>.dev</span></a>
+                <p>Desarrollador de software | App & Web | Automatizaciones con IA</p>
             </div>
-            <div class="footer-certs" style="width: 68px; height: 121px; position: relative;">
-                <div style="transform: scale(0.45); transform-origin: top left; position: absolute; top: 0; left: 0; display: flex; gap: 1rem;">
-                    <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="590c0de6-1fcb-4fc5-b361-fdb1b17bee84" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
-                </div>
+            <div class="footer-col">
+                <h4>Servicios</h4>
+                <a href="#servicios">Servicios</a>
+                <a href="#proyectos">Proyectos</a>
+                <a href="#cursos">Aprende Conmigo</a>
+             
+            </div>
+            <div class="footer-col">
+                <h4>Empresa</h4>
+                <a href="#sobre-mi">Sobre Mí</a>
+                <a href="#contacto">Contacto</a>
+                
+           
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+              
+        <a href="#" onclick="openTerms(); return false;" data-i18n="footer_terms">Términos y Condiciones</a>
             </div>
         </div>
-        <p data-i18n="footer_copy">&copy; 2025 Azhura.dev — Todos los derechos reservados.</p>
-        <a href="#" onclick="openTerms(); return false;" data-i18n="footer_terms">Términos y Condiciones</a>
+
+
+
+
+         <!-- badges -->
+          <div class="badges-container">
+            <p style="margin-bottom: 0; padding-bottom: 0;">Certificados</p>
+                <div class ="Badge-image" >
+                    <a  href="https://www.credly.com/badges/590c0de6-1fcb-4fc5-b361-fdb1b17bee84/embedded" target="_blank"><img src="https://images.credly.com/images/68c0b94d-f6ac-40b1-a0e0-921439eb092e/image.png" alt="Python essential 1"></a>
+                </div>
+          </div>
+            
+      
+
+
+
+        <div class="footer-bottom">
+            <p>© <span id="currentYear"></span> Azhura.dev <em>Todos los derechos reservados.</em></p>
+        </div>
+
+
+
+
     </footer>
 
+
+
+
+
+
+
+
+
+
+
     <script>
+    // Cambiar el año del footer automáticamente
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
     // =============================================
     // CANVAS PARTICLES
     // =============================================
@@ -628,7 +723,7 @@
             proj_nequi_title: "Web Nequi (Inspirada)", proj_nequi_desc: "Recreación visual del login de Nequi con animaciones propias y UI minimalista.",
             proj_shapes_title: "Playground de Formas", proj_shapes_desc: "Mini-juego interactivo para explorar figuras geométricas y paletas de colores en tiempo real.",
             proj_view_demo: "Ver Demo", proj_view_code: "Ver Código",
-            courses_title: "Aprende Conmigo", course_badge: "Próximo Lanzamiento",
+            courses_title: "Aprende Conmigo", course_badge: "NUEVO LANZAMIENTO 🚀",
             course_title: "Crea tu Página Web desde Cero",
             course_desc: "Aprende a construir sitios web profesionales sin conocimientos previos. Te guío paso a paso desde HTML & CSS hasta publicar en internet tu primer proyecto real.",
             course_f1: "HTML5 y CSS3 moderno", course_f2: "Diseño responsive (Móvil y PC)", course_f3: "Proyecto real para tu portafolio", course_f4: "Soporte y comunidad activa",
@@ -830,6 +925,501 @@
             confetti({ particleCount: count, origin: { x: 0.6 + Math.random() * 0.4, y: Math.random() * 0.4 } });
         }, 250);
     }
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- ===================== DYNAMIC PLATFORM SIMULATOR ===================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+    // ===================== QUANTUM NEURAL NET BACKGROUND =====================
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let mouse = { x: -9999, y: -9999 };
+    let shockwaves = [];
+
+    function resizeCanvas() { 
+        canvas.width = canvas.offsetWidth; 
+        canvas.height = canvas.offsetHeight; 
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    
+    document.addEventListener('mousemove', (e) => { 
+        mouse.x = e.clientX + window.scrollX; 
+        mouse.y = e.clientY + window.scrollY; 
+    });
+
+    // Add quantum shockwave on click
+    document.addEventListener('click', (e) => {
+        const x = e.clientX + window.scrollX;
+        const y = e.clientY + window.scrollY;
+        shockwaves.push({
+            x: x,
+            y: y,
+            radius: 0,
+            maxRadius: 200,
+            speed: 5,
+            alpha: 0.8
+        });
+    });
+
+    const PARTICLE_COUNT = 70;
+    const particles = [];
+    class Particle {
+        constructor() { this.reset(); }
+        reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.r = Math.random() * 2 + 0.5;
+            this.baseVx = (Math.random() - 0.5) * 0.4;
+            this.baseVy = (Math.random() - 0.5) * 0.4;
+            this.vx = this.baseVx;
+            this.vy = this.baseVy;
+            this.alpha = Math.random() * 0.5 + 0.25;
+            this.color = Math.random() > 0.5 ? '0, 242, 254' : '0, 245, 160'; // Cyber Cyan or Cyber Mint
+        }
+        update() {
+            // Repel from mouse
+            const dx = this.x - mouse.x;
+            const dy = this.y - mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 180) {
+                const force = (180 - dist) / 180 * 1.2;
+                this.vx += (dx / dist) * force * 0.15;
+                this.vy += (dy / dist) * force * 0.15;
+            }
+
+            // Interact with click shockwaves
+            shockwaves.forEach(sw => {
+                const sdx = this.x - sw.x;
+                const sdy = this.y - sw.y;
+                const sdist = Math.sqrt(sdx * sdx + sdy * sdy);
+                if (Math.abs(sdist - sw.radius) < 20) {
+                    const force = 6 * sw.alpha;
+                    this.vx += (sdx / sdist) * force;
+                    this.vy += (sdy / sdist) * force;
+                }
+            });
+
+            // Return to base speeds
+            this.vx += (this.baseVx - this.vx) * 0.04;
+            this.vy += (this.baseVy - this.vy) * 0.04;
+
+            this.x += this.vx;
+            this.y += this.vy;
+
+            if (this.x < -20 || this.x > canvas.width + 20 || this.y < -20 || this.y > canvas.height + 20) this.reset();
+        }
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${this.color}, ${this.alpha})`;
+            ctx.fill();
+        }
+    }
+    for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+    function drawConnections() {
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 140) {
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    // Network connection colors
+                    const grad = ctx.createLinearGradient(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
+                    grad.addColorStop(0, `rgba(${particles[i].color}, ${0.18 * (1 - dist / 140)})`);
+                    grad.addColorStop(1, `rgba(${particles[j].color}, ${0.18 * (1 - dist / 140)})`);
+                    ctx.strokeStyle = grad;
+                    ctx.lineWidth = 0.85;
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+
+    function updateShockwaves() {
+        shockwaves.forEach((sw, idx) => {
+            sw.radius += sw.speed;
+            sw.alpha = 1 - (sw.radius / sw.maxRadius);
+            
+            // Draw visual pulse wave
+            ctx.beginPath();
+            ctx.arc(sw.x, sw.y, sw.radius, 0, Math.PI * 2);
+            ctx.strokeStyle = `rgba(0, 242, 254, ${sw.alpha * 0.45})`;
+            ctx.lineWidth = 2.5;
+            ctx.stroke();
+
+            if (sw.radius >= sw.maxRadius) {
+                shockwaves.splice(idx, 1);
+            }
+        });
+    }
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        drawConnections();
+        updateShockwaves();
+        requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // ===================== CURSOR GLOW =====================
+    const cursorGlow = document.getElementById('cursor-glow');
+    document.addEventListener('mousemove', (e) => {
+        requestAnimationFrame(() => {
+            cursorGlow.style.left = `${e.clientX}px`;
+            cursorGlow.style.top = `${e.clientY}px`;
+        });
+    });
+
+    // Grow the glow when hovering interactive sections
+   // Seleccionamos los elementos usando querySelectorAll para poder usar selectores CSS múltiples
+const interactiveElements = document.querySelectorAll('.project-card, .glass-card');
+
+// Iteramos usando el nombre correcto del parámetro (element)
+interactiveElements.forEach(element => {
+    element.addEventListener('mouseenter', () => {
+        // Reducimos el tamaño al entrar (o aumentamos, según tu diseño)
+        cursorGlow.style.width = '100px'; 
+        cursorGlow.style.height = '100px';
+        // Agregamos una transición suave en tu CSS para que no parpadee el cambio de tamaño
+    });
+
+    element.addEventListener('mouseleave', () => {
+        // Volvemos al tamaño original
+        cursorGlow.style.width = '500px';
+        cursorGlow.style.height = '500px';
+    });
+});
+
+    // ===================== NAVBAR =====================
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+  
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const target = document.querySelector(a.getAttribute('href'));
+            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+        });
+    });
+
+    // ===================== SCROLL REVEAL =====================
+    const scrollElements = document.querySelectorAll('.section-title, .fade-in-scroll, .project-card, .feature-card, .team-card, .pricing-card, .signup-card');
+    const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => { 
+            if (e.isIntersecting) {
+                e.target.classList.add('visible'); 
+                // Trigger text scramble if it is a title
+                if (e.target.classList.contains('section-title') && !e.target.dataset.scrambled) {
+                    scrambleText(e.target);
+                    e.target.dataset.scrambled = "true";
+                }
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    scrollElements.forEach(el => revealObserver.observe(el));
+
+
+    
+
+    // ===================== CHART BARS SCROLL TRIGGER =====================
+    const chartBars = document.querySelectorAll('.chart-bar');
+    const chartObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('animated');
+                chartObserver.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    chartBars.forEach(bar => chartObserver.observe(bar));
+
+
+    // ===================== HOLOGRAPHIC 3D TILT & GLARE EFFECT =====================
+    const tiltCards = document.querySelectorAll('.glass-card,.service-card,.project-card,.course-card,.modal-card,.stat-card');
+    tiltCards.forEach(card => {
+        card.classList.add('glare-card');
+        
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            // Calculate tilt
+            const rotateX = ((y - centerY) / centerY) * -6;
+            const rotateY = ((x - centerX) / centerX) * 6;
+            
+            // Apply tilt & custom properties for reflection mapping
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.02)`;
+            card.style.setProperty('--glare-x', `${x}px`);
+            card.style.setProperty('--glare-y', `${y}px`);
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+        });
+    });
+
+   
+    // ===================== TEXT DECRYPTION SCRAMBLER =====================
+    function scrambleText(element) {
+        const originalText = element.innerText;
+        const chars = '!<>-_\\/[]{}—=+*^?#_+-*/@$;:[]{}∑∏π';
+        let frame = 0;
+        const queue = [];
+        
+        for (let i = 0; i < originalText.length; i++) {
+            const from = '';
+            const to = originalText[i];
+            const start = Math.floor(Math.random() * 15);
+            const end = start + Math.floor(Math.random() * 25);
+            queue.push({ from, to, start, end, char: '' });
+        }
+        
+        function update() {
+            let output = '';
+
+            let complete = 0;
+            
+            for (let i = 0; i < queue.length; i++) {
+                let { to, start, end, char } = queue[i];
+                if (frame >= end) {
+                    complete++;
+                    output += to;
+                } else if (frame >= start) {
+                    if (!char || Math.random() < 0.28) {
+                        char = chars[Math.floor(Math.random() * chars.length)];
+                        queue[i].char = char;
+                    }
+                    output += `<span class="scramble-char">${char}</span>`;
+                } else {
+                    output += '';
+                }
+            }
+            
+            element.innerHTML = output;
+            
+            if (complete === queue.length) {
+                element.innerText = originalText;
+            } else {
+                frame++;
+                requestAnimationFrame(update);
+            }
+        }
+        
+        update();
+    }
+    
+    // Scramble Hero Title on Load
+    const heroH1 = document.querySelector('.hero-content h1');
+    if (heroH1) {
+        setTimeout(() => scrambleText(heroH1), 800);
+    }
+    const heroBadge = document.querySelector('.section-title');
+    if (heroBadge) {
+        setTimeout(() => scrambleText(heroBadge), 500);
+    }
+
+    const interactiveH1 = document.querySelector('.hero-content h1');
+    if(interactiveH1) {
+        interactiveH1.addEventListener('click', () => {
+            scrambleText(interactiveH1);
+        });
+    }
+   
+
+
+    // ===================== AI CHAT WIDGET (Interactive Onboarding) =====================
+    const chatToggle = document.getElementById('chat-toggle');
+    const chatWidget = document.getElementById('chat-widget');
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+    const chatMessages = document.getElementById('chat-messages');
+    const chatChipsContainer = document.getElementById('chat-chips');
+
+    let userName = null;
+
+    chatToggle.addEventListener('click', () => {
+        chatToggle.classList.toggle('open');
+        chatWidget.classList.toggle('open');
+        if (chatWidget.classList.contains('open') && !userName) {
+            setTimeout(() => chatInput.focus(), 400);
+        }
+    });
+
+    const prebakedAnswers = {
+    '¿Cómo me ayudas? 🚀': 'Automatizo procesos operativos y elimino cuellos de botella con software a medida. 💻 Diseño arquitecturas monolíticas eficientes y scripts en Python para que la lógica de tu negocio o plataforma funcione de manera estable, segura y en piloto automático. ⚙️',
+
+'¿Qué tecnologías usas? 🛠️': 'Mi núcleo es Python y Java para un backend robusto, usando Flask, SQLAlchemy y PostgreSQL para bases de datos escalables. 🗄️ En el frontend integro JavaScript, HTML5 y CSS3 con un diseño visual intuitivo y responsivo. 🎨 Desarrollo nativamente en entornos Linux. 🐧',
+
+'¿Cómo es tu soporte? 💼': 'Freelance directo. 🤝 Al trabajar de forma independiente conmigo, garantizo comunicación técnica sin intermediarios, total transparencia en cada fase del desarrollo, debugging avanzado y un enfoque estricto en el cumplimiento de los plazos acordados. 📅',
+
+'¿Cómo cotizo contigo? ✉️': 'Escríbeme con tus requerimientos a **azhura.dev@gmail.com**. 📧 Si prefieres una charla más ágil para estructurar la solución desde cero, envíame un DM por Instagram y coordinamos una sesión inicial hoy mismo. 📲'
+    };
+
+    function addMessage(text, type) {
+        const msg = document.createElement('div');
+        msg.className = `chat-msg ${type}`;
+        msg.innerHTML = `<span>${text}</span>`;
+        chatMessages.appendChild(msg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function showTyping() {
+        const typing = document.createElement('div');
+        typing.className = 'typing-indicator';
+        typing.id = 'typing-dots';
+        typing.innerHTML = '<span></span><span></span><span></span>';
+        chatMessages.appendChild(typing);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function removeTyping() {
+        const typing = document.getElementById('typing-dots');
+        if (typing) typing.remove();
+    }
+
+    function renderOptionChips() {
+        chatChipsContainer.innerHTML = '';
+        Object.keys(prebakedAnswers).forEach(option => {
+            const chip = document.createElement('button');
+            chip.className = 'chat-chip';
+            chip.innerText = option;
+            chip.addEventListener('click', () => handleChipSelection(option));
+            chatChipsContainer.appendChild(chip);
+        });
+        chatChipsContainer.style.display = 'flex';
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function handleChipSelection(optionText) {
+        // Disable chips container to avoid spam
+        chatChipsContainer.style.pointerEvents = 'none';
+        chatChipsContainer.style.opacity = '0.5';
+
+        addMessage(optionText, 'user');
+
+        showTyping();
+        const delay = 800 + Math.random() * 800;
+        
+        setTimeout(() => {
+            removeTyping();
+            addMessage(prebakedAnswers[optionText], 'bot');
+            
+            // Re-enable chips for further questions
+            chatChipsContainer.style.pointerEvents = 'all';
+            chatChipsContainer.style.opacity = '1';
+        }, delay);
+    }
+
+    chatForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // We are in Phase 1: Name entry
+        if (!userName) {
+            const inputVal = chatInput.value.trim();
+            if (!inputVal) return;
+            
+            userName = inputVal;
+            addMessage(userName, 'user');
+            
+            // Lock the input form to transition to chips phase
+            chatInput.value = '';
+            chatInput.disabled = true;
+            chatInput.placeholder = 'Selecciona una pregunta abajo...';
+            chatForm.style.opacity = '0.5';
+            chatForm.style.pointerEvents = 'none';
+
+            showTyping();
+            
+            setTimeout(() => {
+                removeTyping();
+                addMessage(`¡Un placer conocerte, <strong>${userName}</strong>! 👋 Soy el asistente virtual de Azhura.dev. ¿Qué te gustaría saber hoy?`, 'bot');
+                
+                // Show option chips
+                setTimeout(() => {
+                    renderOptionChips();
+                }, 400);
+            }, 1200);
+        }
+    });
+
+    // ===================== TIMED PROMO TOAST (30s delay) =====================
+    setTimeout(() => {
+        if (document.getElementById('top-promo-notification')) return;
+
+        const notification = document.createElement('div');
+        notification.id = 'top-promo-notification';
+        notification.className = 'top-notification';
+        notification.innerHTML = `
+            <div class="top-notification-content" id="trigger-chat-btn">
+                <span>💡 ¿Quieres saber más sobre el portafolio de Azhura.dev? ¡Prueba nuestro asistente virtual en el chat abajo a la derecha! 🤖</span>
+            </div>
+            <button class="top-notification-close" id="close-promo-btn" aria-label="Cerrar">✕</button>
+        `;
+        document.body.appendChild(notification);
+
+        // Slide down smoothly
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 100);
+
+        // Trigger chatbot opening and highlight input field
+        const triggerBtn = document.getElementById('trigger-chat-btn');
+        if (triggerBtn) {
+            triggerBtn.addEventListener('click', () => {
+                const cToggle = document.getElementById('chat-toggle');
+                const cWidget = document.getElementById('chat-widget');
+                if (cToggle && cWidget) {
+                    cToggle.classList.add('open');
+                    cWidget.classList.add('open');
+                    const cInput = document.getElementById('chat-input');
+                    if (cInput) setTimeout(() => cInput.focus(), 400);
+                }
+                // Dismiss toast
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 600);
+            });
+        }
+
+        // Close button click
+        const closeBtn = document.getElementById('close-promo-btn');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 600);
+            });
+        }
+    }, 30000);
+
+});
+
+
+
     </script>
 </body>
 </html>
