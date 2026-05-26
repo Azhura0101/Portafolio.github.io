@@ -46,18 +46,17 @@
         </div>
         <div id="chat-messages" class="chat-messages">
             <div class="chat-msg bot">
-                <span>¡Hola! 👋 Bienvenido a Azhura.dev. ¿Cómo te llamas?</span>
+                <span data-i18n="chat_welcome">¡Hola! 👋 Bienvenido a Azhura.dev. ¿Cómo te llamas?</span>
             </div>
         </div>
         <div id="chat-chips" class="chat-chips" style="display: none;"></div>
         <form id="chat-form" class="chat-input-area">
-            <input type="text" id="chat-input" placeholder="Escribe tu nombre..." autocomplete="off">
+            <input type="text" id="chat-input" placeholder="Escribe tu nombre..." data-i18n="chat_input_placeholder" autocomplete="off">
             <button type="submit" class="chat-send">➤</button>
         </form>
     </div>
 
-    <!-- Global particle canvas background -->
-    <canvas id="particle-canvas"></canvas>
+
 
     <!-- Global floating shapes background -->
     <div class="global-shapes" aria-hidden="true">
@@ -422,15 +421,15 @@
                         <input type="hidden" name="_captcha" value="false">
                         <div class="form-group">
                             <label for="name" data-i18n="label_name">Nombre</label>
-                            <input type="text" id="name" name="name" placeholder="Tu nombre completo" required>
+                            <input type="text" id="name" name="name" placeholder="Tu nombre completo" data-i18n="placeholder_name" required>
                         </div>
                         <div class="form-group">
                             <label for="email" data-i18n="label_email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                            <input type="email" id="email" name="email" placeholder="tu@email.com" data-i18n="placeholder_email" required>
                         </div>
                         <div class="form-group">
                             <label for="message" data-i18n="label_msg">Mensaje</label>
-                            <textarea id="message" name="message" placeholder="Cuéntame sobre tu proyecto..." required></textarea>
+                            <textarea id="message" name="message" placeholder="Cuéntame sobre tu proyecto..." data-i18n="placeholder_message" required></textarea>
                         </div>
                         <div class="checkbox-wrapper">
                             <input type="checkbox" id="terms" name="terms" required>
@@ -464,13 +463,6 @@
         </div>
     </div>
 
-    <!-- Social icons -->
-    <div class="social-icons-container">
-        <div class="social-links" style="margin-bottom: 0;">
-            <a href="https://github.com/Azhura0101" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-            <a href="https://www.instagram.com/azhura.dev/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/in/emanuel-zapata-b7ba3639b" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-        </div>
 
 
 
@@ -478,52 +470,44 @@
     <footer>
         <div class="footer-content">
             <div class="footer-col">
-                <a href="#inicio" class="nav-logo footer-logo">Azhura<span>.dev</span></a>
-                <p>Desarrollador de software | App & Web | Automatizaciones con IA</p>
+                <a href="#inicio" class="nav-logo footer-logo">azhura.dev</a>
+                <p data-i18n="footer_desc">Desarrollador de software | App & Web | Automatizaciones con IA</p>
+                <div class="footer-socials">
+                    <a href="https://github.com/Azhura0101" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/azhura.dev/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/emanuel-zapata-b7ba3639b" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
             </div>
             <div class="footer-col">
-                <h4>Servicios</h4>
-                <a href="#servicios">Servicios</a>
-                <a href="#proyectos">Proyectos</a>
-                <a href="#cursos">Aprende Conmigo</a>
-             
+                <h4 data-i18n="footer_services_title">Servicios</h4>
+                <a href="#servicios" data-i18n="footer_services_link">Servicios</a>
+                <a href="#proyectos" data-i18n="footer_projects_link">Proyectos</a>
+                <a href="#cursos" data-i18n="footer_courses_link">Aprende Conmigo</a>
             </div>
             <div class="footer-col">
-                <h4>Empresa</h4>
-                <a href="#sobre-mi">Sobre Mí</a>
-                <a href="#contacto">Contacto</a>
-                
-           
+                <h4 data-i18n="footer_company_title">Empresa</h4>
+                <a href="#sobre-mi" data-i18n="footer_about_link">Sobre Mí</a>
+                <a href="#contacto" data-i18n="footer_contact_link">Contacto</a>
             </div>
             <div class="footer-col">
-                <h4>Legal</h4>
-              
-        <a href="#" onclick="openTerms(); return false;" data-i18n="footer_terms">Términos y Condiciones</a>
+                <h4 data-i18n="footer_legal_title">Legal</h4>
+                <a href="#" onclick="openTerms(); return false;" data-i18n="footer_terms">Términos y Condiciones</a>
             </div>
         </div>
 
-
-
-
-         <!-- badges -->
-          <div class="badges-container">
-            <p style="margin-bottom: 0; padding-bottom: 0;">Certificados</p>
-                <div class ="Badge-image" >
-                    <a  href="https://www.credly.com/badges/590c0de6-1fcb-4fc5-b361-fdb1b17bee84/embedded" target="_blank"><img src="https://images.credly.com/images/68c0b94d-f6ac-40b1-a0e0-921439eb092e/image.png" alt="Python essential 1"></a>
-                </div>
-          </div>
-            
-      
-
-
+        <!-- badges -->
+        <div class="badges-container">
+            <p style="margin-bottom: 0; padding-bottom: 0;" data-i18n="footer_certs_title">Certificados</p>
+            <div class="Badge-image">
+                <a href="https://www.credly.com/badges/590c0de6-1fcb-4fc5-b361-fdb1b17bee84/embedded" target="_blank">
+                    <img src="https://images.credly.com/images/68c0b94d-f6ac-40b1-a0e0-921439eb092e/image.png" alt="Python essential 1">
+                </a>
+            </div>
+        </div>
 
         <div class="footer-bottom">
-            <p>© <span id="currentYear"></span> Azhura.dev <em>Todos los derechos reservados.</em></p>
+            <p>© <span id="currentYear"></span> Azhura.dev <em data-i18n="footer_rights">Todos los derechos reservados.</em></p>
         </div>
-
-
-
-
     </footer>
 
 
@@ -540,72 +524,7 @@
     // Cambiar el año del footer automáticamente
     document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-    // =============================================
-    // CANVAS PARTICLES
-    // =============================================
-    const canvas = document.getElementById('particle-canvas');
-    const ctx = canvas.getContext('2d');
 
-    function resizeCanvas() {
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    const PARTICLE_COUNT = 55;
-    const particles = [];
-
-    class Particle {
-        constructor() { this.reset(); }
-        reset() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.r = Math.random() * 1.8 + 0.5;
-            this.vx = (Math.random() - 0.5) * 0.4;
-            this.vy = (Math.random() - 0.5) * 0.4;
-            this.alpha = Math.random() * 0.5 + 0.2;
-        }
-        update() {
-            this.x += this.vx;
-            this.y += this.vy;
-            if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
-        }
-        draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(167, 139, 250, ${this.alpha})`;
-            ctx.fill();
-        }
-    }
-
-    for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
-
-    function drawConnections() {
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < 120) {
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = `rgba(139, 92, 246, ${0.12 * (1 - dist / 120)})`;
-                    ctx.lineWidth = 0.7;
-                    ctx.stroke();
-                }
-            }
-        }
-    }
-
-    function animateParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => { p.update(); p.draw(); });
-        drawConnections();
-        requestAnimationFrame(animateParticles);
-    }
-    animateParticles();
 
     // =============================================
     // STATS COUNTER ANIMATION
@@ -700,10 +619,10 @@
             time_2022_desc: "Un periodo de introspección. Entendí que programar es diseñar estructuras con intención, no solo escribir líneas. Descubrí Python.",
             time_2024_title: "2024 — Full Stack",
             time_2024_desc: "Me especialicé en el ecosistema Python/Flask. Construí mis primeros proyectos comerciales y empecé a trabajar con clientes reales.",
-            time_2025_title: "2025 — Consolidación",
-            time_2025_desc: "Desarrollador freelance enfocado en soluciones a medida, automatización de procesos y sistemas web con dashboards interactivos.",
-            time_2026_title: "2026 — Formación Profesional",
-            time_2026_desc: "Inicio de mi carrera universitaria en <strong>Ingeniería de Sistemas en el ITM</strong>, integrando la formación académica formal con los años de experiencia práctica que ya construyó Azhura como desarrollador autodidacta.",
+            time_2025_title: "2025 — Formación Profesional",
+            time_2025_desc: "Inicio de mi carrera universitaria en <strong>Ingeniería de Sistemas en el ITM</strong>, integrando la formación académica formal con los años de experiencia práctica que ya construí como desarrollador autodidacta.",
+            time_2026_title: "2026 — Consolidación",
+            time_2026_desc: "Como desarrollador de software enfocado en el área de Backend con <strong>11 meses de experiencia práctica</strong>, me especializo en la construcción de soluciones web robustas y eficientes. Mi expertise abarca la creación de arquitecturas lógicas sólidas con <strong>Python y Flask</strong>, así como la gestión experta de bases de datos relacionales con <strong>SQL</strong>. Más allá de la escritura de código limpio y optimizado, ofrezco un acompañamiento integral a mis clientes, garantizando la estabilidad de sus proyectos mediante un sólido soporte técnico post-implementación y mantenimiento continuo.",
             skills_title: "Mis Herramientas",
             certs_title: "Certificaciones",
             services_title: "Mis Servicios",
@@ -737,7 +656,24 @@
             terms_title: "Términos y Condiciones",
             terms_checkbox: "Acepto los <span class=\"terms-link\" onclick=\"openTerms()\">Términos y Condiciones</span>",
             footer_terms: "Términos y Condiciones",
-            terms_content: `<p><strong>1. Recolección de Datos:</strong> Al usar este formulario, aceptas que recolectemos tu nombre, correo y mensaje para establecer comunicación.</p><p><strong>2. Uso de la Información:</strong> Los datos serán usados exclusivamente para responder tu consulta. No compartimos tu información con terceros.</p><p><strong>3. Protección de Datos:</strong> Implementamos medidas de seguridad razonables para proteger tu información.</p><p><strong>4. Derechos del Usuario:</strong> Puedes solicitar la eliminación de tus datos enviando un correo a azhura.dev@gmail.com.</p>`
+            terms_content: `<p><strong>1. Recolección de Datos:</strong> Al usar este formulario, aceptas que recolectemos tu nombre, correo y mensaje para establecer comunicación.</p><p><strong>2. Uso de la Información:</strong> Los datos serán usados exclusivamente para responder tu consulta. No compartimos tu información con terceros.</p><p><strong>3. Protección de Datos:</strong> Implementamos medidas de seguridad razonables para proteger tu información.</p><p><strong>4. Derechos del Usuario:</strong> Puedes solicitar la eliminación de tus datos enviando un correo a azhura.dev@gmail.com.</p>`,
+            placeholder_name: "Tu nombre completo",
+            placeholder_email: "tu@email.com",
+            placeholder_message: "Cuéntame sobre tu proyecto...",
+            chat_welcome: "¡Hola! 👋 Bienvenido a Azhura.dev. ¿Cómo te llamas?",
+            chat_input_placeholder: "Escribe tu nombre...",
+            promo_text: "💡 ¿Quieres saber más sobre el portafolio de Azhura.dev? ¡Prueba nuestro asistente virtual en el chat abajo a la derecha! 🤖",
+            footer_desc: "Desarrollador de software | App & Web | Automatizaciones con IA",
+            footer_services_title: "Servicios",
+            footer_services_link: "Servicios",
+            footer_projects_link: "Proyectos",
+            footer_courses_link: "Aprende Conmigo",
+            footer_company_title: "Empresa",
+            footer_about_link: "Sobre Mí",
+            footer_contact_link: "Contacto",
+            footer_legal_title: "Legal",
+            footer_certs_title: "Certificados",
+            footer_rights: "Todos los derechos reservados."
         },
         en: {
             nav_home: "Home", nav_about: "About", nav_services: "Services",
@@ -795,7 +731,24 @@
             terms_title: "Terms and Conditions",
             terms_checkbox: "I accept the <span class=\"terms-link\" onclick=\"openTerms()\">Terms and Conditions</span>",
             footer_terms: "Terms and Conditions",
-            terms_content: `<p><strong>1. Data Collection:</strong> By using this form, you agree that we collect your name, email and message to establish communication.</p><p><strong>2. Use of Information:</strong> Data will be used exclusively to respond to your inquiry. We do not share your information with third parties.</p><p><strong>3. Data Protection:</strong> We implement reasonable security measures to protect your information.</p><p><strong>4. User Rights:</strong> You can request deletion of your data by emailing azhura.dev@gmail.com.</p>`
+            terms_content: `<p><strong>1. Data Collection:</strong> By using this form, you agree that we collect your name, email and message to establish communication.</p><p><strong>2. Use of Information:</strong> Data will be used exclusively to respond to your inquiry. We do not share your information with third parties.</p><p><strong>3. Data Protection:</strong> We implement reasonable security measures to protect your information.</p><p><strong>4. User Rights:</strong> You can request deletion of your data by emailing azhura.dev@gmail.com.</p>`,
+            placeholder_name: "Your full name",
+            placeholder_email: "you@email.com",
+            placeholder_message: "Tell me about your project...",
+            chat_welcome: "Hello! 👋 Welcome to Azhura.dev. What's your name?",
+            chat_input_placeholder: "Type your name...",
+            promo_text: "💡 Want to know more about Azhura.dev's portfolio? Try our virtual assistant in the chat below on the right! 🤖",
+            footer_desc: "Software Developer | App & Web | AI Automations",
+            footer_services_title: "Services",
+            footer_services_link: "Services",
+            footer_projects_link: "Projects",
+            footer_courses_link: "Learn With Me",
+            footer_company_title: "Company",
+            footer_about_link: "About Me",
+            footer_contact_link: "Contact",
+            footer_legal_title: "Legal",
+            footer_certs_title: "Certificates",
+            footer_rights: "All rights reserved."
         }
     };
 
@@ -808,8 +761,13 @@
             const key = el.getAttribute('data-i18n');
             const val = translations[lang][key];
             if (val !== undefined) {
-                if (val.includes('<')) el.innerHTML = val;
-                else el.textContent = val;
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = val;
+                } else if (val.includes('<')) {
+                    el.innerHTML = val;
+                } else {
+                    el.textContent = val;
+                }
             }
         });
         document.querySelectorAll('[data-i18n-html]').forEach(el => {
@@ -818,6 +776,11 @@
         });
         const btn = document.getElementById('lang-toggle');
         if (btn) btn.textContent = lang === 'es' ? 'EN' : 'ES';
+
+        // Update active chatbot session language if exists
+        if (typeof updateChatLanguage === 'function') {
+            updateChatLanguage(lang);
+        }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -837,7 +800,7 @@
         // Active link
         let current = '';
         document.querySelectorAll('section').forEach(s => {
-            if (pageYOffset >= s.offsetTop - 200) current = s.getAttribute('id');
+            if (window.scrollY >= s.offsetTop - 200) current = s.getAttribute('id');
         });
         document.querySelectorAll('nav a').forEach(a => {
             a.classList.toggle('active', a.getAttribute('href') === `#${current}`);
@@ -870,13 +833,7 @@
         });
     });
 
-    // =============================================
-    // SCROLL REVEAL
-    // =============================================
-    const revealObserver = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
 
     // =============================================
     // FORM SUBMISSION
@@ -1108,24 +1065,8 @@ interactiveElements.forEach(element => {
     });
 });
 
-    // ===================== NAVBAR =====================
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 50);
-    });
-
-  
-
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => {
-            const target = document.querySelector(a.getAttribute('href'));
-            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
-        });
-    });
-
     // ===================== SCROLL REVEAL =====================
-    const scrollElements = document.querySelectorAll('.section-title, .fade-in-scroll, .project-card, .feature-card, .team-card, .pricing-card, .signup-card');
+    const scrollElements = document.querySelectorAll('.reveal, .section-title, .fade-in-scroll, .project-card, .feature-card, .team-card, .pricing-card, .signup-card');
     const revealObserver = new IntersectionObserver(entries => {
         entries.forEach(e => { 
             if (e.isIntersecting) {
@@ -1185,68 +1126,88 @@ interactiveElements.forEach(element => {
 
    
     // ===================== TEXT DECRYPTION SCRAMBLER =====================
-    function scrambleText(element) {
-        const originalText = element.innerText;
-        const chars = '!<>-_\\/[]{}—=+*^?#_+-*/@$;:[]{}∑∏π';
-        let frame = 0;
-        const queue = [];
-        
-        for (let i = 0; i < originalText.length; i++) {
-            const from = '';
-            const to = originalText[i];
-            const start = Math.floor(Math.random() * 15);
-            const end = start + Math.floor(Math.random() * 25);
-            queue.push({ from, to, start, end, char: '' });
-        }
-        
-        function update() {
-            let output = '';
 
-            let complete = 0;
-            
-            for (let i = 0; i < queue.length; i++) {
-                let { to, start, end, char } = queue[i];
-                if (frame >= end) {
-                    complete++;
-                    output += to;
-                } else if (frame >= start) {
-                    if (!char || Math.random() < 0.28) {
-                        char = chars[Math.floor(Math.random() * chars.length)];
-                        queue[i].char = char;
-                    }
-                    output += `<span class="scramble-char">${char}</span>`;
-                } else {
-                    output += '';
-                }
-            }
-            
-            element.innerHTML = output;
-            
-            if (complete === queue.length) {
-                element.innerText = originalText;
-            } else {
-                frame++;
-                requestAnimationFrame(update);
-            }
-        }
-        
-        update();
+function scrambleText(element) {
+    if (element.dataset.isScrambling === "true") return;
+    element.dataset.isScrambling = "true";
+
+    const originalText = element.innerText;
+    const chars = '!<>-_\\/[]{}—=+*^?#_+-*/@$;:[]{}∑∏π';
+    let frame = 0;
+    const queue = [];
+    
+    for (let i = 0; i < originalText.length; i++) {
+        const to = originalText[i];
+        const start = Math.floor(Math.random() * 15);
+        const end = start + Math.floor(Math.random() * 25);
+        queue.push({ to, start, end, char: '' });
     }
     
+    function update() {
+        let output = '';
+        let complete = 0;
+        
+        for (let i = 0; i < queue.length; i++) {
+            let { to, start, end, char } = queue[i];
+            if (frame >= end) {
+                complete++;
+                output += to;
+            } else if (frame >= start) {
+                if (!char || Math.random() < 0.28) {
+                    char = chars[Math.floor(Math.random() * chars.length)];
+                    queue[i].char = char;
+                }
+                output += `<span class="scramble-char">${char}</span>`;
+            } else {
+                // Solución al layout shift: Mantiene el espacio/letra invisible 
+                // para que el contenedor no colapse.
+                output += `<span style="opacity: 0">${to}</span>`;
+            }
+        }
+        
+        element.innerHTML = output;
+        
+        if (complete === queue.length) {
+            element.innerText = originalText;
+            element.dataset.isScrambling = "false";
+        } else {
+            frame++;
+            requestAnimationFrame(update);
+        }
+    }
+    
+    update();
+}
+
+function color(element) {
+    const originalColor = window.getComputedStyle(element).color;
+    const colors = ['#a855f7', '#3b82f6', '#0ea5e9', '#e11d48', '#6d28d9'];
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    
+    // Aplicamos el color del destello
+    element.style.color = randomColor;
+    
+    // Después de 100ms devolvemos el color real de forma segura
+    setTimeout(() => {
+        element.style.color = originalColor;
+    }, 100);
+}
+    
     // Scramble Hero Title on Load
-    const heroH1 = document.querySelector('.hero-content h1');
-    if (heroH1) {
-        setTimeout(() => scrambleText(heroH1), 800);
+    const heroName = document.querySelector('.hero-name-gradient');
+    if (heroName) {
+        color(heroName);
+        setTimeout(() => scrambleText(heroName), 800);
     }
     const heroBadge = document.querySelector('.section-title');
     if (heroBadge) {
         setTimeout(() => scrambleText(heroBadge), 500);
     }
 
-    const interactiveH1 = document.querySelector('.hero-content h1');
-    if(interactiveH1) {
-        interactiveH1.addEventListener('click', () => {
-            scrambleText(interactiveH1);
+    if (heroName) {
+        heroName.addEventListener('click', () => {
+            color(heroName);
+            scrambleText(heroName);
         });
     }
    
@@ -1270,14 +1231,29 @@ interactiveElements.forEach(element => {
         }
     });
 
-    const prebakedAnswers = {
-    '¿Cómo me ayudas? 🚀': 'Automatizo procesos operativos y elimino cuellos de botella con software a medida. 💻 Diseño arquitecturas monolíticas eficientes y scripts en Python para que la lógica de tu negocio o plataforma funcione de manera estable, segura y en piloto automático. ⚙️',
-
-'¿Qué tecnologías usas? 🛠️': 'Mi núcleo es Python y Java para un backend robusto, usando Flask, SQLAlchemy y PostgreSQL para bases de datos escalables. 🗄️ En el frontend integro JavaScript, HTML5 y CSS3 con un diseño visual intuitivo y responsivo. 🎨 Desarrollo nativamente en entornos Linux. 🐧',
-
-'¿Cómo es tu soporte? 💼': 'Freelance directo. 🤝 Al trabajar de forma independiente conmigo, garantizo comunicación técnica sin intermediarios, total transparencia en cada fase del desarrollo, debugging avanzado y un enfoque estricto en el cumplimiento de los plazos acordados. 📅',
-
-'¿Cómo cotizo contigo? ✉️': 'Escríbeme con tus requerimientos a **azhura.dev@gmail.com**. 📧 Si prefieres una charla más ágil para estructurar la solución desde cero, envíame un DM por Instagram y coordinamos una sesión inicial hoy mismo. 📲'
+    const chatTranslations = {
+        es: {
+            placeholder_name: "Escribe tu nombre...",
+            placeholder_chips: "Selecciona una pregunta abajo...",
+            welcome_user: "¡Un placer conocerte, <strong>{name}</strong>! 👋 Soy el asistente virtual de Azhura.dev. ¿Qué te gustaría saber hoy?",
+            chips: {
+                '¿Cómo me ayudas? 🚀': 'Automatizo procesos operativos y elimino cuellos de botella con software a medida. 💻 Diseño arquitecturas monolíticas eficientes y scripts en Python para que la lógica de tu negocio o plataforma funcione de manera estable, segura y en piloto automático. ⚙️',
+                '¿Qué tecnologías usas? 🛠️': 'Mi núcleo es Python y Java para un backend robusto, usando Flask, SQLAlchemy y PostgreSQL para bases de datos escalables. 🗄️ En el frontend integro JavaScript, HTML5 y CSS3 con un diseño visual intuitivo y responsivo. 🎨 Desarrollo nativamente en entornos Linux. 🐧',
+                '¿Cómo es tu soporte? 💼': 'Freelance directo. 🤝 Al trabajar de forma independiente conmigo, garantizo comunicación técnica sin intermediarios, total transparencia en cada fase del desarrollo, debugging avanzado y un enfoque estricto en el cumplimiento de los plazos acordados. 📅',
+                '¿Cómo cotizo contigo? ✉️': 'Escríbeme con tus requerimientos a **azhura.dev@gmail.com**. 📧 Si prefieres una charla más ágil para estructurar la solución desde cero, envíame un DM por Instagram y coordinamos una sesión inicial hoy mismo. 📲'
+            }
+        },
+        en: {
+            placeholder_name: "Type your name...",
+            placeholder_chips: "Select a question below...",
+            welcome_user: "Nice to meet you, <strong>{name}</strong>! 👋 I'm the Azhura.dev virtual assistant. What would you like to know today?",
+            chips: {
+                'How do you help me? 🚀': 'I automate operational processes and eliminate bottlenecks with custom software. 💻 I design efficient monolithic architectures and Python scripts so your business logic or platform runs stably, securely, and on autopilot. ⚙️',
+                'What technologies do you use? 🛠️': 'My core is Python and Java for a robust backend, using Flask, SQLAlchemy, and PostgreSQL for scalable databases. 🗄️ On the frontend, I integrate JavaScript, HTML5, and CSS3 with an intuitive and responsive visual design. 🎨 I develop natively in Linux environments. 🐧',
+                'How is your support? 💼': 'Direct freelance relationship. 🤝 By working independently with me, I guarantee direct technical communication without intermediaries, total transparency at every development stage, advanced debugging, and a strict focus on meeting deadlines. 📅',
+                'How do I get a quote? ✉️': 'Write me with your requirements at **azhura.dev@gmail.com**. 📧 If you prefer a faster discussion to structure the solution from scratch, send me a DM on Instagram and we can coordinate an initial session today. 📲'
+            }
+        }
     };
 
     function addMessage(text, type) {
@@ -1304,18 +1280,19 @@ interactiveElements.forEach(element => {
 
     function renderOptionChips() {
         chatChipsContainer.innerHTML = '';
-        Object.keys(prebakedAnswers).forEach(option => {
+        const chipsObj = chatTranslations[currentLang].chips;
+        Object.keys(chipsObj).forEach(option => {
             const chip = document.createElement('button');
             chip.className = 'chat-chip';
             chip.innerText = option;
-            chip.addEventListener('click', () => handleChipSelection(option));
+            chip.addEventListener('click', () => handleChipSelection(option, chipsObj[option]));
             chatChipsContainer.appendChild(chip);
         });
         chatChipsContainer.style.display = 'flex';
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    function handleChipSelection(optionText) {
+    function handleChipSelection(optionText, answerText) {
         // Disable chips container to avoid spam
         chatChipsContainer.style.pointerEvents = 'none';
         chatChipsContainer.style.opacity = '0.5';
@@ -1327,7 +1304,7 @@ interactiveElements.forEach(element => {
         
         setTimeout(() => {
             removeTyping();
-            addMessage(prebakedAnswers[optionText], 'bot');
+            addMessage(answerText, 'bot');
             
             // Re-enable chips for further questions
             chatChipsContainer.style.pointerEvents = 'all';
@@ -1349,7 +1326,7 @@ interactiveElements.forEach(element => {
             // Lock the input form to transition to chips phase
             chatInput.value = '';
             chatInput.disabled = true;
-            chatInput.placeholder = 'Selecciona una pregunta abajo...';
+            chatInput.placeholder = chatTranslations[currentLang].placeholder_chips;
             chatForm.style.opacity = '0.5';
             chatForm.style.pointerEvents = 'none';
 
@@ -1357,7 +1334,8 @@ interactiveElements.forEach(element => {
             
             setTimeout(() => {
                 removeTyping();
-                addMessage(`¡Un placer conocerte, <strong>${userName}</strong>! 👋 Soy el asistente virtual de Azhura.dev. ¿Qué te gustaría saber hoy?`, 'bot');
+                const welcomeMsg = chatTranslations[currentLang].welcome_user.replace('{name}', userName);
+                addMessage(welcomeMsg, 'bot');
                 
                 // Show option chips
                 setTimeout(() => {
@@ -1366,6 +1344,22 @@ interactiveElements.forEach(element => {
             }, 1200);
         }
     });
+
+    // Language change callback helper
+    window.updateChatLanguage = function(lang) {
+        const input = document.getElementById('chat-input');
+        if (input) {
+            if (userName) {
+                input.placeholder = chatTranslations[lang].placeholder_chips;
+            } else {
+                input.placeholder = chatTranslations[lang].placeholder_name;
+            }
+        }
+        // Re-render chips if they are visible
+        if (userName && chatChipsContainer && chatChipsContainer.style.display !== 'none') {
+            renderOptionChips();
+        }
+    };
 
     // ===================== TIMED PROMO TOAST (30s delay) =====================
     setTimeout(() => {
@@ -1376,7 +1370,7 @@ interactiveElements.forEach(element => {
         notification.className = 'top-notification';
         notification.innerHTML = `
             <div class="top-notification-content" id="trigger-chat-btn">
-                <span>💡 ¿Quieres saber más sobre el portafolio de Azhura.dev? ¡Prueba nuestro asistente virtual en el chat abajo a la derecha! 🤖</span>
+                <span>${translations[currentLang]?.promo_text || '💡 ¿Quieres saber más sobre el portafolio de Azhura.dev? ¡Prueba nuestro asistente virtual en el chat abajo a la derecha! 🤖'}</span>
             </div>
             <button class="top-notification-close" id="close-promo-btn" aria-label="Cerrar">✕</button>
         `;

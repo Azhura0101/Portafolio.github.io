@@ -1,6 +1,6 @@
 # Azhura.dev — Portfolio Personal
 
-> Portafolio personal de **Emanuel Zapata** (alias Azhura), Desarrollador Web Full Stack con base en Colombia.
+> Portafolio personal de **Emanuel Zapata** (alias Azhura), Desarrollador de Software & Backend con base en Colombia.
 
 **Demo en vivo:** [azhura0101.github.io/Portafolio](https://azhura0101.github.io/Portafolio) *(o abrir `index.html` localmente)*
 
@@ -8,41 +8,37 @@
 
 ## Sobre el Proyecto
 
-Este portafolio es un sitio web estático de una sola página (SPA-like) construido completamente con **HTML, CSS y JavaScript Vanilla**, sin frameworks ni dependencias de build. Fue diseñado desde cero con un enfoque en animaciones modernas, experiencia de usuario premium y una estética dark glassmorphism completamente personalizada.
+Este portafolio es un sitio web estático de una sola página (SPA-like) construido completamente con **HTML, CSS y JavaScript Vanilla**, sin frameworks ni dependencias de build. Fue diseñado desde cero con un enfoque en animaciones modernas, rendimiento optimizado, experiencia de usuario premium y una estética *dark glassmorphism* totalmente a medida.
 
 ---
 
-## Caracteristicas
+## Características de Vanguardia
 
-- **Diseño Dark Glassmorphism** — paleta morada profunda con efectos de vidrio esmerilado, blurs y bordes con glow
-- **Canvas de Partículas** — red animada de puntos conectados que cubre toda la página como fondo digital
-- **Formas Decorativas Globales** — 8 blobs animados + 3 anillos giratorios distribuidos en toda la longitud de la página
-- **Hero con Typing Effect** — animación de escritura con múltiples roles (Python & Flask, Backend, etc.)
-- **Sección Sobre Mi con Timeline** — historial 2021→2026 incluyendo el inicio en Ingeniería de Sistemas en el ITM
-- **Skills como Tarjetas de Íconos** — grid con reveleo escalonado y efecto radial al hover
-- **Proyecto Destacado con Borde Animado** — gradiente morado que recorre el borde en loop
-- **Sección de Servicios** — 3 tarjetas con line-reveal en hover e icono con glow ring
-- **6 Proyectos** — con imágenes Live desde CodePen, links a demos reales y overlay de color al hover
-- **Contadores Animados** — los números de estadísticas se animan al entrar al viewport
-- **Formulario de Contacto Funcional** — integrado con FormSubmit + confetti al enviar
-- **Bilingüe ES / EN** — todo el contenido conmutable sin recarga, persistido en localStorage
-- **Navbar Adaptativa** — transparente, se vuelve sólida con blur al hacer scroll; links con underline animado
-- **Totalmente Responsive** — menú hamburguesa en móvil, grid fluido en proyectos y skills
+- **Diseño Dark Glassmorphism** — Paleta morada profunda con efectos de vidrio esmerilado, desenfoques y bordes con resplandor (*glow*).
+- **Quantum Neural Net Canvas Background** — Red animada interactiva con repulsión al mouse y ondas de choque cuánticas (*shockwaves*) al hacer clic, consolidada en un solo canvas con rendimiento GPU altamente optimizado.
+- **Asistente Virtual de IA (Chatbot) Interactivo y Bilingüe** — Asistente de IA conmutable en tiempo real (**español e inglés**) que responde preguntas frecuentes sobre el stack técnico, soporte y cotizaciones sin perder el estado de la sesión activa al cambiar el idioma.
+- **Efecto de Decodificación Textual (Scramble Effect)** — Micro-animaciones en hover y al cargar la página en títulos principales, optimizadas para evitar saltos de maquetación (*layout shift*) e integradas para respetar la estructura HTML nativa y los gradientes CSS.
+- **Timeline de Formación con Scroll-Reveal** — Historial profesional interactivo desde 2021 hasta 2026, destacando el inicio de estudios en **Ingeniería de Sistemas en el ITM**.
+- **Servicios Interactivos** — Tarjetas con efectos holográficos 3D (*Tilt & Glare*), detección de cursor, e iconos con anillos de resplandor.
+- **Formulario con Placeholders Localizados** — Campos de entrada de contacto inteligentes con textos de ayuda dinámicos (bilingües), integrado con FormSubmit y efectos de confetti al enviar.
+- **Notificación Promocional Temporizada** — Toast emergente a los 30 segundos, adaptado al idioma del usuario, que invita a probar la IA.
+- **Footer Corporativo con Enlaces Sociales** — Sección inferior depurada con unificación de marca, logotipos idénticos y botones sociales (`.footer-socials`) circulares interactivos con sombras y elevaciones.
+- **Internacionalización (i18n) en Caliente** — Soporte completo para español e inglés en todo el contenido textual, placeholders, notificaciones y chatbot, con persistencia local en `localStorage`.
 
 ---
 
-## Stack
+## Stack Tecnológico
 
 | Capa | Tecnología |
 |------|-----------|
-| Estructura | HTML5 Semántico |
-| Estilos | CSS3 Vanilla (Variables, Grid, Flexbox, Animaciones) |
-| Lógica | JavaScript Vanilla (ES6+) |
-| Tipografía | Google Fonts — Outfit + JetBrains Mono |
-| Iconos | Font Awesome 6 |
-| Formulario | FormSubmit (sin backend propio) |
-| Confetti | canvas-confetti CDN |
-| Deploy | GitHub Pages |
+| **Estructura** | HTML5 Semántico |
+| **Estilos** | CSS3 Vanilla (Variables, Grid, Flexbox, Micro-animaciones, Efectos 3D Tilt/Glare) |
+| **Lógica** | JavaScript Vanilla (ES6+, IntersectionObserver, Canvas API) |
+| **Tipografía** | Google Fonts — Outfit + JetBrains Mono |
+| **Iconos** | Font Awesome 6 |
+| **Formulario** | FormSubmit (sin backend propio) |
+| **Efectos** | canvas-confetti CDN |
+| **Deploy** | GitHub Pages |
 
 ---
 
@@ -50,12 +46,12 @@ Este portafolio es un sitio web estático de una sola página (SPA-like) constru
 
 | Proyecto | Stack | Link |
 |---------|-------|------|
-| Sistema de Gestión Empresarial | Python, Flask, SQLAlchemy | [Demo](https://sistema-base-demo.onrender.com/login) |
-| Landing Page de Ropa | HTML, CSS | [CodePen](https://codepen.io/EMANUEL-ZAPATA-the-looper/full/VwJWKjb) |
-| Secure Guard | HTML, CSS, JS | [CodePen](https://codepen.io/EMANUEL-ZAPATA-the-looper/full/jOoMpeX) |
-| Sabor Bagreño | HTML, CSS, JS | [CodePen](https://codepen.io/EMANUEL-ZAPATA-the-looper/full/raVjQoN) |
-| Web Nequi (inspirada) | HTML, CSS, JS | [CodePen](https://codepen.io/EMANUEL-ZAPATA-the-looper/full/VwJjMjp) |
-| Playground de Formas | HTML, CSS, JS | [CodePen](https://codepen.io/EMANUEL-ZAPATA-the-looper/full/abrKwVj) |
+| **Sistema de Gestión Empresarial** | Python, Flask, SQLAlchemy, SQL | [Demo en Render](https://sistema-base-demo.onrender.com/login) |
+| **Landing Page de Ropa** | HTML, CSS | [CodePen](https://codepen.io/EMANUEL-ZAPATA-the-looper/full/VwJWKjb) |
+| **Secure Guard** | HTML, CSS, JS | [CodePen](https://codepen.io/EMANUEL-ZAPATA-the-looper/full/jOoMpeX) |
+| **Sabor Bagreño** | HTML, CSS, JS | [CodePen](https://codepen.io/EMANUEL-ZAPATA-the-looper/full/raVjQoN) |
+| **Web Nequi (inspirada)** | HTML, CSS, JS | [CodePen](https://codepen.io/EMANUEL-ZAPATA-the-looper/full/VwJjMjp) |
+| **Playground de Formas** | HTML, CSS, JS | [CodePen](https://codepen.io/EMANUEL-ZAPATA-the-looper/full/abrKwVj) |
 
 ---
 
@@ -63,9 +59,9 @@ Este portafolio es un sitio web estático de una sola página (SPA-like) constru
 
 ```
 Portafolio/
-├── index.html     # Toda la estructura y lógica JS
-├── style.css      # Sistema de diseño completo
-└── README.md      # Este archivo
+├── index.html     # Toda la estructura, traducción e interactividad JS
+├── style.css      # Sistema de diseño completo, efectos visuales y footer socials
+└── README.md      # Documentación del proyecto (Este archivo)
 ```
 
 ---
@@ -79,16 +75,15 @@ open index.html
 xdg-open index.html
 ```
 
-No necesita servidor, npm, ni compilación. Funciona directo desde el sistema de archivos.
+No requiere servidores de desarrollo pesados, compilación, ni dependencias de Node.js. Funciona directo y ligero desde el sistema de archivos local.
 
 ---
 
 ## Contacto
 
-- Email: [azhura.dev@gmail.com](mailto:azhura.dev@gmail.com)
-- Instagram: [@azhura.dev](https://www.instagram.com/azhura.dev/)
-- GitHub: [Azhura0101](https://github.com/Azhura0101)
-- LinkedIn: [Emanuel Zapata](https://www.linkedin.com/in/emanuel-zapata-b7ba3639b)
+- **Email**: [azhura.dev@gmail.com](mailto:azhura.dev@gmail.com)
+- **Instagram**: [@azhura.dev](https://www.instagram.com/azhura.dev/)
+- **GitHub**: [Azhura0101](https://github.com/Azhura0101)
+- **LinkedIn**: [Emanuel Zapata](https://www.linkedin.com/in/emanuel-zapata-b7ba3639b)
 
 <img width="1568" height="960" alt="image" src="https://github.com/user-attachments/assets/dfe3ad44-971d-4cee-a039-db46e92cc557" />
-
