@@ -1157,8 +1157,8 @@ section {
   letter-spacing: 0.02em;
 }
 .tech-tag:hover {
- color: var(--accent-cyan-light);
-  border-color: var(--accent-cyan-light);
+  color: var(--accent-cyan);
+  border-color: var(--accent-cyan);
   cursor: pointer;
   transition: color 0.2s ease-in-out;
 }
@@ -1540,49 +1540,6 @@ section {
 .terms-content strong { color: var(--text-primary); }
 
 /* ==========================================
-   social links
-   ========================================== */
-
-.social-icons-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    margin-top: 1rem;
-}
-
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.social-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: var(--bg-card);
-  border: 1px solid var(--border-glass);
-  color: var(--text-secondary);
-  font-size: 1rem;
-  text-decoration: none;
-  transition: var(--transition);
-}
-
-.social-icon:hover {
-  border-color: var(--accent-purple);
-  color: var(--text-primary);
-  transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(106, 90, 205, 0.25);
-}
-
-/* ==========================================
    ANIMATIONS
    ========================================== */
 @keyframes fadeInDown {
@@ -1627,6 +1584,7 @@ section {
 
 @media (max-width: 768px) {
   nav { padding: 1rem; }
+  .hero { flex-direction: column; text-align: center; padding-top: 140px; }
   .nav-menu {
     display: none;
     position: fixed;
@@ -1649,26 +1607,11 @@ section {
   .menu-toggle.active .bar:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
 
   section { padding: 4rem 1.2rem; }
-  .hero-buttons { gap: 0.7rem; }
+  .hero-buttons { gap: 0.7rem; justify-content: center; }
   .about-stats { grid-template-columns: 1fr 1fr; }
   .course-features { grid-template-columns: 1fr; }
   .contact-pills { gap: 0.6rem; }
-}
-
-/* Responsive 2 */
-@media (max-width: 768px) {
-    .hero { flex-direction: column; text-align: center; padding-top: 140px; }
-    .hero-buttons { justify-content: center; }
-    .nav-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(8,8,16,0.95); flex-direction: column; justify-content: center; align-items: center; gap: 1.5rem; }
-    .nav-menu.active { display: flex; }
-    .menu-toggle { display: block; z-index: 1001; }
-    .signup-card { grid-template-columns: 1fr; }
-    .footer-content { grid-template-columns: 1fr 1fr; }
-    .demo-sidebar { display: none; }
-    .demo-stat-row { grid-template-columns: 1fr; }
-    .pricing-card.featured { transform: scale(1); }
-    .chat-widget { width: calc(100vw - 32px); right: 16px; bottom: 96px; }
-    .chat-toggle { bottom: 20px; right: 20px; }
+  .footer-content { grid-template-columns: 1fr 1fr; }
 }
 
 
@@ -1747,18 +1690,6 @@ section {
 #back-to-top:hover {
   background: rgba(139,92,246,0.2); border-color: var(--accent-purple);
   transform: translateY(-3px); box-shadow: 0 4px 20px rgba(139,92,246,0.3);
-}
-
-/* ==========================================
-   CERTIFICATIONS SUB-SECTION
-   ========================================== */
-.certs-area { margin-top: 3.5rem; text-align: center; }
-.certs-area h3 {
-  font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem;
-  color: var(--text-primary);
-}
-.certs-grid {
-  display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
 }
 
 /* ==========================================
@@ -2102,62 +2033,51 @@ footer { position: relative; z-index: 1; padding: 3rem 2rem; border-top: 2px sol
 /* ==========================================
    Badges
    ========================================== */
-.Badge-image {
-  
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    transition: transform 0.3s ease-in-out;
+.badge-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
 }
 
 .badges-container {
- border-top: 2px solid var(--border-glass);
+  border-top: 2px solid var(--border-glass);
   padding-top: 1rem;
   padding-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .badges-container p {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    font-weight: 600;
-    
+  margin-bottom: 0;
+  padding-bottom: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
-.Badge-image:hover {
-    transform: scale(1.05);
-    cursor: pointer;
+.badge-image:hover {
+  transform: scale(1.05);
+  cursor: pointer;
 }
 
-.Badge-image img {
-    max-width: 68px;
-    max-height: 121px;
-    object-fit: contain;
-    display: block;
-    background-color: rgba(0, 242, 254, 0.1);
-    border-radius: 4px;
-    transition: var(--transition);
-    &:hover {
-        transform: scale(1.05);
-        cursor: pointer;
-        box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
-    }
-    &:active {
-        transform: scale(0.95);
-        cursor: pointer;
-        box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
-    }
-    &:focus {
-        transform: scale(1.05);
-        cursor: pointer;
-        box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
-    }
+.badge-image img {
+  max-width: 68px;
+  max-height: 121px;
+  object-fit: contain;
+  display: block;
+  background-color: rgba(0, 242, 254, 0.1);
+  border-radius: 4px;
+  transition: var(--transition);
+}
+
+.badge-image img:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
 }
 
 /* Footer socials styling */

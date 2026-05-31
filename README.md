@@ -34,6 +34,7 @@ Este portafolio es un sitio web estático de una sola página (SPA-like) constru
 | **Estructura** | HTML5 Semántico |
 | **Estilos** | CSS3 Vanilla (Variables, Grid, Flexbox, Micro-animaciones, Efectos 3D Tilt/Glare) |
 | **Lógica** | JavaScript Vanilla (ES6+, IntersectionObserver, Canvas API) |
+| **Traducciones** | `translations.js` — módulo de i18n independiente |
 | **Tipografía** | Google Fonts — Outfit + JetBrains Mono |
 | **Iconos** | Font Awesome 6 |
 | **Formulario** | FormSubmit (sin backend propio) |
@@ -59,9 +60,11 @@ Este portafolio es un sitio web estático de una sola página (SPA-like) constru
 
 ```
 Portafolio/
-├── index.html     # Toda la estructura, traducción e interactividad JS
-├── style.css      # Sistema de diseño completo, efectos visuales y footer socials
-└── README.md      # Documentación del proyecto (Este archivo)
+├── index.html         # Estructura HTML semántica
+├── style.css          # Sistema de diseño completo, efectos visuales
+├── script.js          # Lógica de interacción, animaciones, canvas, chat
+├── translations.js    # Datos de internacionalización (ES/EN)
+└── README.md          # Documentación del proyecto
 ```
 
 ---
@@ -76,6 +79,8 @@ xdg-open index.html
 ```
 
 No requiere servidores de desarrollo pesados, compilación, ni dependencias de Node.js. Funciona directo y ligero desde el sistema de archivos local.
+
+> **Nota:** El proyecto fue refactorizado en mayo 2026. El JS inline y las traducciones embebidas se extrajeron a `script.js` y `translations.js` respectivamente, mejorando la mantenibilidad sin afectar funcionalidad.
 
 ---
 
