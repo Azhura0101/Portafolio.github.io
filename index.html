@@ -9,14 +9,31 @@
     <meta property="og:title" content="Azhura.dev — Emanuel Zapata">
     <meta property="og:description" content="Desarrollador Web & Backend. Python · Flask · SQL · JavaScript.">
     <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Emanuel Zapata",
+        "alternateName": "Azhura",
+        "jobTitle": "Desarrollador Web & Backend",
+        "url": "https://azhura0101.github.io/Portafolio",
+        "email": "azhura.dev@gmail.com",
+        "knowsAbout": ["Python", "Flask", "SQL", "JavaScript", "HTML", "CSS", "Backend Development"],
+        "sameAs": [
+            "https://github.com/Azhura0101",
+            "https://www.linkedin.com/in/emanuel-zapata-b7ba3639b",
+            "https://www.instagram.com/azhura.dev/"
+        ]
+    }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2910/2910815.png" />
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
 
@@ -90,6 +107,7 @@
                 <li><a href="#proyectos" data-i18n="nav_projects">Proyectos</a></li>
                 <li><a href="#cursos" data-i18n="nav_courses">Cursos</a></li>
                 <li><a href="#contacto" data-i18n="nav_contact">Contacto</a></li>
+                <li><button id="theme-toggle" class="theme-btn" aria-label="Cambiar tema">🌙</button></li>
                 <li><button id="lang-toggle" class="lang-btn">EN</button></li>
             </ul>
         </div>

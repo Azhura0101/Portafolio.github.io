@@ -1,0 +1,16 @@
+{
+    "name": "Azhura.dev — Emanuel Zapata",
+    "short_name": "Azhura.dev",
+    "description": "Portafolio de Emanuel Zapata, Desarrollador Web & Backend",
+    "start_url": "/Portafolio/index.html",
+    "display": "standalone",
+    "background_color": "#080810",
+    "theme_color": "#080810",
+    "icons": [
+        {
+            "src": "https://cdn-icons-png.flaticon.com/512/2910/2910815.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

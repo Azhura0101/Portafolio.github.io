@@ -1,4 +1,4 @@
-let currentLang = localStorage.getItem('selectedLang') || 'es';
+let currentLang = localStorage.getItem('selectedLang') || (navigator.language.startsWith('en') ? 'en' : 'es');
 
 const typingStrings = {
     es: ['Python & Flask', 'Desarrollo Backend', 'Sistemas Web', 'Automatización', 'Bases de datos'],
@@ -101,8 +101,9 @@ function handleSubmit(e) {
             btn.textContent = translations[currentLang]?.btn_send || 'Enviar Mensaje';
             btn.disabled = false;
             document.getElementById('successModal').classList.add('active');
-            e.target.reset();
-            launchConfetti();
+                e.target.reset();
+                launchConfetti();
+                track('form_submit');
         })
         .catch(() => {
             btn.textContent = 'Error — intenta de nuevo';
@@ -120,6 +121,16 @@ function openTerms() {
 function closeTerms() { document.getElementById('termsModal').classList.remove('active'); }
 
 function launchConfetti() {
+    if (typeof confetti === 'undefined') {
+        const s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js';
+        s.onload = () => fireConfetti();
+        document.head.appendChild(s);
+    } else {
+        fireConfetti();
+    }
+}
+function fireConfetti() {
     const end = Date.now() + 3000;
     const interval = setInterval(() => {
         if (Date.now() > end) return clearInterval(interval);
@@ -130,6 +141,18 @@ function launchConfetti() {
 }
 
 document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+}
+
+function track(event, data) {
+    try {
+        const log = JSON.parse(localStorage.getItem('_track') || '[]');
+        log.push({ event, data, ts: Date.now() });
+        localStorage.setItem('_track', JSON.stringify(log.slice(-50)));
+    } catch (e) {}
+}
 
 window.addEventListener('scroll', () => {
     const navbar = document.getElementById('navbar');
@@ -170,11 +193,29 @@ document.querySelectorAll('.modal-overlay').forEach(m => {
 
 document.addEventListener('DOMContentLoaded', () => {
     updateLanguage(currentLang);
-    document.getElementById('lang-toggle').addEventListener('click', () => {
-        updateLanguage(currentLang === 'es' ? 'en' : 'es');
-    });
+    track('pageview', { lang: currentLang });
 
-    document.getElementById('contactForm').addEventListener('submit', handleSubmit);
+        document.getElementById('lang-toggle').addEventListener('click', () => {
+            track('lang_toggle', { from: currentLang, to: currentLang === 'es' ? 'en' : 'es' });
+            updateLanguage(currentLang === 'es' ? 'en' : 'es');
+        });
+
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme === 'light' ? 'light' : 'dark');
+        document.getElementById('theme-toggle').textContent = savedTheme === 'light' ? '☀️' : '🌙';
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            const next = current === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            document.getElementById('theme-toggle').textContent = next === 'light' ? '☀️' : '🌙';
+            particles.forEach(p => p.applyThemeColor());
+            track('theme_toggle', { theme: next });
+        });
+
+        document.querySelector('a[href*="drive.google.com"][data-i18n="hero_cv"]')?.addEventListener('click', () => track('cv_download'));
+
+        document.getElementById('contactForm').addEventListener('submit', handleSubmit);
 
     document.querySelector('#successModal .modal-btn').addEventListener('click', closeModal);
 
@@ -222,7 +263,13 @@ document.addEventListener('DOMContentLoaded', () => {
             this.vx = this.baseVx;
             this.vy = this.baseVy;
             this.alpha = Math.random() * 0.5 + 0.25;
-            this.color = Math.random() > 0.5 ? '0, 242, 254' : '0, 245, 160';
+            this.applyThemeColor();
+        }
+        applyThemeColor() {
+            const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+            this.color = isLight
+                ? (Math.random() > 0.5 ? '30, 20, 60' : '80, 60, 120')
+                : (Math.random() > 0.5 ? '0, 242, 254' : '0, 245, 160');
         }
         update() {
             const dx = this.x - mouse.x;
@@ -453,6 +500,7 @@ document.addEventListener('DOMContentLoaded', () => {
     chatToggle.addEventListener('click', () => {
         chatToggle.classList.toggle('open');
         chatWidget.classList.toggle('open');
+        if (chatWidget.classList.contains('open')) track('chat_open');
         if (chatWidget.classList.contains('open') && !userName) {
             setTimeout(() => chatInput.focus(), 400);
         }

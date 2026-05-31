@@ -24,6 +24,11 @@ Este portafolio es un sitio web estático de una sola página (SPA-like) constru
 - **Notificación Promocional Temporizada** — Toast emergente a los 30 segundos, adaptado al idioma del usuario, que invita a probar la IA.
 - **Footer Corporativo con Enlaces Sociales** — Sección inferior depurada con unificación de marca, logotipos idénticos y botones sociales (`.footer-socials`) circulares interactivos con sombras y elevaciones.
 - **Internacionalización (i18n) en Caliente** — Soporte completo para español e inglés en todo el contenido textual, placeholders, notificaciones y chatbot, con persistencia local en `localStorage`.
+- **Modo Claro/Oscuro** — Toggle con persistencia en localStorage y detección automática del idioma del navegador en la primera visita.
+- **PWA Instalable** — `manifest.json` y service worker para caché offline de archivos estáticos.
+- **SEO con JSON-LD** — Datos estructurados de tipo `Person` para mejorar la presencia en buscadores.
+- **Carga Diferida (Lazy Loading)** — Font Awesome se carga sin bloquear el renderizado; canvas-confetti se descarga solo al enviar el formulario.
+- **Analíticas Livianas** — Seguimiento de eventos clave (cambio de idioma/tema, apertura de chat, envío de formulario) almacenado localmente sin terceros. Para verlos: DevTools (`F12`) → Application → Local Storage → `_track`.
 
 ---
 
@@ -64,6 +69,8 @@ Portafolio/
 ├── style.css          # Sistema de diseño completo, efectos visuales
 ├── script.js          # Lógica de interacción, animaciones, canvas, chat
 ├── translations.js    # Datos de internacionalización (ES/EN)
+├── manifest.json      # Web App Manifest para PWA
+├── sw.js              # Service Worker (caché offline)
 └── README.md          # Documentación del proyecto
 ```
 
