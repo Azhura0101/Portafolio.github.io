@@ -441,18 +441,18 @@
                         <input type="hidden" name="_next" value="https://azhura0101.github.io/Portafolio.github.io/?success=true">
                         <div class="form-group">
                             <label for="name" data-i18n="label_name">Nombre</label>
-                            <input type="text" id="name" name="name" placeholder="Tu nombre completo" data-i18n="placeholder_name" required>
+                            <input type="text" id="name" name="name" placeholder="Tu nombre completo" autocomplete="name" data-i18n="placeholder_name" required>
                         </div>
                         <div class="form-group">
                             <label for="email" data-i18n="label_email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="tu@email.com" data-i18n="placeholder_email" required>
+                            <input type="email" id="email" name="email" placeholder="tu@email.com" autocomplete="email" data-i18n="placeholder_email" required>
                         </div>
                         <div class="form-group">
                             <label for="message" data-i18n="label_msg">Mensaje</label>
-                            <textarea id="message" name="message" placeholder="Cuéntame sobre tu proyecto..." data-i18n="placeholder_message" required></textarea>
+                            <textarea id="message" name="message" placeholder="Cuéntame sobre tu proyecto..." autocomplete="off" data-i18n="placeholder_message" required></textarea>
                         </div>
                         <div class="checkbox-wrapper">
-                            <input type="checkbox" id="terms" name="terms" required>
+                            <input type="checkbox" id="terms" name="terms" autocomplete="off" required>
                             <label for="terms" data-i18n-html="terms_checkbox">Acepto los <span class="terms-link" onclick="openTerms()">Términos y Condiciones</span></label>
                         </div>
                         <button type="submit" class="submit-btn" id="submitBtn" data-i18n="btn_send">Enviar Mensaje</button>
