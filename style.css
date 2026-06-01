@@ -221,6 +221,8 @@ nav.scrolled {
   text-decoration: none;
   text-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
   position: relative;
+  display: inline-flex;
+  align-items: center;
 }
 
 .nav-logo::after {
