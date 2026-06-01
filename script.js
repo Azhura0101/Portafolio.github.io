@@ -90,10 +90,6 @@ function updateLanguage(lang) {
     }
 }
 
-function handleSubmit(e) {
-    document.getElementById('submitBtn').textContent = 'Enviando...';
-    track('form_submit');
-}
 
 function closeModal() { document.getElementById('successModal').classList.remove('active'); }
 function openTerms() {
@@ -198,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.querySelector('a[href*="drive.google.com"][data-i18n="hero_cv"]')?.addEventListener('click', () => track('cv_download'));
 
-        document.getElementById('contactForm').addEventListener('submit', handleSubmit);
+        document.getElementById('submitBtn').addEventListener('click', () => track('form_submit'));
 
     if (new URLSearchParams(location.search).get('success') === 'true') {
         document.getElementById('successModal').classList.add('active');
