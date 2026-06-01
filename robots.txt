@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://azhura0101.github.io/Portafolio.github.io/sitemap.xml
