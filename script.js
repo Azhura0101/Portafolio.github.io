@@ -91,25 +91,8 @@ function updateLanguage(lang) {
 }
 
 function handleSubmit(e) {
-    e.preventDefault();
-    const btn = document.getElementById('submitBtn');
-    btn.textContent = 'Enviando...';
-    btn.disabled = true;
-    fetch("https://formsubmit.co/ajax/azhura.dev@gmail.com", { method: "POST", body: new FormData(e.target) })
-        .then(r => r.json())
-        .then(() => {
-            btn.textContent = translations[currentLang]?.btn_send || 'Enviar Mensaje';
-            btn.disabled = false;
-            document.getElementById('successModal').classList.add('active');
-                e.target.reset();
-                launchConfetti();
-                track('form_submit');
-        })
-        .catch(() => {
-            btn.textContent = 'Error — intenta de nuevo';
-            btn.disabled = false;
-            setTimeout(() => { btn.textContent = translations[currentLang]?.btn_send || 'Enviar Mensaje'; }, 3000);
-        });
+    document.getElementById('submitBtn').textContent = 'Enviando...';
+    track('form_submit');
 }
 
 function closeModal() { document.getElementById('successModal').classList.remove('active'); }
@@ -217,6 +200,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.getElementById('contactForm').addEventListener('submit', handleSubmit);
 
+    if (new URLSearchParams(location.search).get('success') === 'true') {
+        document.getElementById('successModal').classList.add('active');
+        launchConfetti();
+        track('form_submit_success');
+        history.replaceState(null, '', location.pathname);
+    }
+
     document.querySelector('#successModal .modal-btn').addEventListener('click', closeModal);
 
     document.getElementById('termsModal').querySelector('.modal-close-btn').addEventListener('click', closeTerms);
@@ -262,13 +252,13 @@ document.addEventListener('DOMContentLoaded', () => {
             this.baseVy = (Math.random() - 0.5) * 0.4;
             this.vx = this.baseVx;
             this.vy = this.baseVy;
-            this.alpha = Math.random() * 0.5 + 0.25;
             this.applyThemeColor();
         }
         applyThemeColor() {
             const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+            this.alpha = isLight ? Math.random() * 0.4 + 0.4 : Math.random() * 0.5 + 0.25;
             this.color = isLight
-                ? (Math.random() > 0.5 ? '30, 20, 60' : '80, 60, 120')
+                ? (Math.random() > 0.5 ? '15, 15, 30' : '40, 30, 70')
                 : (Math.random() > 0.5 ? '0, 242, 254' : '0, 245, 160');
         }
         update() {
