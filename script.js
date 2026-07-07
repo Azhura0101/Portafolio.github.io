@@ -135,7 +135,8 @@ function track(event, data) {
 
 window.addEventListener('scroll', () => {
     const navbar = document.getElementById('navbar');
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
+    if (window.scrollY > 50) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
 
     let current = '';
     document.querySelectorAll('section').forEach(s => {
@@ -153,16 +154,21 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     });
 });
 
-const mobileMenu = document.getElementById('mobile-menu');
-const navMenu = document.querySelector('.nav-menu');
-mobileMenu.addEventListener('click', () => {
-    mobileMenu.classList.toggle('active');
-    navMenu.classList.toggle('active');
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.querySelector('.nav-links');
+navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    navLinks.classList.toggle('active');
+    const open = navToggle.classList.contains('active');
+    document.body.classList.toggle('nav-open');
+    document.documentElement.style.overflow = open ? 'hidden' : '';
 });
-document.querySelectorAll('.nav-menu li a').forEach(link => {
+document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        navMenu.classList.remove('active');
+        navToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+        document.body.classList.remove('nav-open');
+        document.documentElement.style.overflow = '';
     });
 });
 
@@ -196,6 +202,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.getElementById('submitBtn').addEventListener('click', () => track('form_submit'));
 
+    const strideImg = document.getElementById('stride-img');
+    if (strideImg) {
+        const images = ['img/black.webp', 'img/white.webp'];
+        let idx = 0;
+        setInterval(() => {
+            idx = (idx + 1) % images.length;
+            strideImg.src = images[idx];
+        }, 4000);
+    }
+
     if (new URLSearchParams(location.search).get('success') === 'true') {
         document.getElementById('successModal').classList.add('active');
         launchConfetti();
@@ -220,23 +236,26 @@ document.addEventListener('DOMContentLoaded', () => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    document.addEventListener('mousemove', (e) => {
-        mouse.x = e.clientX + window.scrollX;
-        mouse.y = e.clientY + window.scrollY;
-    });
+    const isMobile = window.innerWidth < 768;
 
-    document.addEventListener('click', (e) => {
-        shockwaves.push({
-            x: e.clientX + window.scrollX,
-            y: e.clientY + window.scrollY,
-            radius: 0,
-            maxRadius: 200,
-            speed: 5,
-            alpha: 0.8
+    if (!isMobile) {
+        document.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX + window.scrollX;
+            mouse.y = e.clientY + window.scrollY;
         });
-    });
 
-    const PARTICLE_COUNT = 70;
+        document.addEventListener('click', (e) => {
+            shockwaves.push({
+                x: e.clientX + window.scrollX,
+                y: e.clientY + window.scrollY,
+                radius: 0,
+                maxRadius: 200,
+                speed: 5,
+                alpha: 0.8
+            });
+        });
+    }
+    const PARTICLE_COUNT = isMobile ? 0 : 70;
     const particles = [];
     class Particle {
         constructor() { this.reset(); }
@@ -335,32 +354,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function animateParticles() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => { p.update(); p.draw(); });
-        drawConnections();
-        updateShockwaves();
+        if (PARTICLE_COUNT > 0) {
+            particles.forEach(p => { p.update(); p.draw(); });
+            drawConnections();
+            updateShockwaves();
+        }
         requestAnimationFrame(animateParticles);
     }
-    animateParticles();
+    if (PARTICLE_COUNT > 0) animateParticles();
 
     const cursorGlow = document.getElementById('cursor-glow');
-    document.addEventListener('mousemove', (e) => {
-        requestAnimationFrame(() => {
-            cursorGlow.style.left = `${e.clientX}px`;
-            cursorGlow.style.top = `${e.clientY}px`;
+    if (!isMobile) {
+        document.addEventListener('mousemove', (e) => {
+            requestAnimationFrame(() => {
+                cursorGlow.style.left = `${e.clientX}px`;
+                cursorGlow.style.top = `${e.clientY}px`;
+            });
         });
-    });
 
-    const interactiveElements = document.querySelectorAll('.project-card, .glass-card');
-    interactiveElements.forEach(element => {
-        element.addEventListener('mouseenter', () => {
-            cursorGlow.style.width = '100px';
-            cursorGlow.style.height = '100px';
+        const interactiveElements = document.querySelectorAll('.project-card, .glass-card');
+        interactiveElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursorGlow.style.width = '100px';
+                cursorGlow.style.height = '100px';
+            });
+            element.addEventListener('mouseleave', () => {
+                cursorGlow.style.width = '500px';
+                cursorGlow.style.height = '500px';
+            });
         });
-        element.addEventListener('mouseleave', () => {
-            cursorGlow.style.width = '500px';
-            cursorGlow.style.height = '500px';
-        });
-    });
+    }
 
     const scrollElements = document.querySelectorAll('.reveal, .section-title, .fade-in-scroll, .project-card');
     const revealObserver = new IntersectionObserver(entries => {
@@ -377,7 +400,10 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollElements.forEach(el => revealObserver.observe(el));
 
     const tiltCards = document.querySelectorAll('.glass-card,.service-card,.project-card,.course-card,.modal-card,.stat-card');
-    tiltCards.forEach(card => {
+    if (isMobile) {
+        tiltCards.forEach(card => card.classList.remove('glare-card'));
+    } else {
+        tiltCards.forEach(card => {
         card.classList.add('glare-card');
 
         card.addEventListener('mousemove', (e) => {
@@ -399,6 +425,7 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.transform = '';
         });
     });
+    }
 
     function scrambleText(element) {
         if (element.dataset.isScrambling === "true") return;
@@ -590,47 +617,49 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    setTimeout(() => {
-        if (document.getElementById('top-promo-notification')) return;
-
-        const notification = document.createElement('div');
-        notification.id = 'top-promo-notification';
-        notification.className = 'top-notification';
-        notification.innerHTML = `
-            <div class="top-notification-content" id="trigger-chat-btn">
-                <span>${translations[currentLang]?.promo_text || '💡 ¿Quieres saber más sobre el portafolio de Azhura.dev? ¡Prueba nuestro asistente virtual en el chat abajo a la derecha! 🤖'}</span>
-            </div>
-            <button class="top-notification-close" id="close-promo-btn" aria-label="Cerrar">✕</button>
-        `;
-        document.body.appendChild(notification);
-
+    if (!isMobile) {
         setTimeout(() => {
-            notification.classList.add('show');
-        }, 100);
+            if (document.getElementById('top-promo-notification')) return;
 
-        const triggerBtn = document.getElementById('trigger-chat-btn');
-        if (triggerBtn) {
-            triggerBtn.addEventListener('click', () => {
-                const cToggle = document.getElementById('chat-toggle');
-                const cWidget = document.getElementById('chat-widget');
-                if (cToggle && cWidget) {
-                    cToggle.classList.add('open');
-                    cWidget.classList.add('open');
-                    const cInput = document.getElementById('chat-input');
-                    if (cInput) setTimeout(() => cInput.focus(), 400);
-                }
-                notification.classList.remove('show');
-                setTimeout(() => notification.remove(), 600);
-            });
-        }
+            const notification = document.createElement('div');
+            notification.id = 'top-promo-notification';
+            notification.className = 'top-notification';
+            notification.innerHTML = `
+                <div class="top-notification-content" id="trigger-chat-btn">
+                    <span>${translations[currentLang]?.promo_text || '💡 ¿Quieres saber más sobre el portafolio de Azhura.dev? ¡Prueba nuestro asistente virtual en el chat abajo a la derecha! 🤖'}</span>
+                </div>
+                <button class="top-notification-close" id="close-promo-btn" aria-label="Cerrar">✕</button>
+            `;
+            document.body.appendChild(notification);
 
-        const closeBtn = document.getElementById('close-promo-btn');
-        if (closeBtn) {
-            closeBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                notification.classList.remove('show');
-                setTimeout(() => notification.remove(), 600);
-            });
-        }
-    }, 30000);
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+
+            const triggerBtn = document.getElementById('trigger-chat-btn');
+            if (triggerBtn) {
+                triggerBtn.addEventListener('click', () => {
+                    const cToggle = document.getElementById('chat-toggle');
+                    const cWidget = document.getElementById('chat-widget');
+                    if (cToggle && cWidget) {
+                        cToggle.classList.add('open');
+                        cWidget.classList.add('open');
+                        const cInput = document.getElementById('chat-input');
+                        if (cInput) setTimeout(() => cInput.focus(), 400);
+                    }
+                    notification.classList.remove('show');
+                    setTimeout(() => notification.remove(), 600);
+                });
+            }
+
+            const closeBtn = document.getElementById('close-promo-btn');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    notification.classList.remove('show');
+                    setTimeout(() => notification.remove(), 600);
+                });
+            }
+        }, 30000);
+    }
 });
