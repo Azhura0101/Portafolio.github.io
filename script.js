@@ -185,19 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
             updateLanguage(currentLang === 'es' ? 'en' : 'es');
         });
 
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', savedTheme === 'light' ? 'light' : 'dark');
-        document.getElementById('theme-toggle').textContent = savedTheme === 'light' ? '☀️' : '🌙';
-        document.getElementById('theme-toggle').addEventListener('click', () => {
-            const current = document.documentElement.getAttribute('data-theme');
-            const next = current === 'light' ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', next);
-            localStorage.setItem('theme', next);
-            document.getElementById('theme-toggle').textContent = next === 'light' ? '☀️' : '🌙';
-            particles.forEach(p => p.applyThemeColor());
-            track('theme_toggle', { theme: next });
-        });
-
         document.querySelector('a[href*="drive.google.com"][data-i18n="hero_cv"]')?.addEventListener('click', () => track('cv_download'));
 
         document.getElementById('submitBtn').addEventListener('click', () => track('form_submit'));
@@ -226,8 +213,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
-    let mouse = { x: -9999, y: -9999 };
-    let shockwaves = [];
 
     function resizeCanvas() {
         canvas.width = canvas.offsetWidth;
@@ -237,131 +222,259 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', resizeCanvas);
 
     const isMobile = window.innerWidth < 768;
+    const TIER_COUNTS = isMobile
+        ? [{ n: 6, rMin: 1.8, rMax: 2.8, aMin: 0.7, aMax: 1.0, vMax: 0.04, glow: true, parallax: 0.3 },
+           { n: 14, rMin: 1.0, rMax: 1.8, aMin: 0.35, aMax: 0.6, vMax: 0.1, glow: false, parallax: 0.12 },
+           { n: 24, rMin: 0.4, rMax: 0.9, aMin: 0.1, aMax: 0.25, vMax: 0.18, glow: false, parallax: 0.03 }]
+        : [{ n: 18, rMin: 2.0, rMax: 3.2, aMin: 0.75, aMax: 1.0, vMax: 0.03, glow: true, parallax: 0.35 },
+           { n: 35, rMin: 1.0, rMax: 1.8, aMin: 0.35, aMax: 0.65, vMax: 0.08, glow: false, parallax: 0.12 },
+           { n: 60, rMin: 0.3, rMax: 0.9, aMin: 0.08, aMax: 0.22, vMax: 0.2, glow: false, parallax: 0.02 }];
 
-    if (!isMobile) {
-        document.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX + window.scrollX;
-            mouse.y = e.clientY + window.scrollY;
-        });
+    let scrollY = 0;
+    let smoothDepth = 0;
+    window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
 
-        document.addEventListener('click', (e) => {
-            shockwaves.push({
-                x: e.clientX + window.scrollX,
-                y: e.clientY + window.scrollY,
-                radius: 0,
-                maxRadius: 200,
-                speed: 5,
-                alpha: 0.8
-            });
-        });
-    }
-    const PARTICLE_COUNT = isMobile ? 0 : 70;
     const particles = [];
+    const explosions = [];
     class Particle {
-        constructor() { this.reset(); }
+        constructor(tier) { this.tier = tier; this.reset(); }
         reset() {
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height;
-            this.r = Math.random() * 2 + 0.5;
-            this.baseVx = (Math.random() - 0.5) * 0.4;
-            this.baseVy = (Math.random() - 0.5) * 0.4;
-            this.vx = this.baseVx;
-            this.vy = this.baseVy;
-            this.applyThemeColor();
+            const t = this.tier;
+            this.baseR = Math.random() * (t.rMax - t.rMin) + t.rMin;
+            this.r = this.baseR;
+            this.vx = (Math.random() - 0.5) * t.vMax;
+            this.vy = (Math.random() - 0.5) * t.vMax;
+            this.baseAlpha = Math.random() * (t.aMax - t.aMin) + t.aMin;
+            this.alpha = this.baseAlpha;
+            this.twinkleSpeed = Math.random() * 0.003 + 0.001;
+            this.twinklePhase = Math.random() * Math.PI * 2;
+            this.life = 0;
+            this.maxLife = 8000 + Math.random() * 12000;
+            this.lifeElapsed = 0;
         }
-        applyThemeColor() {
-            const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-            this.alpha = isLight ? Math.random() * 0.4 + 0.4 : Math.random() * 0.5 + 0.25;
-            this.color = isLight
-                ? (Math.random() > 0.5 ? '15, 15, 30' : '40, 30, 70')
-                : (Math.random() > 0.5 ? '0, 242, 254' : '0, 245, 160');
+        get lifeCurve() {
+            const p = this.lifeElapsed / this.maxLife;
+            if (p < 0.15) return p / 0.15;
+            if (p < 0.85) return 1;
+            return 1 - (p - 0.85) / 0.15;
         }
-        update() {
-            const dx = this.x - mouse.x;
-            const dy = this.y - mouse.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 180) {
-                const force = (180 - dist) / 180 * 1.2;
-                this.vx += (dx / dist) * force * 0.15;
-                this.vy += (dy / dist) * force * 0.15;
+        update(time) {
+            let neighbors = 0;
+            const myDx = this.drawX, myDy = this.drawY;
+            for (let i = 0; i < particles.length; i++) {
+                if (particles[i] === this) continue;
+                const ox = particles[i].drawX, oy = particles[i].drawY;
+                const d = (myDx - ox) ** 2 + (myDy - oy) ** 2;
+                if (d < 10000) neighbors++;
             }
-
-            shockwaves.forEach(sw => {
-                const sdx = this.x - sw.x;
-                const sdy = this.y - sw.y;
-                const sdist = Math.sqrt(sdx * sdx + sdy * sdy);
-                if (Math.abs(sdist - sw.radius) < 20) {
-                    const force = 6 * sw.alpha;
-                    this.vx += (sdx / sdist) * force;
-                    this.vy += (sdy / sdist) * force;
-                }
-            });
-
-            this.vx += (this.baseVx - this.vx) * 0.04;
-            this.vy += (this.baseVy - this.vy) * 0.04;
-
+            const densityBoost = neighbors > 3 ? (neighbors - 3) * 80 : 0;
+            this.lifeElapsed += 16 + densityBoost;
+            this.vx *= 0.99;
+            this.vy *= 0.99;
             this.x += this.vx;
             this.y += this.vy;
-
-            if (this.x < -20 || this.x > canvas.width + 20 || this.y < -20 || this.y > canvas.height + 20) this.reset();
+            const twinkle = Math.sin(time * this.twinkleSpeed + this.twinklePhase);
+            this.alpha = this.baseAlpha + twinkle * 0.1;
+            this.r = this.baseR + twinkle * 0.15;
+            const dx = this.drawX, dy = this.drawY;
+            const margin = 40;
+            if (this.lifeElapsed >= this.maxLife || dx < -margin || dx > canvas.width + margin || dy < -margin || dy > canvas.height + margin) {
+                if (this.lifeElapsed >= this.maxLife && this.tier.glow) {
+                    spawnExplosion(this.x, this.y, this.tier.parallax);
+                }
+                this.respawn();
+            }
         }
-        draw() {
+        respawn() {
+            const w = canvas.width;
+            const h = canvas.height;
+            this.x = Math.random() * w;
+            this.y = Math.random() * h;
+            const t = this.tier;
+            this.baseR = Math.random() * (t.rMax - t.rMin) + t.rMin;
+            this.r = this.baseR;
+            this.baseAlpha = Math.random() * (t.aMax - t.aMin) + t.aMin;
+            this.alpha = this.baseAlpha;
+            this.lifeElapsed = 0;
+            this.maxLife = 15000 + Math.random() * 25000;
+        }
+        get drawX() {
+            if (smoothDepth < 1) return this.x;
+            const cx = canvas.width / 2;
+            const dx = this.x - cx;
+            const dy = this.y - canvas.height / 2;
+            const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+            const maxDisp = canvas.width * 0.4;
+            const disp = Math.min(smoothDepth * this.tier.parallax * 0.12, maxDisp);
+            return this.x + (dx / dist) * disp;
+        }
+        get drawY() {
+            if (smoothDepth < 1) return this.y;
+            const cy = canvas.height / 2;
+            const dx = this.x - canvas.width / 2;
+            const dy = this.y - cy;
+            const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+            const maxDisp = canvas.height * 0.4;
+            const disp = Math.min(smoothDepth * this.tier.parallax * 0.12, maxDisp);
+            return this.y + (dy / dist) * disp;
+        }
+        draw(scrollProgress) {
+            const depth = this.tier.parallax;
+            const depthBoost = scrollProgress * depth * 0.6;
+            const lifeFade = this.lifeCurve;
+            const a = Math.max(0.02, (this.alpha + depthBoost) * lifeFade);
+            const r = Math.max(0.3, this.r + this.baseR * depthBoost * 0.3);
+            const dx = this.drawX, dy = this.drawY;
+            if (a < 0.01) return;
+            if (this.tier.glow) {
+                ctx.beginPath();
+                ctx.arc(dx, dy, r * 3, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(200, 200, 255, ${(a + depthBoost) * 0.12 * lifeFade})`;
+                ctx.fill();
+            }
             ctx.beginPath();
-            ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(${this.color}, ${this.alpha})`;
+            ctx.arc(dx, dy, r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${a})`;
             ctx.fill();
         }
     }
-    for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+    TIER_COUNTS.forEach(tier => { for (let i = 0; i < tier.n; i++) particles.push(new Particle(tier)); });
 
-    function drawConnections() {
+    function drawConnections(scrollProgress) {
+        const maxDist = isMobile ? 160 : 150;
+        const glow = 0.25 + scrollProgress * 0.15;
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
+                const dx = particles[i].drawX - particles[j].drawX;
+                const dy = particles[i].drawY - particles[j].drawY;
                 const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < 140) {
+                if (dist < maxDist) {
                     ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    const grad = ctx.createLinearGradient(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
-                    grad.addColorStop(0, `rgba(${particles[i].color}, ${0.18 * (1 - dist / 140)})`);
-                    grad.addColorStop(1, `rgba(${particles[j].color}, ${0.18 * (1 - dist / 140)})`);
-                    ctx.strokeStyle = grad;
-                    ctx.lineWidth = 0.85;
+                    ctx.moveTo(particles[i].drawX, particles[i].drawY);
+                    ctx.lineTo(particles[j].drawX, particles[j].drawY);
+                    const opacity = glow * (1 - dist / maxDist);
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
+                    ctx.lineWidth = isMobile ? 0.6 : 0.85;
                     ctx.stroke();
                 }
             }
         }
     }
 
-    function updateShockwaves() {
-        shockwaves.forEach((sw, idx) => {
-            sw.radius += sw.speed;
-            sw.alpha = 1 - (sw.radius / sw.maxRadius);
-
-            ctx.beginPath();
-            ctx.arc(sw.x, sw.y, sw.radius, 0, Math.PI * 2);
-            ctx.strokeStyle = `rgba(0, 242, 254, ${sw.alpha * 0.45})`;
-            ctx.lineWidth = 2.5;
-            ctx.stroke();
-
-            if (sw.radius >= sw.maxRadius) {
-                shockwaves.splice(idx, 1);
+    function spawnExplosion(x, y, parallax) {
+        explosions.push({ x, y, radius: 0, maxRadius: 40 + parallax * 60, alpha: 0.3, life: 1 });
+        for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            const dx = p.x - x;
+            const dy = p.y - y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 120 && dist > 0) {
+                const force = (1 - dist / 120) * 1.2;
+                p.vx += (dx / dist) * force;
+                p.vy += (dy / dist) * force;
             }
+        }
+    }
+    function updateExplosions() {
+        for (let i = explosions.length - 1; i >= 0; i--) {
+            const e = explosions[i];
+            e.radius += 2;
+            e.life -= 0.025;
+            e.alpha = e.life * 0.3;
+            if (e.life <= 0) explosions.splice(i, 1);
+        }
+    }
+    function drawExplosions() {
+        for (const e of explosions) {
+            ctx.beginPath();
+            ctx.arc(e.x, e.y, e.radius, 0, Math.PI * 2);
+            ctx.strokeStyle = `rgba(180, 160, 255, ${e.alpha})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(e.x, e.y, e.radius * 0.2, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(220, 210, 255, ${e.alpha * 0.3})`;
+            ctx.fill();
+        }
+    }
+
+    const shootingStars = [];
+    function spawnShootingStar() {
+        const fromLeft = Math.random() > 0.5;
+        shootingStars.push({
+            x: fromLeft ? -10 : canvas.width + 10,
+            y: Math.random() * canvas.height * 0.5,
+            vx: fromLeft ? (4 + Math.random() * 4) : -(4 + Math.random() * 4),
+            vy: 1 + Math.random() * 2,
+            life: 1,
+            decay: 0.008 + Math.random() * 0.006,
+            len: 60 + Math.random() * 80,
         });
     }
 
-    function animateParticles() {
+    function drawShootingStars() {
+        for (let i = shootingStars.length - 1; i >= 0; i--) {
+            const s = shootingStars[i];
+            s.x += s.vx;
+            s.y += s.vy;
+            s.life -= s.decay;
+            if (s.life <= 0) { shootingStars.splice(i, 1); continue; }
+            const tailX = s.x - s.vx * (s.len / Math.sqrt(s.vx * s.vx + s.vy * s.vy));
+            const tailY = s.y - s.vy * (s.len / Math.sqrt(s.vx * s.vx + s.vy * s.vy));
+            const grad = ctx.createLinearGradient(s.x, s.y, tailX, tailY);
+            grad.addColorStop(0, `rgba(255, 255, 255, ${0.9 * s.life})`);
+            grad.addColorStop(1, `rgba(255, 255, 255, 0)`);
+            ctx.beginPath();
+            ctx.moveTo(s.x, s.y);
+            ctx.lineTo(tailX, tailY);
+            ctx.strokeStyle = grad;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, 1.5, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${s.life})`;
+            ctx.fill();
+        }
+    }
+
+    let lastShootingStar = 0;
+    let startTime = performance.now();
+    function animateParticles(time) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        if (PARTICLE_COUNT > 0) {
-            particles.forEach(p => { p.update(); p.draw(); });
-            drawConnections();
-            updateShockwaves();
+        const elapsed = time - startTime;
+        smoothDepth += (scrollY - smoothDepth) * 0.04;
+        const maxScroll = document.body.scrollHeight - window.innerHeight;
+        const scrollProgress = maxScroll > 0 ? Math.min(smoothDepth / maxScroll, 1) : 0;
+        const zoom = 1 + scrollProgress * 0.12;
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.scale(zoom, zoom);
+        ctx.translate(-cx, -cy);
+        particles.forEach(p => { p.update(elapsed); p.draw(scrollProgress); });
+        drawConnections(scrollProgress);
+        updateExplosions();
+        drawExplosions();
+        ctx.restore();
+        if (time - lastShootingStar > 6000 + Math.random() * 6000) {
+            spawnShootingStar();
+            lastShootingStar = time;
+        }
+        drawShootingStars();
+        const shapes = document.querySelector('.global-shapes');
+        if (shapes) {
+            const progress = maxScroll > 0 ? smoothDepth / maxScroll : 0;
+            const rotX = -12 + progress * 24;
+            const rotY = -8 + progress * 16;
+            const scale = 1 + progress * 0.45;
+            shapes.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(${scale})`;
         }
         requestAnimationFrame(animateParticles);
     }
-    if (PARTICLE_COUNT > 0) animateParticles();
+    requestAnimationFrame(animateParticles);
 
     const cursorGlow = document.getElementById('cursor-glow');
     if (!isMobile) {
@@ -626,7 +739,7 @@ document.addEventListener('DOMContentLoaded', () => {
             notification.className = 'top-notification';
             notification.innerHTML = `
                 <div class="top-notification-content" id="trigger-chat-btn">
-                    <span>${translations[currentLang]?.promo_text || '💡 ¿Quieres saber más sobre el portafolio de Azhura.dev? ¡Prueba nuestro asistente virtual en el chat abajo a la derecha! 🤖'}</span>
+                    <span>${translations[currentLang]?.promo_text || 'Prueba el chat 👉'}</span>
                 </div>
                 <button class="top-notification-close" id="close-promo-btn" aria-label="Cerrar">✕</button>
             `;
@@ -661,5 +774,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         }, 30000);
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === '0' && !e.ctrlKey && !e.altKey && !e.metaKey) {
+        document.body.classList.toggle('hide-content');
+        document.body.classList.toggle('show-content');
     }
 });

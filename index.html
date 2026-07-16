@@ -35,8 +35,17 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="manifest" href="manifest.json">
+    <svg style="position:absolute;width:0;height:0" aria-hidden="true">
+      <filter id="cosmic-noise">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise"/>
+        <feColorMatrix type="saturate" values="0" in="noise" result="gray"/>
+      </filter>
+    </svg>
 </head>
 <body>
+
+    <!-- Cosmic noise texture overlay -->
+    <div class="noise-overlay" aria-hidden="true"></div>
 
      <!-- Cursor Glow Effect -->
     <div id="cursor-glow"></div>
@@ -45,9 +54,6 @@
     <canvas id="particle-canvas"></canvas>
 
 
-
-    <!-- Stars Background -->
-    <div id="stars"></div>
 
     <!-- AI Chat Widget -->
     <button id="chat-toggle" class="chat-toggle" aria-label="Abrir chat">
@@ -105,7 +111,7 @@
 
     <nav id="navbar">
       <div class="nav-inner">
-        <a href="#inicio" class="nav-logo">azhura.dev</a>
+        <a href="#inicio" class="nav-logo"><img src="favicon.svg" alt="Azhura" class="nav-logo-img">azhura.dev</a>
         <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
@@ -117,9 +123,6 @@
           <li><a href="#cursos" data-i18n="nav_courses">Cursos</a></li>
           <li><a href="#contacto" data-i18n="nav_contact">Contacto</a></li>
           <li class="nav-actions">
-            <button id="theme-toggle" class="nav-icon-btn" aria-label="Tema">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-            </button>
             <button id="lang-toggle" class="nav-lang-btn">EN</button>
           </li>
         </ul>
@@ -234,11 +237,8 @@
                 <div class="skill-pill reveal"><span class="skill-icon"><i class="fab fa-linux" style="color: #fbbf24;"></i></span> Linux</div>
                 <div class="skill-pill reveal"><span class="skill-icon" style="color: #c084fc;"><i class="fas fa-plug"></i></span> REST APIs</div>
                 <div class="skill-pill reveal"><span class="skill-icon" style="color: #f0abfc;"><i class="fas fa-shield-alt"></i></span> Seguridad Web</div>
-                <div class="skill-pill reveal skill-wip">
-                    <span class="skill-icon" style="color: #f89820;"><i class="fab fa-java"></i></span>
-                    Java
-                    <span class="wip-badge">En progreso</span>
-                </div>
+                <div class="skill-pill reveal"><span class="skill-icon" style="color: #336791;"><i class="fas fa-database"></i></span> PostgreSQL</div>
+                <div class="skill-pill reveal"><span class="skill-icon" style="color: #f89820;"><i class="fab fa-java"></i></span> Java</div>
             </div>
         </div>
     </section>
@@ -255,7 +255,7 @@
                       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                     </div>
                     <h3 data-i18n="serv_web_title">Desarrollo Web</h3>
-                    <p data-i18n="serv_web_desc">Transformo tus ideas en sitios web modernos, rápidos y responsivos. No solo entrego código, sino una herramienta para potenciar tu presencia digital.</p>
+
                     <ul class="service-features">
                         <li data-i18n="serv_web_f1">Landing Pages de alta conversión</li>
                         <li data-i18n="serv_web_f2">Portafolios y Blogs personales</li>
@@ -267,7 +267,7 @@
                       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
                     </div>
                     <h3 data-i18n="serv_app_title">Aplicaciones Web & Backend</h3>
-                    <p data-i18n="serv_app_desc">Creo sistemas web completos con autenticación, bases de datos relacionales, dashboards y APIs. Arquitectura MVC clara y código mantenible.</p>
+
                     <ul class="service-features">
                         <li data-i18n="serv_app_f1">Sistemas de gestión empresarial</li>
                         <li data-i18n="serv_app_f2">APIs REST con Flask/Python</li>
@@ -279,7 +279,7 @@
                       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
                     </div>
                     <h3 data-i18n="serv_auto_title">Bases de Datos & Automatización</h3>
-                    <p data-i18n="serv_auto_desc">¿Tu negocio crece y Excel ya no es suficiente? Estructuro tu información para que tomes mejores decisiones y automatizo procesos repetitivos.</p>
+
                     <ul class="service-features">
                         <li data-i18n="serv_auto_f1">Migración de Excel a Bases de Datos</li>
                         <li data-i18n="serv_auto_f2">Reportes automáticos y exportación CSV</li>
@@ -291,7 +291,7 @@
                       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.48m-8.48-.01a6 6 0 0 1 0-8.47m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>
                     </div>
                     <h3 data-i18n="serv_social_title">Presencia Digital & Redes Sociales</h3>
-                    <p data-i18n="serv_social_desc">Ayudo a microemprendedores a atraer más clientes y conectar mejor con ellos a través de su presencia digital. Estrategia, contenido y tecnología para que tu negocio crezca en redes.</p>
+
                     <ul class="service-features">
                         <li data-i18n="serv_social_f1">Catálogos en línea personalizados para vender más fácil</li>
                         <li data-i18n="serv_social_f2">Linktree profesional con toda tu info en un solo enlace</li>
