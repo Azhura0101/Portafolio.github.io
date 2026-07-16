@@ -2405,11 +2405,11 @@ footer { position: relative; z-index: 1; padding: 3rem 2rem; border-top: 2px sol
     animation-duration: 25s, 120s;
   }
   .noise-overlay { display: none; }
-  .global-shapes { opacity: 0.4; }
+  .global-shapes { opacity: 0.3; }
 }
 
 @media (max-width: 480px) {
-  .global-shapes { display: block; opacity: 0.6; }
+  .global-shapes { display: block; opacity: 0.45; }
   .global-shapes .gs-3, .global-shapes .gs-4, .global-shapes .gs-5, .global-shapes .gs-6, .global-shapes .gs-7, .global-shapes .gs-8, .global-shapes .gs-r2, .global-shapes .gs-r3 { display: none; }
   .gs-1 { width: 300px; height: 300px; top: 5vh; left: -10vw; }
   .gs-2 { width: 200px; height: 200px; top: 40vh; right: -5vw; }

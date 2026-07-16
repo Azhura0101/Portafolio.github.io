@@ -223,9 +223,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const isMobile = window.innerWidth < 768;
     const TIER_COUNTS = isMobile
-        ? [{ n: 3, rMin: 1.8, rMax: 2.8, aMin: 0.7, aMax: 1.0, vMax: 0.04, glow: true, parallax: 0.3 },
-           { n: 7, rMin: 1.0, rMax: 1.8, aMin: 0.35, aMax: 0.6, vMax: 0.1, glow: false, parallax: 0.12 },
-           { n: 12, rMin: 0.4, rMax: 0.9, aMin: 0.1, aMax: 0.25, vMax: 0.18, glow: false, parallax: 0.03 },
+        ? [{ n: 10, rMin: 1.8, rMax: 2.8, aMin: 0.7, aMax: 1.0, vMax: 0.04, glow: true, parallax: 0.3 },
+           { n: 15, rMin: 1.0, rMax: 1.8, aMin: 0.35, aMax: 0.6, vMax: 0.1, glow: false, parallax: 0.12 },
+           { n: 0, rMin: 0.4, rMax: 0.9, aMin: 0.1, aMax: 0.25, vMax: 0.18, glow: false, parallax: 0.03 },
            { n: 2, rMin: 3.0, rMax: 4.5, aMin: 0.8, aMax: 1.0, vMax: 0.02, glow: true, parallax: 0.45 }]
         : [{ n: 18, rMin: 2.0, rMax: 3.2, aMin: 0.75, aMax: 1.0, vMax: 0.03, glow: true, parallax: 0.35 },
            { n: 35, rMin: 1.0, rMax: 1.8, aMin: 0.35, aMax: 0.65, vMax: 0.08, glow: false, parallax: 0.12 },
@@ -463,7 +463,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function animateParticles(time) {
         if (isMobile) {
             if (lowBatteryMode) return;
-            if (time - lastTime < 33) {
+            if (time - lastTime < 25) {
                 requestAnimationFrame(animateParticles);
                 return;
             }
