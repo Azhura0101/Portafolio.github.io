@@ -2404,12 +2404,18 @@ footer { position: relative; z-index: 1; padding: 3rem 2rem; border-top: 2px sol
   body::after {
     animation-duration: 25s, 120s;
   }
-  .noise-overlay { opacity: 0.02; }
-  .global-shapes { opacity: 0.6; }
+  .noise-overlay { display: none; }
+  .global-shapes { opacity: 0.4; }
+  .global-shapes .gs { animation-play-state: paused; }
 }
 
 @media (max-width: 480px) {
-  .global-shapes .gs { animation: none; opacity: 0.3; }
+  .global-shapes { display: block; opacity: 0.6; }
+  .global-shapes .gs-3, .global-shapes .gs-4, .global-shapes .gs-5, .global-shapes .gs-6, .global-shapes .gs-7, .global-shapes .gs-8, .global-shapes .gs-r2, .global-shapes .gs-r3 { display: none; }
+  .gs-1 { width: 300px; height: 300px; top: 5vh; left: -10vw; }
+  .gs-2 { width: 200px; height: 200px; top: 40vh; right: -5vw; }
+  .gs-r1 { width: 120px; height: 120px; top: 15vh; left: auto; right: -5vw; }
+  .glass-card { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 }
 
 /* ==========================================

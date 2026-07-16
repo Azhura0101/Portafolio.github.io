@@ -223,9 +223,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const isMobile = window.innerWidth < 768;
     const TIER_COUNTS = isMobile
-        ? [{ n: 6, rMin: 1.8, rMax: 2.8, aMin: 0.7, aMax: 1.0, vMax: 0.04, glow: true, parallax: 0.3 },
-           { n: 14, rMin: 1.0, rMax: 1.8, aMin: 0.35, aMax: 0.6, vMax: 0.1, glow: false, parallax: 0.12 },
-           { n: 24, rMin: 0.4, rMax: 0.9, aMin: 0.1, aMax: 0.25, vMax: 0.18, glow: false, parallax: 0.03 }]
+        ? [{ n: 3, rMin: 1.8, rMax: 2.8, aMin: 0.7, aMax: 1.0, vMax: 0.04, glow: true, parallax: 0.3 },
+           { n: 7, rMin: 1.0, rMax: 1.8, aMin: 0.35, aMax: 0.6, vMax: 0.1, glow: false, parallax: 0.12 },
+           { n: 12, rMin: 0.4, rMax: 0.9, aMin: 0.1, aMax: 0.25, vMax: 0.18, glow: false, parallax: 0.03 },
+           { n: 2, rMin: 3.0, rMax: 4.5, aMin: 0.8, aMax: 1.0, vMax: 0.02, glow: true, parallax: 0.45 }]
         : [{ n: 18, rMin: 2.0, rMax: 3.2, aMin: 0.75, aMax: 1.0, vMax: 0.03, glow: true, parallax: 0.35 },
            { n: 35, rMin: 1.0, rMax: 1.8, aMin: 0.35, aMax: 0.65, vMax: 0.08, glow: false, parallax: 0.12 },
            { n: 60, rMin: 0.3, rMax: 0.9, aMin: 0.08, aMax: 0.22, vMax: 0.2, glow: false, parallax: 0.02 }];
@@ -439,9 +440,44 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    let isCanvasVisible = true;
+    let lowBatteryMode = false;
+    let lastTime = 0;
+
+    if (isMobile) {
+        const heroObserver = new IntersectionObserver(entries => {
+            isCanvasVisible = entries[0].isIntersecting;
+            if (isCanvasVisible && !lowBatteryMode) requestAnimationFrame(animateParticles);
+        }, { threshold: 0 });
+        const heroSection = document.getElementById('inicio');
+        if (heroSection) heroObserver.observe(heroSection);
+
+        if ('getBattery' in navigator) {
+            navigator.getBattery().then(battery => {
+                const checkBattery = () => {
+                    lowBatteryMode = (battery.level <= 0.2 && !battery.charging);
+                    if (canvas) canvas.style.display = lowBatteryMode ? 'none' : 'block';
+                    if (!lowBatteryMode && isCanvasVisible) requestAnimationFrame(animateParticles);
+                };
+                checkBattery();
+                battery.addEventListener('levelchange', checkBattery);
+                battery.addEventListener('chargingchange', checkBattery);
+            });
+        }
+    }
+
     let lastShootingStar = 0;
     let startTime = performance.now();
     function animateParticles(time) {
+        if (isMobile) {
+            if (!isCanvasVisible || lowBatteryMode) return;
+            if (time - lastTime < 33) {
+                requestAnimationFrame(animateParticles);
+                return;
+            }
+        }
+        lastTime = time;
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const elapsed = time - startTime;
         smoothDepth += (scrollY - smoothDepth) * 0.04;
