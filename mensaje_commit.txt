@@ -1,0 +1,14 @@
+feat(ui): optimización avanzada de rendimiento y estética en móviles
+
+- script.js:
+  - Reducción del número de partículas en un 50% en la configuración de móviles para aligerar la carga del procesador.
+  - Adición de un nuevo nivel de estrellas grandes (rMin: 3.0, rMax: 4.5) exclusivas para móviles para mejorar la experiencia visual espacial.
+  - Implementación de Throttling (límite a ~30 FPS) en el canvas de partículas exclusivamente para dispositivos móviles.
+  - Integración de Battery Status API (solo en móviles) para ocultar las partículas si la batería está por debajo del 20% y sin cargar.
+  - Preservación íntegra de la configuración original, tasa máxima de FPS, y tamaño de partículas para la versión de escritorio.
+- style.css:
+  
+  - Simplificación del fondo 3D en pantallas muy pequeñas (< 480px), ocultando la mayoría de capas y manteniendo solo 2 nebulosas y 1 anillo brillante en los bordes.
+  - Disminución del desenfoque del glassmorphism (backdrop-filter) de 12px a 8px en pantallas pequeñas.
+- index.html:
+  - Adición de la etiqueta <link rel="preload"> para favicon.svg para mejorar la carga inicial (First Paint / LCP).

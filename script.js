@@ -440,24 +440,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    let isCanvasVisible = true;
     let lowBatteryMode = false;
     let lastTime = 0;
 
     if (isMobile) {
-        const heroObserver = new IntersectionObserver(entries => {
-            isCanvasVisible = entries[0].isIntersecting;
-            if (isCanvasVisible && !lowBatteryMode) requestAnimationFrame(animateParticles);
-        }, { threshold: 0 });
-        const heroSection = document.getElementById('inicio');
-        if (heroSection) heroObserver.observe(heroSection);
-
         if ('getBattery' in navigator) {
             navigator.getBattery().then(battery => {
                 const checkBattery = () => {
                     lowBatteryMode = (battery.level <= 0.2 && !battery.charging);
                     if (canvas) canvas.style.display = lowBatteryMode ? 'none' : 'block';
-                    if (!lowBatteryMode && isCanvasVisible) requestAnimationFrame(animateParticles);
+                    if (!lowBatteryMode) requestAnimationFrame(animateParticles);
                 };
                 checkBattery();
                 battery.addEventListener('levelchange', checkBattery);
@@ -470,7 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let startTime = performance.now();
     function animateParticles(time) {
         if (isMobile) {
-            if (!isCanvasVisible || lowBatteryMode) return;
+            if (lowBatteryMode) return;
             if (time - lastTime < 33) {
                 requestAnimationFrame(animateParticles);
                 return;
