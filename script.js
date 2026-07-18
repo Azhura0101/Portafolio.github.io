@@ -540,7 +540,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
     scrollElements.forEach(el => revealObserver.observe(el));
 
-    const tiltCards = document.querySelectorAll('.glass-card,.service-card,.project-card,.course-card,.modal-card,.stat-card');
+    const tiltCards = document.querySelectorAll('.glass-card,.service-card,.project-card,.course-card,.stat-card');
     if (isMobile) {
         tiltCards.forEach(card => card.classList.remove('glare-card'));
     } else {
