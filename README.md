@@ -1,55 +1,64 @@
-# Azhura.dev — Portafolio Personal
+# Azhura.dev — Portfolio Personal
 
-Notas personales y changelog del proyecto.
+> Portafolio personal de **Emanuel Zapata** (alias Azhura), Desarrollador de Software & Backend con base en Colombia.
 
----
-
-## TODO
-
-- [ ] Subir badge "Comisionado" a Stride Base, Catálogo y Donde Juan
-- [ ] Revisar responsive del CV en móvil
-- [ ] Agregar más proyectos cuando estén listos
+**Demo en vivo:** [azhura0101.github.io/Portafolio](https://azhura0101.github.io/Portafolio)
 
 ---
 
-## Changelog Reciente
+## Sobre el Proyecto
 
-### 2026-07-18
-- Badges "Comisionado" / "Demo" en proyectos
-- Limpieza CSS completa: variables unificadas, dead code eliminado
-- CV unificado y profesional (PDF generado con Python)
-- Términos y Condiciones mejorados (7 puntos, sin animación)
-- Modal de términos estático (sin tilt 3D)
-- Link CV actualizado
-- Hue-rotate + noise texture en background
-- Light theme eliminado completamente
-- Cards unificadas (padding, hover, opacidad, backdrop-filter)
-
-### 2026-05
-- Refactor: JS inline → script.js, traducciones → translations.js
-- Sistema i18n completo (ES/EN)
-- Canvas background con partículas y nebulosas
-- Chatbot bilingüe
-- PWA + service worker
+Portafolio web estático de una sola página construido con **HTML, CSS y JavaScript Vanilla**, sin frameworks ni dependencias de build. Diseñado con animaciones modernas, rendimiento optimizado y estética *dark glassmorphism*.
 
 ---
 
-## Arranque Rápido
+## Características
+
+- **Dark Glassmorphism** — Paleta morada profunda con efectos de vidrio esmerilado y glow.
+- **Canvas Background** — Red animada interactiva con repulsión al mouse y ondas de choque al clic.
+- **Chatbot Bilingüe** — Asistente IA en español e inglés con persistencia de sesión.
+- **Scramble Effect** — Micro-animaciones en hover y carga de títulos.
+- **Timeline Interactiva** — Historial profesional con scroll-reveal.
+- **Servicios 3D** — Tarjetas con efectos Tilt & Glare.
+- **Formulario Inteligente** — Placeholders bilingües, confetti al enviar.
+- **i18n en Caliente** — Soporte completo ES/EN con persistencia en localStorage.
+- **PWA** — manifest.json + service worker para caché offline.
+- **SEO con JSON-LD** — Datos estructurados para buscadores.
+
+---
+
+## Stack
+
+| Capa | Tecnología |
+|------|-----------|
+| **Estructura** | HTML5 Semántico |
+| **Estilos** | CSS3 Vanilla |
+| **Lógica** | JavaScript Vanilla (ES6+) |
+| **Tipografía** | Google Fonts — Outfit + JetBrains Mono |
+| **Iconos** | Font Awesome 6 |
+| **Formulario** | FormSubmit |
+| **Deploy** | GitHub Pages |
+
+---
+
+## Uso Local
 
 ```bash
-# Abrir directo en navegador
 open index.html
-# o en Linux:
-xdg-open index.html
 ```
 
-No necesita build ni dependencias.
+No requiere build ni dependencias. Funciona directo desde el sistema de archivos.
 
 ---
 
-## Archivos Principales
+## Licencia
 
-- `index.html` — Estructura
-- `style.css` — Estilos completos
-- `script.js` — Lógica, animaciones, canvas, chat
-- `translations.js` — i18n (ES/EN)
+El código de este proyecto es público y puede utilizarse como referencia o base para otros proyectos, siempre que se solicite permiso previo y se dé crédito al autor original.
+
+---
+
+## Contacto
+
+- **Email**: [azhura.dev@gmail.com](mailto:azhura.dev@gmail.com)
+- **GitHub**: [Azhura0101](https://github.com/Azhura0101)
+- **LinkedIn**: [Emanuel Zapata](https://www.linkedin.com/in/emanuel-zapata-b7ba3639b)
