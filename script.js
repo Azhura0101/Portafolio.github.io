@@ -180,7 +180,11 @@ document.addEventListener('DOMContentLoaded', () => {
     updateLanguage(currentLang);
     track('pageview', { lang: currentLang });
 
-        document.getElementById('lang-toggle').addEventListener('click', () => {
+    setTimeout(() => {
+        document.getElementById('skeleton-overlay').classList.add('hidden');
+    }, 800);
+
+    document.getElementById('lang-toggle').addEventListener('click', () => {
             track('lang_toggle', { from: currentLang, to: currentLang === 'es' ? 'en' : 'es' });
             updateLanguage(currentLang === 'es' ? 'en' : 'es');
         });
@@ -512,6 +516,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 cursorGlow.style.top = `${e.clientY}px`;
             });
         });
+
+        // Hero parallax effect
+        const heroContent = document.querySelector('.hero-content');
+        const heroSection = document.getElementById('inicio');
+        if (heroContent && heroSection) {
+            let mouseX = 0, mouseY = 0, currentX = 0, currentY = 0;
+            heroSection.addEventListener('mousemove', (e) => {
+                const rect = heroSection.getBoundingClientRect();
+                mouseX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+                mouseY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+            });
+            heroSection.addEventListener('mouseleave', () => {
+                mouseX = 0;
+                mouseY = 0;
+            });
+            function animateHeroParallax() {
+                currentX += (mouseX - currentX) * 0.08;
+                currentY += (mouseY - currentY) * 0.08;
+                const moveX = currentX * 15;
+                const moveY = currentY * 10;
+                heroContent.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                requestAnimationFrame(animateHeroParallax);
+            }
+            animateHeroParallax();
+        }
 
         const interactiveElements = document.querySelectorAll('.project-card, .glass-card');
         interactiveElements.forEach(element => {
@@ -854,3 +883,65 @@ document.addEventListener('keydown', (e) => {
         document.body.classList.toggle('show-content');
     }
 });
+
+// Ripple effect for buttons
+document.querySelectorAll('.btn-primary, .btn-ghost').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+        ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+        this.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+    });
+});
+
+// Scroll reveal animation
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// Form validation
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+    const inputs = contactForm.querySelectorAll('input, textarea');
+    inputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.required && !this.value.trim()) {
+                this.style.borderColor = '#ef4444';
+            } else {
+                this.style.borderColor = '';
+            }
+        });
+        input.addEventListener('input', function() {
+            if (this.style.borderColor === 'rgb(239, 68, 68)' && this.value.trim()) {
+                this.style.borderColor = '';
+            }
+        });
+    });
+}
+
+// Character counter for textarea
+const messageTextarea = document.querySelector('textarea[name="message"]');
+if (messageTextarea) {
+    const counter = document.createElement('div');
+    counter.className = 'char-counter';
+    counter.style.cssText = 'font-size: 0.75rem; color: var(--text-muted); text-align: right; margin-top: 4px;';
+    counter.textContent = '0 / 500';
+    messageTextarea.parentNode.appendChild(counter);
+    messageTextarea.addEventListener('input', function() {
+        const len = this.value.length;
+        counter.textContent = len + ' / 500';
+        counter.style.color = len > 500 ? '#ef4444' : 'var(--text-muted)';
+    });
+}

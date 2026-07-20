@@ -4,34 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#080810">
-    <title>Azhura.dev — Emanuel Zapata | Desarrollador Web & Backend</title>
-    <meta name="description" content="Portfolio de Emanuel Zapata (Azhura), Desarrollador Web Full Stack especializado en Python, Flask, SQL y experiencias web modernas. Disponible para proyectos freelance.">
-    <meta property="og:title" content="Azhura.dev — Emanuel Zapata">
-    <meta property="og:description" content="Desarrollador Web & Backend. Python · Flask · SQL · JavaScript.">
+    <title>Emanuel Zapata | Desarrollador Web Python y Flask en Colombia — Azhura.dev</title>
+    <meta name="description" content="Desarrollador web Python y Flask en Colombia. Especializado en sistemas de gestión empresarial, APIs REST, dashboards interactivos y aplicaciones web a medida. Disponible para proyectos freelance.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Emanuel Zapata | Desarrollador Web Python y Flask en Colombia">
+    <meta property="og:description" content="Desarrollador web Python y Flask en Colombia. Sistemas de gestión empresarial, APIs REST y dashboards interactivos. Disponible para proyectos freelance.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://azhura0101.github.io/Portafolio">
+    <meta property="og:image" content="https://azhura0101.github.io/Portafolio/img/og-image.png">
+    <meta property="og:site_name" content="Azhura.dev">
+    <meta property="og:locale" content="es_CO">
+    <meta property="og:locale:alternate" content="en_US">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Emanuel Zapata | Desarrollador Web Python y Flask en Colombia">
+    <meta name="twitter:description" content="Desarrollador web Python y Flask en Colombia. Sistemas de gestión empresarial, APIs REST y dashboards interactivos.">
+    <meta name="twitter:image" content="https://azhura0101.github.io/Portafolio/img/og-image.png">
+    
     <meta name="google-site-verification" content="omiFhcA0F3DwWUgw6MEyz4TLYimPYX5Erp7LLICU5FQ" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://drive.google.com/file/d/1EdHUCnzPXkcvUdR0XGnHJLC2O0FIB38l/view?usp=sharing" as="document">
+    
+    <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Emanuel Zapata",
         "alternateName": "Azhura",
-        "jobTitle": "Desarrollador Web & Backend",
+        "jobTitle": "Desarrollador Web Python y Flask",
+        "description": "Desarrollador web freelance en Colombia especializado en Python, Flask, APIs REST y sistemas de gestión empresarial.",
         "url": "https://azhura0101.github.io/Portafolio",
         "email": "azhura.dev@gmail.com",
-        "knowsAbout": ["Python", "Flask", "SQL", "JavaScript", "HTML", "CSS", "Backend Development"],
+        "knowsAbout": ["Python", "Flask", "SQLAlchemy", "PostgreSQL", "JavaScript", "HTML", "CSS", "REST API", "Backend Development", "Web Development"],
+        "hasSkill": ["Python", "Flask", "PostgreSQL", "JavaScript", "Bootstrap"],
         "sameAs": [
             "https://github.com/Azhura0101",
             "https://www.linkedin.com/in/emanuel-zapata-b7ba3639b",
             "https://www.instagram.com/azhura.dev/"
-        ]
+        ],
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Freelance"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "CO"
+        },
+        "areaServed": {
+            "@type": "Country",
+            "name": "Colombia"
+        }
     }
     </script>
 
+    <!-- Preconnect for speed -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://images.credly.com" crossorigin>
+    <link rel="dns-prefetch" href="https://sistema-base-demo.onrender.com">
+    <link rel="dns-prefetch" href="https://catalogomanosproductivas.vercel.app">
+    
+    <!-- Fonts with display=swap for instant render -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome lazy loaded -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+    
+    <!-- Critical CSS -->
     <link rel="stylesheet" href="style.css">
     <link rel="preload" href="favicon.svg" as="image">
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -44,6 +88,24 @@
     </svg>
 </head>
 <body>
+
+    <!-- Skip to content -->
+    <a href="#inicio" class="skip-to-content">Saltar al contenido</a>
+
+    <!-- Skeleton Loader -->
+    <div class="skeleton-overlay" id="skeleton-overlay">
+        <div class="skeleton-hero">
+            <div class="skeleton-line skeleton-badge"></div>
+            <div class="skeleton-line skeleton-title"></div>
+            <div class="skeleton-line skeleton-subtitle"></div>
+            <div class="skeleton-line skeleton-text"></div>
+            <div class="skeleton-line skeleton-text-short"></div>
+            <div class="skeleton-buttons">
+                <div class="skeleton-line skeleton-btn"></div>
+                <div class="skeleton-line skeleton-btn"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- Cosmic noise texture overlay -->
     <div class="noise-overlay" aria-hidden="true"></div>
@@ -163,20 +225,21 @@
             <h2 class="section-title" data-i18n="about_title">Sobre Mí</h2>
             <div class="section-divider"></div>
             <div class="about-grid">
-                <div class="about-text">
+                <div class="about-text reveal">
                     <p data-i18n="about_p1">Soy un <strong>desarrollador web autodidacta</strong> con base en Colombia, apasionado por construir soluciones que van desde simples landing pages hasta sistemas completos de gestión empresarial.</p>
                     <p data-i18n="about_p2">Mi stack central es <strong>Python + Flask</strong> para el backend, con <strong>SQLAlchemy</strong> como ORM de confianza y <strong>Bootstrap/CSS personalizado</strong> en el frontend. No me limito a templates: entiendo la arquitectura que hay detrás.</p>
                     <p data-i18n="about_p3">Me interesa especialmente la intersección entre <strong>usabilidad, performance y diseño</strong>. Creo que un buen software debe ser rápido, confiable y, sobre todo, útil.</p>
                     <div class="about-stats">
-                        <div class="stat-card">
-                            <span class="number" data-count="3">0+</span>
-                            <span class="label" data-i18n="stat_exp">Años construyendo</span>
+                        <div class="stat-card reveal">
+                            <span class="number" data-count="4">0+</span>
+                            <span class="label" data-i18n="stat_exp">Años aprendiendo</span>
+                            <span class="stat-sub" data-i18n="stat_exp_sub">+2 años construyendo</span>
                         </div>
-                        <div class="stat-card">
+                        <div class="stat-card reveal">
                             <span class="number" data-count="10">0+</span>
                             <span class="label" data-i18n="stat_proj">Proyectos entregados</span>
                         </div>
-                        <div class="stat-card">
+                        <div class="stat-card reveal">
                             <span class="number" data-count="5">0+</span>
                             <span class="label" data-i18n="stat_clients">Clientes atendidos</span>
                         </div>
@@ -307,7 +370,7 @@
                     <div class="project-image">
                         <span class="featured-badge" data-i18n="proj_featured_badge">Destacado</span>
                         <span class="status-badge produccion" data-i18n="badge_produccion">Comisionado</span>
-                        <img id="stride-img" src="img/black.webp" alt="Stride Base Preview" loading="lazy">
+                        <img id="stride-img" src="img/black.webp" alt="Stride Base - Sistema de gestión empresarial con Python y Flask" loading="lazy">
                     </div>
                     <div class="project-content">
                         <h3 data-i18n="proj_flask_title">Stride Base</h3>
@@ -336,7 +399,7 @@
                 <div class="project-card reveal">
                     <div class="project-image">
                         <span class="status-badge demo" data-i18n="badge_demo">Demo</span>
-                        <img src="https://raw.githubusercontent.com/Azhura0101/NexusAI/4ed8174ad06da8cdfdb1dbe9291ef15503cedbde/assets/Preset.png" alt="NexusAI" loading="lazy">
+                        <img src="https://raw.githubusercontent.com/Azhura0101/NexusAI/4ed8174ad06da8cdfdb1dbe9291ef15503cedbde/assets/Preset.png" alt="NexusAI - Plataforma de análisis de redes sociales" loading="lazy">
                     </div>
                     <div class="project-content">
                         <h3 data-i18n="proj_NexusAI_title">NexusAI</h3>
@@ -361,7 +424,7 @@
                 <div class="project-card reveal">
                     <div class="project-image">
                         <span class="status-badge produccion" data-i18n="badge_produccion">Comisionado</span>
-                        <img src="img/Catalogo.webp" alt="Catálogo Manos Productivas" loading="lazy">
+                        <img src="img/Catalogo.webp" alt="Catálogo web Manos Productivas - Desarrollado con HTML, CSS y JavaScript" loading="lazy">
                     </div>
                     <div class="project-content">
                         <h3 data-i18n="proj_catalogo_title">Catálogo Manos Productivas</h3>
@@ -382,7 +445,7 @@
                 <div class="project-card reveal">
                     <div class="project-image">
                         <span class="status-badge demo" data-i18n="badge_demo">Demo</span>
-                        <img src="img/Wisamy.webp" alt="Landing Page Ropa" loading="lazy">
+                        <img src="img/Wisamy.webp" alt="Landing page de ropa - Diseño responsive y moderno" loading="lazy">
                     </div>
                     <div class="project-content">
                         <h3 data-i18n="proj_landing_title">Landing Page de Ropa</h3>
@@ -404,7 +467,7 @@
                 <div class="project-card reveal">
                     <div class="project-image">
                         <span class="status-badge produccion" data-i18n="badge_produccion">Comisionado</span>
-                        <img src="img/juan.webp" alt="Donde Juan" loading="lazy">
+                        <img src="img/juan.webp" alt="Donde Juan - Menú digital con pedidos por WhatsApp" loading="lazy">
                     </div>
                     <div class="project-content">
                         <h3 data-i18n="proj_bagre_title">Donde Juan</h3>
@@ -649,7 +712,7 @@
             <p style="margin-bottom: 0; padding-bottom: 0;" data-i18n="footer_certs_title">Certificados</p>
             <div class="badge-image">
                 <a href="https://www.credly.com/badges/590c0de6-1fcb-4fc5-b361-fdb1b17bee84/embedded" target="_blank">
-                    <img src="https://images.credly.com/images/68c0b94d-f6ac-40b1-a0e0-921439eb092e/image.png" alt="Python essential 1">
+                    <img src="https://images.credly.com/images/68c0b94d-f6ac-40b1-a0e0-921439eb092e/image.png" alt="Python essential 1" loading="lazy">
                 </a>
             </div>
         </div>
@@ -657,6 +720,8 @@
         <div class="footer-bottom">
             <p>© <span id="currentYear"></span> Azhura.dev <em data-i18n="footer_rights">Todos los derechos reservados.</em></p>
         </div>
+
+
     </footer>
 
 
@@ -667,9 +732,7 @@
 
 
 
-
-
-    <script src="translations.js"></script>
-    <script src="script.js"></script>
+    <script src="translations.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
