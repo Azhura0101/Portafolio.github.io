@@ -71,7 +71,7 @@ const translations = {
         placeholder_name: "Tu nombre completo",
         placeholder_email: "tu@email.com",
         placeholder_message: "Cuéntame sobre tu proyecto...",
-        chat_welcome: "¡Hola! Bienvenido a Azhura.dev. ¿Cómo te llamas?",
+        chat_welcome: "¡Hola! Soy Azhura AI. ¿Cómo te llamas?",
         chat_input_placeholder: "Escribe tu nombre...",
         promo_text: "Prueba nuestro asistente IA",
         footer_desc: "Desarrollador de software | App & Web | Automatizaciones con IA",
@@ -155,7 +155,7 @@ const translations = {
         placeholder_name: "Your full name",
         placeholder_email: "you@email.com",
         placeholder_message: "Tell me about your project...",
-        chat_welcome: "Hello! Welcome to Azhura.dev. What's your name?",
+        chat_welcome: "Hello! I'm Azhura AI. What's your name?",
         chat_input_placeholder: "Type your name...",
         promo_text: "Try our AI assistant",
         footer_desc: "Software Developer | App & Web | AI Automations",
@@ -175,24 +175,56 @@ const translations = {
 const chatTranslations = {
     es: {
         placeholder_name: "Escribe tu nombre...",
-        placeholder_chips: "Selecciona una pregunta abajo...",
-        welcome_user: "¡Un placer conocerte, <strong>{name}</strong>! 👋 Soy el asistente virtual de Azhura.dev. ¿Qué te gustaría saber hoy?",
-        chips: {
-            '¿Cómo me ayudas? 🚀': 'Automatizo procesos operativos y construyo software a medida. Diseño arquitecturas eficientes y scripts en Python para que todo funcione estable, seguro y en piloto automático. ⚙️',
-            '¿Qué tecnologías usas? 🛠️': 'Backend: Python, Flask, SQLAlchemy, Java y PostgreSQL para bases de datos escalables. Frontend: JavaScript, HTML5 y CSS3 con diseño responsivo. Desarrollo nativo en Linux. 🐧',
-            '¿Cómo es tu soporte? 💼': 'Relación freelance directa, sin intermediarios. Comunicación técnica clara, transparencia en cada fase y enfoque estricto en cumplir los plazos. 📅',
-            '¿Cómo cotizo contigo? ✉️': 'Escríbeme con tus requerimientos a azhura.dev@gmail.com o envíame un DM por Instagram para coordinar una sesión inicial. 📲'
-        }
+        placeholder_chips: "Selecciona una opción abajo...",
+        welcome_user: "¡Hola <strong>{name}</strong>! 👋 Bienvenido a Azhura.dev. Soy el asistente virtual. ¿Qué te gustaría saber?",
+        chip_groups: [
+            {
+                label: "💻 ¿Qué hago?",
+                options: {
+                    '¿Qué servicios ofreces?': 'Me especializo en <strong>desarrollo web y backend</strong>. Creo landing pages, sistemas de gestión empresarial (como Stride Base), catálogos online y automatizaciones con Python. Cada proyecto se diseña a medida según lo que necesites. 🎯',
+                    '¿Qué tecnologías usas?': 'Backend: <strong>Python, Flask, SQLAlchemy</strong> y PostgreSQL. Frontend: JavaScript, HTML5, CSS3 y Bootstrap. Todo corre en Linux. No uso frameworks pesados — prefiero código limpio y rendimiento. 🐧'
+                }
+            },
+            {
+                label: "🤝 ¿Cómo trabajo?",
+                options: {
+                    '¿Cómo es trabajar contigo?': 'Soy freelance directo, sin intermediarios. Te mantengo al tanto en cada fase, cumplo plazos y el código queda documentado. Si algo no está claro, lo resolvemos rápido. 📅',
+                    '¿Puedo ver tus proyectos?': '¡Claro! Stride Base es mi proyecto más completo: un sistema de RRHH y Finanzas con dashboard interactivo. También tengo catálogos web, landing pages y más. <a href="#proyectos" style="color:#a78bfa;">Dale un vistazo aquí</a>. 👆'
+                }
+            },
+            {
+                label: "📲 Contacto",
+                options: {
+                    '¿Cómo te contacto?': 'Puedes escribirme a <strong>azhura.dev@gmail.com</strong>, enviarme un DM por <a href="https://www.instagram.com/azhura.dev/" target="_blank" style="color:#a78bfa;">Instagram</a> o usar el <a href="#contacto" style="color:#a78bfa;">formulario de contacto</a> aquí mismo. ¡Respondo en menos de 24h! ✉️'
+                }
+            }
+        ]
     },
     en: {
         placeholder_name: "Type your name...",
-        placeholder_chips: "Select a question below...",
-        welcome_user: "Nice to meet you, <strong>{name}</strong>! 👋 I'm the Azhura.dev virtual assistant. What would you like to know today?",
-        chips: {
-            'How do you help me? 🚀': 'I automate operational processes and build custom software. I design efficient architectures and Python scripts so everything runs stable, secure and on autopilot. ⚙️',
-            'What technologies do you use? 🛠️': 'Backend: Python, Flask, SQLAlchemy, Java and PostgreSQL for scalable databases. Frontend: JavaScript, HTML5 and CSS3 with responsive design. Native Linux development. 🐧',
-            'How is your support? 💼': 'Direct freelance relationship, no intermediaries. Clear technical communication, full transparency at every stage and strict focus on meeting deadlines. 📅',
-            'How do I get a quote? ✉️': 'Write me with your requirements at azhura.dev@gmail.com or DM me on Instagram to coordinate an initial session. 📲'
-        }
+        placeholder_chips: "Select an option below...",
+        welcome_user: "Hey <strong>{name}</strong>! 👋 Welcome to Azhura.dev. I'm the virtual assistant. What would you like to know?",
+        chip_groups: [
+            {
+                label: "💻 What I do",
+                options: {
+                    'What services do you offer?': 'I specialize in <strong>web and backend development</strong>. I build landing pages, business management systems (like Stride Base), online catalogs and Python automations. Each project is tailored to your specific needs. 🎯',
+                    'What technologies do you use?': 'Backend: <strong>Python, Flask, SQLAlchemy</strong> and PostgreSQL. Frontend: JavaScript, HTML5, CSS3 and Bootstrap. Everything runs on Linux. No heavy frameworks — I prefer clean code and performance. 🐧'
+                }
+            },
+            {
+                label: "🤝 How I work",
+                options: {
+                    "What's it like working with you?": 'Direct freelance, no intermediaries. I keep you informed at every stage, meet deadlines and the code is well-documented. If something\'s unclear, we fix it fast. 📅',
+                    'Can I see your projects?': 'Sure! Stride Base is my most complete project: an HR & Finance system with an interactive dashboard. I also have web catalogs, landing pages and more. <a href="#proyectos" style="color:#a78bfa;">Check them out here</a>. 👆'
+                }
+            },
+            {
+                label: "📲 Contact",
+                options: {
+                    'How can I contact you?': 'You can email me at <strong>azhura.dev@gmail.com</strong>, DM me on <a href="https://www.instagram.com/azhura.dev/" target="_blank" style="color:#a78bfa;">Instagram</a> or use the <a href="#contacto" style="color:#a78bfa;">contact form</a> right here. I respond within 24h! ✉️'
+                }
+            }
+        ]
     }
 };

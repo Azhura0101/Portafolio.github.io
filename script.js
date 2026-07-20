@@ -684,14 +684,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderOptionChips() {
         chatChipsContainer.innerHTML = '';
-        const chipsObj = chatTranslations[currentLang].chips;
-        Object.keys(chipsObj).forEach(option => {
-            const chip = document.createElement('button');
-            chip.className = 'chat-chip';
-            chip.innerText = option;
-            chip.addEventListener('click', () => handleChipSelection(option, chipsObj[option]));
-            chatChipsContainer.appendChild(chip);
+        const groups = chatTranslations[currentLang].chip_groups;
+        
+        groups.forEach(group => {
+            const groupDiv = document.createElement('div');
+            groupDiv.className = 'chat-chip-group';
+            
+            const toggleBtn = document.createElement('button');
+            toggleBtn.className = 'chat-chip-toggle';
+            toggleBtn.innerHTML = group.label;
+            
+            const optionsDiv = document.createElement('div');
+            optionsDiv.className = 'chat-chip-options';
+            
+            Object.keys(group.options).forEach(optionText => {
+                const chip = document.createElement('button');
+                chip.className = 'chat-chip';
+                chip.innerText = optionText;
+                chip.addEventListener('click', () => {
+                    handleChipSelection(optionText, group.options[optionText]);
+                    optionsDiv.classList.remove('open');
+                });
+                optionsDiv.appendChild(chip);
+            });
+            
+            toggleBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                document.querySelectorAll('.chat-chip-options.open').forEach(el => {
+                    if (el !== optionsDiv) el.classList.remove('open');
+                });
+                optionsDiv.classList.toggle('open');
+            });
+            
+            groupDiv.appendChild(toggleBtn);
+            groupDiv.appendChild(optionsDiv);
+            chatChipsContainer.appendChild(groupDiv);
         });
+        
         chatChipsContainer.style.display = 'flex';
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
@@ -757,6 +786,20 @@ document.addEventListener('DOMContentLoaded', () => {
             renderOptionChips();
         }
     };
+
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.chat-chip-options.open').forEach(el => {
+            el.classList.remove('open');
+        });
+    });
+
+    chatMessages.addEventListener('wheel', (e) => {
+        e.stopPropagation();
+    }, { passive: true });
+
+    chatMessages.addEventListener('touchmove', (e) => {
+        e.stopPropagation();
+    }, { passive: true });
 
     if (!isMobile) {
         setTimeout(() => {
