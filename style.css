@@ -794,7 +794,6 @@ section {
 .project-card:hover {
   border-color: rgba(139, 92, 246, 0.45);
   box-shadow: 0 20px 50px rgba(139, 92, 246, 0.18), 0 0 18px rgba(139,92,246,0.06);
-  transform: translateY(-6px);
 }
 
 
@@ -802,7 +801,6 @@ section {
 /* ===================== PREMIUM ADVANCED ANIMATIONS ===================== */
 .glare-card {
     position: relative;
-    overflow: hidden;
 }
 .glare-card::before {
     content: '';
@@ -1205,7 +1203,7 @@ section {
   border: 1px solid rgba(139, 92, 246, 0.25);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
   display: flex;
   flex-direction: column;
   backdrop-filter: blur(12px);

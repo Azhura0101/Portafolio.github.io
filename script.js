@@ -517,31 +517,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Hero parallax effect
-        const heroContent = document.querySelector('.hero-content');
-        const heroSection = document.getElementById('inicio');
-        if (heroContent && heroSection) {
-            let mouseX = 0, mouseY = 0, currentX = 0, currentY = 0;
-            heroSection.addEventListener('mousemove', (e) => {
-                const rect = heroSection.getBoundingClientRect();
-                mouseX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-                mouseY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-            });
-            heroSection.addEventListener('mouseleave', () => {
-                mouseX = 0;
-                mouseY = 0;
-            });
-            function animateHeroParallax() {
-                currentX += (mouseX - currentX) * 0.08;
-                currentY += (mouseY - currentY) * 0.08;
-                const moveX = currentX * 15;
-                const moveY = currentY * 10;
-                heroContent.style.transform = `translate(${moveX}px, ${moveY}px)`;
-                requestAnimationFrame(animateHeroParallax);
-            }
-            animateHeroParallax();
-        }
-
         const interactiveElements = document.querySelectorAll('.project-card, .glass-card');
         interactiveElements.forEach(element => {
             element.addEventListener('mouseenter', () => {
@@ -560,6 +535,9 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(e => {
             if (e.isIntersecting) {
                 e.target.classList.add('visible');
+                setTimeout(() => {
+                    e.target.style.transition = 'box-shadow 0.3s ease, border-color 0.3s ease';
+                }, 650);
                 if (e.target.classList.contains('section-title') && !e.target.dataset.scrambled) {
                     scrambleText(e.target);
                     e.target.dataset.scrambled = "true";
@@ -576,29 +554,31 @@ document.addEventListener('DOMContentLoaded', () => {
         tiltCards.forEach(card => {
         card.classList.add('glare-card');
 
-        let ticking = false;
+        card.addEventListener('mouseenter', () => {
+            card.style.transition = 'box-shadow 0.3s ease, border-color 0.3s ease';
+        });
+
         card.addEventListener('mousemove', (e) => {
-            if (ticking) return;
-            ticking = true;
-            requestAnimationFrame(() => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
 
-                const rotateX = ((y - centerY) / centerY) * -6;
-                const rotateY = ((x - centerX) / centerX) * 6;
+            const rotateX = ((y - centerY) / centerY) * -4;
+            const rotateY = ((x - centerX) / centerX) * 4;
 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.02)`;
-                card.style.setProperty('--glare-x', `${x}px`);
-                card.style.setProperty('--glare-y', `${y}px`);
-                ticking = false;
-            });
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+            card.style.setProperty('--glare-x', `${x}px`);
+            card.style.setProperty('--glare-y', `${y}px`);
         });
 
         card.addEventListener('mouseleave', () => {
+            card.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease';
             card.style.transform = '';
+            setTimeout(() => {
+                card.style.transition = 'box-shadow 0.3s ease, border-color 0.3s ease';
+            }, 300);
         });
     });
     }
@@ -904,18 +884,6 @@ document.querySelectorAll('.btn-primary, .btn-ghost').forEach(btn => {
         setTimeout(() => ripple.remove(), 600);
     });
 });
-
-// Scroll reveal animation
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            revealObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 // Form validation
 const contactForm = document.querySelector('.contact-form');
