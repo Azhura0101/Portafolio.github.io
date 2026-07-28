@@ -137,6 +137,8 @@ window.addEventListener('scroll', () => {
     const navbar = document.getElementById('navbar');
     if (window.scrollY > 50) navbar.classList.add('scrolled');
     else navbar.classList.remove('scrolled');
+    const btt = document.getElementById('back-to-top');
+    if (btt) btt.classList.toggle('visible', window.scrollY > 400);
 
     let current = '';
     document.querySelectorAll('section').forEach(s => {
@@ -189,19 +191,11 @@ document.addEventListener('DOMContentLoaded', () => {
             updateLanguage(currentLang === 'es' ? 'en' : 'es');
         });
 
+        document.getElementById('back-to-top')?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
         document.querySelector('a[href*="drive.google.com"][data-i18n="hero_cv"]')?.addEventListener('click', () => track('cv_download'));
 
         document.getElementById('submitBtn').addEventListener('click', () => track('form_submit'));
-
-    const strideImg = document.getElementById('stride-img');
-    if (strideImg) {
-        const images = ['img/black.webp', 'img/white.webp'];
-        let idx = 0;
-        setInterval(() => {
-            idx = (idx + 1) % images.length;
-            strideImg.src = images[idx];
-        }, 4000);
-    }
 
     if (new URLSearchParams(location.search).get('success') === 'true') {
         document.getElementById('successModal').classList.add('active');
@@ -215,298 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('termsModal').querySelector('.modal-close-btn').addEventListener('click', closeTerms);
     document.getElementById('termsModal').querySelector('.modal-btn').addEventListener('click', closeTerms);
 
-    const canvas = document.getElementById('particle-canvas');
-    const ctx = canvas.getContext('2d');
-
-    function resizeCanvas() {
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
     const isMobile = window.innerWidth < 768;
-    const TIER_COUNTS = isMobile
-        ? [{ n: 10, rMin: 1.8, rMax: 2.8, aMin: 0.7, aMax: 1.0, vMax: 0.04, glow: true, parallax: 0.3 },
-           { n: 15, rMin: 1.0, rMax: 1.8, aMin: 0.35, aMax: 0.6, vMax: 0.1, glow: false, parallax: 0.12 },
-           { n: 0, rMin: 0.4, rMax: 0.9, aMin: 0.1, aMax: 0.25, vMax: 0.18, glow: false, parallax: 0.03 },
-           { n: 2, rMin: 3.0, rMax: 4.5, aMin: 0.8, aMax: 1.0, vMax: 0.02, glow: true, parallax: 0.45 }]
-        : [{ n: 18, rMin: 2.0, rMax: 3.2, aMin: 0.75, aMax: 1.0, vMax: 0.03, glow: true, parallax: 0.35 },
-           { n: 35, rMin: 1.0, rMax: 1.8, aMin: 0.35, aMax: 0.65, vMax: 0.08, glow: false, parallax: 0.12 },
-           { n: 60, rMin: 0.3, rMax: 0.9, aMin: 0.08, aMax: 0.22, vMax: 0.2, glow: false, parallax: 0.02 }];
-
-    let scrollY = 0;
-    let smoothDepth = 0;
-    window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
-
-    const particles = [];
-    const explosions = [];
-    class Particle {
-        constructor(tier) { this.tier = tier; this.reset(); }
-        reset() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            const t = this.tier;
-            this.baseR = Math.random() * (t.rMax - t.rMin) + t.rMin;
-            this.r = this.baseR;
-            this.vx = (Math.random() - 0.5) * t.vMax;
-            this.vy = (Math.random() - 0.5) * t.vMax;
-            this.baseAlpha = Math.random() * (t.aMax - t.aMin) + t.aMin;
-            this.alpha = this.baseAlpha;
-            this.twinkleSpeed = Math.random() * 0.003 + 0.001;
-            this.twinklePhase = Math.random() * Math.PI * 2;
-            this.life = 0;
-            this.maxLife = 8000 + Math.random() * 12000;
-            this.lifeElapsed = 0;
-        }
-        get lifeCurve() {
-            const p = this.lifeElapsed / this.maxLife;
-            if (p < 0.15) return p / 0.15;
-            if (p < 0.85) return 1;
-            return 1 - (p - 0.85) / 0.15;
-        }
-        update(time) {
-            let neighbors = 0;
-            const myDx = this.drawX, myDy = this.drawY;
-            for (let i = 0; i < particles.length; i++) {
-                if (particles[i] === this) continue;
-                const ox = particles[i].drawX, oy = particles[i].drawY;
-                const d = (myDx - ox) ** 2 + (myDy - oy) ** 2;
-                if (d < 10000) neighbors++;
-            }
-            const densityBoost = neighbors > 3 ? (neighbors - 3) * 80 : 0;
-            this.lifeElapsed += 16 + densityBoost;
-            this.vx *= 0.99;
-            this.vy *= 0.99;
-            this.x += this.vx;
-            this.y += this.vy;
-            const twinkle = Math.sin(time * this.twinkleSpeed + this.twinklePhase);
-            this.alpha = this.baseAlpha + twinkle * 0.1;
-            this.r = this.baseR + twinkle * 0.15;
-            const dx = this.drawX, dy = this.drawY;
-            const margin = 40;
-            if (this.lifeElapsed >= this.maxLife || dx < -margin || dx > canvas.width + margin || dy < -margin || dy > canvas.height + margin) {
-                if (this.lifeElapsed >= this.maxLife && this.tier.glow) {
-                    spawnExplosion(this.x, this.y, this.tier.parallax);
-                }
-                this.respawn();
-            }
-        }
-        respawn() {
-            const w = canvas.width;
-            const h = canvas.height;
-            this.x = Math.random() * w;
-            this.y = Math.random() * h;
-            const t = this.tier;
-            this.baseR = Math.random() * (t.rMax - t.rMin) + t.rMin;
-            this.r = this.baseR;
-            this.baseAlpha = Math.random() * (t.aMax - t.aMin) + t.aMin;
-            this.alpha = this.baseAlpha;
-            this.lifeElapsed = 0;
-            this.maxLife = 15000 + Math.random() * 25000;
-        }
-        get drawX() {
-            if (smoothDepth < 1) return this.x;
-            const cx = canvas.width / 2;
-            const dx = this.x - cx;
-            const dy = this.y - canvas.height / 2;
-            const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-            const maxDisp = canvas.width * 0.4;
-            const disp = Math.min(smoothDepth * this.tier.parallax * 0.12, maxDisp);
-            return this.x + (dx / dist) * disp;
-        }
-        get drawY() {
-            if (smoothDepth < 1) return this.y;
-            const cy = canvas.height / 2;
-            const dx = this.x - canvas.width / 2;
-            const dy = this.y - cy;
-            const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-            const maxDisp = canvas.height * 0.4;
-            const disp = Math.min(smoothDepth * this.tier.parallax * 0.12, maxDisp);
-            return this.y + (dy / dist) * disp;
-        }
-        draw(scrollProgress) {
-            const depth = this.tier.parallax;
-            const depthBoost = scrollProgress * depth * 0.6;
-            const lifeFade = this.lifeCurve;
-            const a = Math.max(0.02, (this.alpha + depthBoost) * lifeFade);
-            const r = Math.max(0.3, this.r + this.baseR * depthBoost * 0.3);
-            const dx = this.drawX, dy = this.drawY;
-            if (a < 0.01) return;
-            if (this.tier.glow) {
-                ctx.beginPath();
-                ctx.arc(dx, dy, r * 3, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(200, 200, 255, ${(a + depthBoost) * 0.12 * lifeFade})`;
-                ctx.fill();
-            }
-            ctx.beginPath();
-            ctx.arc(dx, dy, r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 255, 255, ${a})`;
-            ctx.fill();
-        }
-    }
-    TIER_COUNTS.forEach(tier => { for (let i = 0; i < tier.n; i++) particles.push(new Particle(tier)); });
-
-    function drawConnections(scrollProgress) {
-        const maxDist = isMobile ? 160 : 150;
-        const glow = 0.25 + scrollProgress * 0.15;
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].drawX - particles[j].drawX;
-                const dy = particles[i].drawY - particles[j].drawY;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < maxDist) {
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].drawX, particles[i].drawY);
-                    ctx.lineTo(particles[j].drawX, particles[j].drawY);
-                    const opacity = glow * (1 - dist / maxDist);
-                    ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
-                    ctx.lineWidth = isMobile ? 0.6 : 0.85;
-                    ctx.stroke();
-                }
-            }
-        }
-    }
-
-    function spawnExplosion(x, y, parallax) {
-        explosions.push({ x, y, radius: 0, maxRadius: 40 + parallax * 60, alpha: 0.3, life: 1 });
-        for (let i = 0; i < particles.length; i++) {
-            const p = particles[i];
-            const dx = p.x - x;
-            const dy = p.y - y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 120 && dist > 0) {
-                const force = (1 - dist / 120) * 1.2;
-                p.vx += (dx / dist) * force;
-                p.vy += (dy / dist) * force;
-            }
-        }
-    }
-    function updateExplosions() {
-        for (let i = explosions.length - 1; i >= 0; i--) {
-            const e = explosions[i];
-            e.radius += 2;
-            e.life -= 0.025;
-            e.alpha = e.life * 0.3;
-            if (e.life <= 0) explosions.splice(i, 1);
-        }
-    }
-    function drawExplosions() {
-        for (const e of explosions) {
-            ctx.beginPath();
-            ctx.arc(e.x, e.y, e.radius, 0, Math.PI * 2);
-            ctx.strokeStyle = `rgba(180, 160, 255, ${e.alpha})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.arc(e.x, e.y, e.radius * 0.2, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(220, 210, 255, ${e.alpha * 0.3})`;
-            ctx.fill();
-        }
-    }
-
-    const shootingStars = [];
-    function spawnShootingStar() {
-        const fromLeft = Math.random() > 0.5;
-        shootingStars.push({
-            x: fromLeft ? -10 : canvas.width + 10,
-            y: Math.random() * canvas.height * 0.5,
-            vx: fromLeft ? (4 + Math.random() * 4) : -(4 + Math.random() * 4),
-            vy: 1 + Math.random() * 2,
-            life: 1,
-            decay: 0.008 + Math.random() * 0.006,
-            len: 60 + Math.random() * 80,
-        });
-    }
-
-    function drawShootingStars() {
-        for (let i = shootingStars.length - 1; i >= 0; i--) {
-            const s = shootingStars[i];
-            s.x += s.vx;
-            s.y += s.vy;
-            s.life -= s.decay;
-            if (s.life <= 0) { shootingStars.splice(i, 1); continue; }
-            const tailX = s.x - s.vx * (s.len / Math.sqrt(s.vx * s.vx + s.vy * s.vy));
-            const tailY = s.y - s.vy * (s.len / Math.sqrt(s.vx * s.vx + s.vy * s.vy));
-            const grad = ctx.createLinearGradient(s.x, s.y, tailX, tailY);
-            grad.addColorStop(0, `rgba(255, 255, 255, ${0.9 * s.life})`);
-            grad.addColorStop(1, `rgba(255, 255, 255, 0)`);
-            ctx.beginPath();
-            ctx.moveTo(s.x, s.y);
-            ctx.lineTo(tailX, tailY);
-            ctx.strokeStyle = grad;
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.arc(s.x, s.y, 1.5, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 255, 255, ${s.life})`;
-            ctx.fill();
-        }
-    }
-
-    let lowBatteryMode = false;
-    let lastTime = 0;
-
-    if (isMobile) {
-        if ('getBattery' in navigator) {
-            navigator.getBattery().then(battery => {
-                const checkBattery = () => {
-                    lowBatteryMode = (battery.level <= 0.2 && !battery.charging);
-                    if (canvas) canvas.style.display = lowBatteryMode ? 'none' : 'block';
-                    if (!lowBatteryMode) requestAnimationFrame(animateParticles);
-                };
-                checkBattery();
-                battery.addEventListener('levelchange', checkBattery);
-                battery.addEventListener('chargingchange', checkBattery);
-            });
-        }
-    }
-
-    let lastShootingStar = 0;
-    let startTime = performance.now();
-    function animateParticles(time) {
-        if (isMobile) {
-            if (lowBatteryMode) return;
-            if (time - lastTime < 25) {
-                requestAnimationFrame(animateParticles);
-                return;
-            }
-        }
-        lastTime = time;
-
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const elapsed = time - startTime;
-        smoothDepth += (scrollY - smoothDepth) * 0.04;
-        const maxScroll = document.body.scrollHeight - window.innerHeight;
-        const scrollProgress = maxScroll > 0 ? Math.min(smoothDepth / maxScroll, 1) : 0;
-        const zoom = 1 + scrollProgress * 0.12;
-        const cx = canvas.width / 2;
-        const cy = canvas.height / 2;
-        ctx.save();
-        ctx.translate(cx, cy);
-        ctx.scale(zoom, zoom);
-        ctx.translate(-cx, -cy);
-        particles.forEach(p => { p.update(elapsed); p.draw(scrollProgress); });
-        drawConnections(scrollProgress);
-        updateExplosions();
-        drawExplosions();
-        ctx.restore();
-        if (time - lastShootingStar > 6000 + Math.random() * 6000) {
-            spawnShootingStar();
-            lastShootingStar = time;
-        }
-        drawShootingStars();
-        const shapes = document.querySelector('.global-shapes');
-        if (shapes) {
-            const progress = maxScroll > 0 ? smoothDepth / maxScroll : 0;
-            const rotX = -12 + progress * 24;
-            const rotY = -8 + progress * 16;
-            const scale = 1 + progress * 0.45;
-            shapes.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(${scale})`;
-        }
-        requestAnimationFrame(animateParticles);
-    }
-    requestAnimationFrame(animateParticles);
 
     const cursorGlow = document.getElementById('cursor-glow');
     if (!isMobile) {
@@ -517,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        const interactiveElements = document.querySelectorAll('.project-card, .glass-card');
+        const interactiveElements = document.querySelectorAll('.glass-card');
         interactiveElements.forEach(element => {
             element.addEventListener('mouseenter', () => {
                 cursorGlow.style.width = '100px';
@@ -635,7 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function color(element) {
         const originalColor = window.getComputedStyle(element).color;
-        const colors = ['#a855f7', '#3b82f6', '#0ea5e9', '#e11d48', '#6d28d9'];
+        const colors = ['#a855f7', '#8b5cf6', '#a78bfa', '#c084fc', '#6d28d9'];
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
         element.style.color = randomColor;
         setTimeout(() => {
@@ -919,3 +622,30 @@ if (messageTextarea) {
         counter.style.color = len > 500 ? '#ef4444' : 'var(--text-muted)';
     });
 }
+
+// Floating planets scale parallax
+(function() {
+    const planets = document.querySelectorAll('.gs:not(.gs-ring)');
+    if (!planets.length) return;
+    const state = [];
+    planets.forEach(p => {
+        state.push({ cur: 1, target: 1 });
+    });
+
+    function update() {
+        const max = document.body.scrollHeight - window.innerHeight;
+        const progress = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+
+        planets.forEach((p, i) => {
+            const st = state[i];
+            const isSmall = p.classList.contains('gs-sm');
+            const factor = parseFloat(p.dataset.scale) || (isSmall ? 1.5 : 0.55);
+            st.target = isSmall ? 1 + progress * factor : 1 - progress * factor;
+            st.target = Math.max(0.5, st.target);
+            st.cur += (st.target - st.cur) * 0.06;
+            p.style.setProperty('--gs-scale', st.cur);
+        });
+        requestAnimationFrame(update);
+    }
+    update();
+})();

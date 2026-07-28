@@ -1,5 +1,5 @@
-const CACHE = 'azhura-v2';
-const URLS = ['/', '/index.html', '/style.css', '/script.js', '/translations.js', '/manifest.json'];
+const CACHE = 'azhura-v3';
+const URLS = ['/', '/index.html', '/style.css', '/script.js', '/translations.js', '/manifest.json', '/starfield.js', '/terminal.js', '/solar-system.js'];
 
 self.addEventListener('install', e => {
     e.waitUntil(

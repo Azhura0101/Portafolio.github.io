@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080810"/>
+      <stop offset="100%" stop-color="#1a0a2e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="950" cy="150" r="300" fill="rgba(139,92,246,0.05)"/>
+  <circle cx="200" cy="500" r="200" fill="rgba(99,102,241,0.04)"/>
+  <text x="80" y="220" font-family="system-ui,-apple-system,sans-serif" font-size="72" font-weight="800" fill="url(#accent)">Azhura.dev</text>
+  <text x="80" y="290" font-family="system-ui,-apple-system,sans-serif" font-size="28" fill="#a1a1aa">Emanuel Zapata</text>
+  <text x="80" y="340" font-family="system-ui,-apple-system,sans-serif" font-size="22" fill="#71717a">Python · Flask · Web Developer</text>
+  <line x1="80" y1="370" x2="400" y2="370" stroke="url(#accent)" stroke-width="3" stroke-linecap="round"/>
+  <text x="80" y="430" font-family="system-ui,-apple-system,sans-serif" font-size="18" fill="#52525b">Sistemas de gestión · APIs REST · Dashboards</text>
+</svg>

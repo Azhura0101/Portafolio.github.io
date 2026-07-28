@@ -12,7 +12,7 @@
     <meta property="og:description" content="Desarrollador web Python y Flask en Colombia. Sistemas de gestión empresarial, APIs REST y dashboards interactivos. Disponible para proyectos freelance.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://azhura0101.github.io/Portafolio.github.io/">
-    <meta property="og:image" content="https://azhura0101.github.io/Portafolio.github.io/img/og-image.png">
+    <meta property="og:image" content="https://azhura0101.github.io/Portafolio.github.io/img/og-image.svg">
     <meta property="og:site_name" content="Azhura.dev">
     <meta property="og:locale" content="es_CO">
     <meta property="og:locale:alternate" content="en_US">
@@ -21,7 +21,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Emanuel Zapata | Desarrollador Web Python y Flask en Colombia">
     <meta name="twitter:description" content="Desarrollador web Python y Flask en Colombia. Sistemas de gestión empresarial, APIs REST y dashboards interactivos.">
-    <meta name="twitter:image" content="https://azhura0101.github.io/Portafolio.github.io/img/og-image.png">
+    <meta name="twitter:image" content="https://azhura0101.github.io/Portafolio.github.io/img/og-image.svg">
     
     <meta name="google-site-verification" content="omiFhcA0F3DwWUgw6MEyz4TLYimPYX5Erp7LLICU5FQ" />
     
@@ -83,8 +83,38 @@
         <feColorMatrix type="saturate" values="0" in="noise" result="gray"/>
       </filter>
     </svg>
+
+    <!-- Three.js Import Map -->
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/"
+      }
+    }
+    </script>
+
+
+
+
+
+
+<!-- Performance meta tags for mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <!-- Performance hints -->
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Use fewer web fonts on mobile -->
+  <link rel="stylesheet" href="/styles/desktop.css" media="(min-width: 769px)">
+  <link rel="stylesheet" href="/styles/mobile.css" media="(max-width: 768px)">
+
+    
 </head>
 <body>
+<script>history.scrollRestoration='manual';window.scrollTo(0,0);addEventListener('load',()=>scrollTo(0,0));addEventListener('pageshow',()=>scrollTo(0,0))</script>
 
     <!-- Skip to content -->
     <a href="#inicio" class="skip-to-content">Saltar al contenido</a>
@@ -110,10 +140,8 @@
      <!-- Cursor Glow Effect -->
     <div id="cursor-glow"></div>
 
-    <!-- Particle Canvas Background -->
-    <canvas id="particle-canvas"></canvas>
-
-
+    <!-- Starfield Three.js Background -->
+    <div id="starfield-container"></div>
 
     <!-- AI Chat Widget -->
     <button id="chat-toggle" class="chat-toggle" aria-label="Abrir chat">
@@ -156,14 +184,21 @@
 
     <!-- Global floating shapes background -->
     <div class="global-shapes" aria-hidden="true">
-        <div class="gs gs-1"></div>
-        <div class="gs gs-2"></div>
-        <div class="gs gs-3"></div>
-        <div class="gs gs-4"></div>
-        <div class="gs gs-5"></div>
-        <div class="gs gs-6"></div>
-        <div class="gs gs-7"></div>
-        <div class="gs gs-8"></div>
+        <div class="gs gs-1" data-scale="0.55"></div>
+        <div class="gs gs-2" data-scale="0.45"></div>
+        <div class="gs gs-3" data-scale="0.5"></div>
+        <div class="gs gs-4" data-scale="0.4"></div>
+        <div class="gs gs-5" data-scale="0.6"></div>
+        <div class="gs gs-6" data-scale="0.48"></div>
+        <div class="gs gs-7" data-scale="0.38"></div>
+        <div class="gs gs-8" data-scale="0.52"></div>
+        <div class="gs gs-sm gs-9" data-scale="1.8"></div>
+        <div class="gs gs-sm gs-10" data-scale="2.2"></div>
+        <div class="gs gs-sm gs-11" data-scale="1.5"></div>
+        <div class="gs gs-sm gs-12" data-scale="2.0"></div>
+        <div class="gs gs-sm gs-13" data-scale="2.5"></div>
+        <div class="gs gs-sm gs-14" data-scale="1.6"></div>
+        <div class="gs gs-sm gs-15" data-scale="2.8"></div>
         <div class="gs gs-ring gs-r1"></div>
         <div class="gs gs-ring gs-r2"></div>
         <div class="gs gs-ring gs-r3"></div>
@@ -180,6 +215,7 @@
           <li><a href="#sobre-mi" data-i18n="nav_about">Sobre mí</a></li>
           <li><a href="#servicios" data-i18n="nav_services">Servicios</a></li>
           <li><a href="#habilidades" data-i18n="nav_skills">Habilidades</a></li>
+          <li><a href="#terminal" data-i18n="nav_terminal">Terminal</a></li>
           <li><a href="#proyectos" data-i18n="nav_projects">Proyectos</a></li>
           <li><a href="#cursos" data-i18n="nav_courses">Cursos</a></li>
           <li><a href="#testimonios" data-i18n="nav_testimonials">Testimonios</a></li>
@@ -199,7 +235,7 @@
             <div class="hero-badge" data-i18n="hero_badge">Disponible para proyectos</div>
             <h1>
                 <span class="hero-name-gradient">Emanuel Zapata</span><br>
-                <span style="font-size: 0.75em; font-weight: 700; opacity: 0.9;" data-i18n="hero_alias">Azhura.dev</span>
+                <span class="hero-alias" data-i18n="hero_alias">Azhura.dev</span>
             </h1>
             <div class="hero-typing-wrapper">
                 <span data-i18n="hero_prefix">Especialista en </span><span class="typing-text" id="typing-target"></span><span class="cursor"></span>
@@ -288,10 +324,10 @@
                 <div class="skill-pill reveal"><span class="skill-icon"><i class="fab fa-git-alt" style="color: #f05032;"></i></span><span data-i18n="skills_git">Git</span></div>
                 <div class="skill-pill reveal"><span class="skill-icon"><i class="fab fa-github" style="color: #e2e8f0;"></i></span><span data-i18n="skills_github">GitHub</span></div>
                 <div class="skill-pill reveal"><span class="skill-icon"><i class="fab fa-linux" style="color: #fbbf24;"></i></span><span data-i18n="skills_linux">Linux</span></div>
-                <div class="skill-pill reveal"><span class="skill-icon" style="color: #c084fc;"><i class="fas fa-plug"></i></span><span data-i18n="skills_rest">REST APIs</span></div>
-                <div class="skill-pill reveal"><span class="skill-icon" style="color: #f0abfc;"><i class="fas fa-shield-alt"></i></span><span data-i18n="skills_security">Seguridad Web</span></div>
-                <div class="skill-pill reveal"><span class="skill-icon" style="color: #336791;"><i class="fas fa-database"></i></span><span data-i18n="skills_postgresql">PostgreSQL</span></div>
-                <div class="skill-pill reveal"><span class="skill-icon" style="color: #f89820;"><i class="fab fa-java"></i></span><span data-i18n="skills_java">Java</span></div>
+                <div class="skill-pill reveal"><span class="skill-icon"><i class="fas fa-plug" style="color: #c084fc;"></i></span><span data-i18n="skills_rest">REST APIs</span></div>
+                <div class="skill-pill reveal"><span class="skill-icon"><i class="fas fa-shield-alt" style="color: #f0abfc;"></i></span><span data-i18n="skills_security">Seguridad Web</span></div>
+                <div class="skill-pill reveal"><span class="skill-icon"><i class="fas fa-database" style="color: #336791;"></i></span><span data-i18n="skills_postgresql">PostgreSQL</span></div>
+                <div class="skill-pill reveal"><span class="skill-icon"><i class="fab fa-java" style="color: #f89820;"></i></span><span data-i18n="skills_java">Java</span></div>
             </div>
         </div>
     </section>
@@ -355,135 +391,112 @@
         </div>
     </section>
 
+    <!-- Terminal Section -->
+    <section id="terminal" class="terminal-section">
+        <div class="section-inner">
+            <span class="section-label" data-i18n="section_label_terminal">interactivo</span>
+            <h2 class="section-title" data-i18n="terminal_title">Terminal</h2>
+            <div class="section-divider"></div>
+            <div class="terminal-wrapper">
+                <div class="terminal-header">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                    <span class="terminal-title">azhura@portfolio:~$</span>
+                </div>
+                <div class="terminal-body" id="terminal-body">
+                    <div class="term-output"></div>
+                    <div class="term-input-line">
+                        <span class="term-prompt">azhura@portfolio:~$</span>
+                        <input type="text" class="term-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Terminal input" placeholder="Tap to type...">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Projects -->
     <section id="proyectos">
         <div class="section-inner">
             <span class="section-label" data-i18n="section_label_projects">trabajo reciente</span>
             <h2 class="section-title" data-i18n="projects_title">Proyectos</h2>
             <div class="section-divider"></div>
+            <div class="solar-system-wrapper ss-hidden">
+                <div id="solar-system-container" class="solar-system-container"></div>
+                <p class="solar-system-hint" data-i18n="solar_hint">Haz clic en un planeta para ver los detalles del proyecto</p>
+            </div>
             <div class="projects-grid">
-
-                <!-- Featured Project -->
                 <div class="project-card featured reveal">
                     <div class="project-image">
+                        <img src="img/black.webp" alt="Stride Base" loading="lazy">
                         <span class="featured-badge" data-i18n="proj_featured_badge">Destacado</span>
-                        <span class="status-badge produccion" data-i18n="badge_produccion">Comisionado</span>
-                        <img id="stride-img" src="img/black.webp" alt="Stride Base - Sistema de gestión empresarial con Python y Flask" loading="lazy">
                     </div>
                     <div class="project-content">
                         <h3 data-i18n="proj_flask_title">Stride Base</h3>
-                        <p data-i18n="proj_flask_desc">
-                            Solución integral de RRHH y Finanzas: control de empleados, alertas automáticas, bitácoras, registro de transacciones multi-cuenta con categorización, sistema de auditoría por IP y dashboard interactivo con caché optimizado.
-                        </p>
-                        <span class="demo-warning" data-i18n="proj_flask_warning">
-                            <i class="fas fa-info-circle"></i> Demo gratuita en Render — el servidor puede tardar 30-50s en despertar.
-                        </span>
-                        <div class="project-metrics" data-i18n="proj_flask_metrics">100+ empleados | 200+ transacciones/mes | 4+ meses de desarrollo</div>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">SQLAlchemy</span>
-                            <span class="tech-tag">SQLite / PostgreSQL</span>
-                            <span class="tech-tag">Bootstrap 5</span>
-                        </div>
+                        <p data-i18n="proj_flask_desc">Sistema de gestión empresarial con control de empleados, dashboard interactivo y módulo financiero completo.</p>
+                        <div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">Flask</span><span class="tech-tag">SQLAlchemy</span><span class="tech-tag">PostgreSQL</span><span class="tech-tag">Bootstrap</span></div>
+                        <small class="demo-warning" data-i18n="proj_flask_warning">Demo gratuita — el servidor puede tardar 30-50s en despertar.</small>
                         <div class="project-links">
-                            <a href="https://sistema-base-demo.onrender.com/login" class="project-btn" target="_blank" data-i18n="proj_view_demo">Ver Demo</a>
-                            <a href="https://sistema-base-demo.onrender.com/code-showcase" class="project-btn" target="_blank" data-i18n="proj_view_code">Ver Código</a>
+                            <a href="https://sistema-base-demo.onrender.com/login" target="_blank" class="project-btn" data-i18n="proj_view_demo">Ver Demo</a>
                         </div>
                     </div>
                 </div>
-
-                 <!-- Project 2 -->
                 <div class="project-card reveal">
                     <div class="project-image">
+                        <img src="https://raw.githubusercontent.com/Azhura0101/NexusAI/4ed8174ad06da8cdfdb1dbe9291ef15503cedbde/assets/Preset.png" alt="NexusAI" loading="lazy" crossorigin="anonymous">
                         <span class="status-badge demo" data-i18n="badge_demo">Demo</span>
-                        <img src="https://raw.githubusercontent.com/Azhura0101/NexusAI/4ed8174ad06da8cdfdb1dbe9291ef15503cedbde/assets/Preset.png" alt="NexusAI - Plataforma de análisis de redes sociales" loading="lazy">
                     </div>
                     <div class="project-content">
                         <h3 data-i18n="proj_NexusAI_title">NexusAI</h3>
-                        <p data-i18n="proj_NexusAI_desc">Plataforma web para analizar y gestionar datos de redes sociales. Incluye dashboard interactivo y herramientas de visualización.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML5</span>
-                            <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">Bootstrap 5</span>
-                        </div>
+                        <p data-i18n="proj_NexusAI_desc">Plataforma para analizar y gestionar datos de redes sociales con dashboard interactivo.</p>
+                        <div class="project-tech"><span class="tech-tag">HTML5</span><span class="tech-tag">CSS3</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Bootstrap</span></div>
                         <div class="project-links">
-                            <a target="_blank" href="https://azhura0101.github.io/NexusAI/index.html" class="project-btn" data-i18n="proj_view_demo">Ver Demo</a>
-                            <a target="_blank" href="https://github.com/Azhura0101/NexusAI" class="project-btn" data-i18n="proj_view_code">Ver Código</a>
+                            <a href="https://azhura0101.github.io/NexusAI/index.html" target="_blank" class="project-btn" data-i18n="proj_visit">Visitar →</a>
                         </div>
                     </div>
                 </div>
-
-
-
-
-                <!-- Project 3: Catalogo MP -->
                 <div class="project-card reveal">
                     <div class="project-image">
-                        <span class="status-badge produccion" data-i18n="badge_produccion">Comisionado</span>
-                        <img src="img/Catalogo.webp" alt="Catálogo web Manos Productivas - Desarrollado con HTML, CSS y JavaScript" loading="lazy">
+                        <img src="img/Catalogo.webp" alt="Catálogo MP" loading="lazy">
+                        <span class="featured-badge" data-i18n="proj_featured_badge">Destacado</span>
                     </div>
                     <div class="project-content">
-                        <h3 data-i18n="proj_catalogo_title">Catálogo Manos Productivas</h3>
-                        <p data-i18n="proj_catalogo_desc">Catálogo web responsivo para Manos Productivas, una marca de bisutería artesanal creada por madres cabeza de familia. Incluye galería de imágenes con swipe, filtros por categoría, variantes de productos y pedidos directos por WhatsApp. Diseño inspirado en los colores de la bandera colombiana.</p>
-                        <div class="project-metrics" data-i18n="proj_catalogo_metrics">50+ productos | 5 semanas de desarrollo | Pedidos por WhatsApp</div>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
+                        <h3 data-i18n="proj_catalogo_title">Catálogo MP</h3>
+                        <p data-i18n="proj_catalogo_desc">Catálogo web responsivo para bisutería artesanal con galería, filtros y pedidos por WhatsApp.</p>
+                        <div class="project-tech"><span class="tech-tag">HTML5</span><span class="tech-tag">CSS3</span><span class="tech-tag">JavaScript</span></div>
                         <div class="project-links">
-                            <a target="_blank" href="https://catalogomanosproductivas.vercel.app/" class="project-btn" data-i18n="proj_view_demo">Ver Demo</a>
+                            <a href="https://catalogomanosproductivas.vercel.app/" target="_blank" class="project-btn" data-i18n="proj_visit">Visitar →</a>
                         </div>
                     </div>
                 </div>
-
-                <!-- Project 4 -->
                 <div class="project-card reveal">
                     <div class="project-image">
+                        <img src="img/Wisamy.webp" alt="Wisamy" loading="lazy">
                         <span class="status-badge demo" data-i18n="badge_demo">Demo</span>
-                        <img src="img/Wisamy.webp" alt="Landing page de ropa - Diseño responsive y moderno" loading="lazy">
                     </div>
                     <div class="project-content">
-                        <h3 data-i18n="proj_landing_title">Landing Page de Ropa</h3>
-                        <p data-i18n="proj_landing_desc">E-commerce visual responsivo y moderno para tienda de ropa, con navegación fluida y diseño orientado a conversión.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                        </div>
+                        <h3>Wisamy</h3>
+                        <p data-i18n="proj_wisamy">Landing page de e-commerce responsivo con diseño moderno orientado a conversión.</p>
+                        <div class="project-tech"><span class="tech-tag">HTML5</span><span class="tech-tag">CSS3</span><span class="tech-tag">JavaScript</span></div>
                         <div class="project-links">
-                            <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/VwJWKjb" class="project-btn" data-i18n="proj_view_demo">Ver Demo</a>
-                            <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/VwJWKjb" class="project-btn" data-i18n="proj_view_code">Ver Código</a>
+                            <a href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/VwJWKjb" target="_blank" class="project-btn" data-i18n="proj_visit">Visitar →</a>
                         </div>
                     </div>
                 </div>
-
-
-
-                <!-- Project 5 (formerly 4) -->
                 <div class="project-card reveal">
                     <div class="project-image">
+                        <img src="img/juan.webp" alt="Donde Juan" loading="lazy">
                         <span class="status-badge demo" data-i18n="badge_demo">Demo</span>
-                        <img src="img/juan.webp" alt="Donde Juan - Menú digital con pedidos por WhatsApp" loading="lazy">
                     </div>
                     <div class="project-content">
                         <h3 data-i18n="proj_bagre_title">Donde Juan</h3>
-                        <p data-i18n="proj_bagre_desc">Web para restaurante en uso real: menú digital y pedidos directo a WhatsApp. Optimizada para móviles.</p>
-                        <div class="project-metrics" data-i18n="proj_bagre_metrics">Pedidos en tiempo real | Optimizado para celular</div>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
+                        <p data-i18n="proj_bagre_desc">Menú digital para tienda local con pedidos directos a WhatsApp. Optimizada para móviles.</p>
+                        <div class="project-tech"><span class="tech-tag">HTML5</span><span class="tech-tag">CSS3</span><span class="tech-tag">JavaScript</span></div>
                         <div class="project-links">
-                            <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/raVjQoN" class="project-btn" data-i18n="proj_view_demo">Ver Demo</a>
-                            <a target="_blank" href="https://codepen.io/EMANUEL-ZAPATA-the-looper/pen/raVjQoN" class="project-btn" data-i18n="proj_view_code">Ver Código</a>
+                            <a href="https://codepen.io/EMANUEL-ZAPATA-the-looper/full/raVjQoN" target="_blank" class="project-btn" data-i18n="proj_visit">Visitar →</a>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </section>
@@ -550,6 +563,26 @@
                         </div>
                     </div>
                 </div>
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-text" data-i18n="testimonial_3_text">Muy profesional y cumplido. Desarrolló el sistema de gestión que necesitábamos en tiempo récord y con una calidad excepcional.</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">JC</div>
+                        <div>
+                            <div class="testimonial-name" data-i18n="testimonial_3_name">Juan Carlos</div>
+                            <div class="testimonial-role" data-i18n="testimonial_3_role">Emprendedor digital</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-text" data-i18n="testimonial_4_text">Excelente comunicación y resultados. Emanuel transformó nuestros requerimientos en una aplicación web funcional y bien diseñada.</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MC</div>
+                        <div>
+                            <div class="testimonial-name" data-i18n="testimonial_4_name">María Camila</div>
+                            <div class="testimonial-role" data-i18n="testimonial_4_role">Dueña de negocio</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -594,7 +627,7 @@
                         </div>
                         <div class="form-group">
                             <label for="message" data-i18n="label_msg">Mensaje</label>
-                            <textarea id="message" name="message" placeholder="Cuéntame sobre tu proyecto..." autocomplete="off" data-i18n="placeholder_message" required></textarea>
+                            <textarea id="message" name="message" placeholder="Cuéntame sobre tu proyecto..." autocomplete="off" data-i18n="placeholder_message" maxlength="500" required></textarea>
                         </div>
                         <div class="checkbox-wrapper">
                             <input type="checkbox" id="terms" name="terms" autocomplete="off" required>
@@ -621,12 +654,11 @@
         </div>
     </div>
 
-    <!-- Contact Modal (unused, inline form now) -->
     <!-- Terms Modal -->
     <div id="termsModal" class="modal-overlay">
-        <div class="modal-card" style="text-align:left;">
+        <div class="modal-card modal-card-left">
             <button class="modal-close-btn" onclick="closeTerms()">&times;</button>
-            <h3 style="margin-bottom:1rem;" data-i18n="terms_title">Términos y Condiciones</h3>
+            <h3 class="terms-title" data-i18n="terms_title">Términos y Condiciones</h3>
             <div class="terms-content" data-i18n="terms_content"></div>
             <button onclick="closeTerms()" class="modal-btn" data-i18n="modal_close">Cerrar</button>
         </div>
@@ -636,6 +668,7 @@
 
 
     <!-- Footer -->
+    <button id="back-to-top" aria-label="Volver arriba">↑</button>
     <footer>
         <div class="footer-content">
             <div class="footer-col">
@@ -667,7 +700,7 @@
 
         <!-- badges -->
         <div class="badges-container">
-            <p style="margin-bottom: 0; padding-bottom: 0;" data-i18n="footer_certs_title">Certificados</p>
+            <p data-i18n="footer_certs_title">Certificados</p>
             <div class="badge-image">
                 <a href="https://www.credly.com/badges/590c0de6-1fcb-4fc5-b361-fdb1b17bee84/embedded" target="_blank">
                     <img src="https://images.credly.com/images/68c0b94d-f6ac-40b1-a0e0-921439eb092e/image.png" alt="Python essential 1" loading="lazy">
@@ -685,12 +718,27 @@
 
 
 
-
-
-
-
-
     <script src="translations.js" defer></script>
     <script src="script.js" defer></script>
+    <script type="module" defer>
+    import Starfield from './starfield.js';
+    import Terminal from './terminal.js';
+    import SolarSystem from './solar-system.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+        new Starfield();
+        new Terminal();
+    });
+
+    window.initSolarSystem = () => {
+      const c = document.getElementById('solar-system-container');
+      if (!c || c.dataset.ssActive) return;
+      const w = c.closest('.solar-system-wrapper');
+      w?.classList.remove('ss-hidden');
+      new SolarSystem();
+      c.dataset.ssActive = '1';
+      setTimeout(() => c.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300);
+    };
+    </script>
 </body>
 </html>
