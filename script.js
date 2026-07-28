@@ -886,7 +886,7 @@ document.querySelectorAll('.btn-primary, .btn-ghost').forEach(btn => {
 });
 
 // Form validation
-const contactForm = document.querySelector('.contact-form');
+const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     const inputs = contactForm.querySelectorAll('input, textarea');
     inputs.forEach(input => {

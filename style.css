@@ -16,8 +16,6 @@ body.hide-content footer {
   transition: opacity 0.4s ease;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
-
 /* ==========================================
    VARIABLES & RESET
    ========================================== */
@@ -1875,6 +1873,13 @@ section {
 /* ==========================================
    RESPONSIVE
    ========================================== */
+@media (max-width: 1024px) {
+  .nav-links a {
+    font-size: 0.78rem;
+    padding: 0.35rem 0.65rem;
+  }
+}
+
 @media (max-width: 900px) {
   .about-grid,
   .contact-wrapper {
@@ -1927,6 +1932,9 @@ section {
   .nav-links li:nth-child(5) { animation-delay: 0.25s; }
   .nav-links li:nth-child(6) { animation-delay: 0.3s; }
   .nav-links li:nth-child(7) { animation-delay: 0.35s; }
+  .nav-links li:nth-child(8) { animation-delay: 0.4s; }
+  .nav-links li:nth-child(9) { animation-delay: 0.45s; }
+  .nav-links li:nth-child(10) { animation-delay: 0.5s; }
   .nav-links a {
     display: block;
     font-size: 1rem;
@@ -2011,7 +2019,7 @@ section {
   transition: width 0.4s ease, height 0.4s ease, background 0.4s ease;
   will-change: transform;
 }
-@media (max-width: 768px) { #cursor-glow { display: none; } .chat-toggle, .chat-widget { display: none !important; } body.nav-open { overflow: hidden; } html.nav-open { overflow: hidden; } .gs-r1 { left: auto; right: 20px; } .gs-r2 { left: 10px; } .gs-r3 { right: 20px; } }
+@media (max-width: 768px) { #cursor-glow { display: none; } body.nav-open { overflow: hidden; } html.nav-open { overflow: hidden; } .gs-r1 { left: auto; right: 20px; } .gs-r2 { left: 10px; } .gs-r3 { right: 20px; } }
 
 /* ==========================================
    PRELOADER

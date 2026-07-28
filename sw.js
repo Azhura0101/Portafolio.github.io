@@ -1,4 +1,4 @@
-const CACHE = 'azhura-v1';
+const CACHE = 'azhura-v2';
 const URLS = ['/', '/index.html', '/style.css', '/script.js', '/translations.js', '/manifest.json'];
 
 self.addEventListener('install', e => {

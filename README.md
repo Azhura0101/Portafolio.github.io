@@ -2,7 +2,7 @@
 
 > Portafolio personal de **Emanuel Zapata** (alias Azhura), Desarrollador de Software & Backend con base en Colombia.
 
-**Demo en vivo:** [azhura0101.github.io/Portafolio](https://azhura0101.github.io/Portafolio)
+**Demo en vivo:** [azhura0101.github.io/Portafolio.github.io](https://azhura0101.github.io/Portafolio.github.io/)
 
 ---
 
@@ -36,7 +36,7 @@ Portafolio web estático de una sola página construido con **HTML, CSS y JavaSc
 | **Lógica** | JavaScript Vanilla (ES6+) |
 | **Tipografía** | Google Fonts — Outfit + JetBrains Mono |
 | **Iconos** | Font Awesome 6 |
-| **Formulario** | FormSubmit |
+| **Formulario** | Web3Forms |
 | **Deploy** | GitHub Pages |
 
 ---
