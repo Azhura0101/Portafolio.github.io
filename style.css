@@ -2827,12 +2827,17 @@ footer { position: relative; z-index: 1; padding: 3rem 2rem; border-top: 2px sol
 /* MOBILE-OPTIMIZED */
 @media (max-width: 768px) {
   .gs {
-    animation-duration: calc(var(--gs-float-dur, 45s) * 1.5) !important;
-    --gs-orbit-dur: calc(var(--gs-orbit-dur, 20s) * 2) !important;
-    --gs-ox: calc(var(--gs-ox, 8px) * 0.5) !important;
-    --gs-oy: calc(var(--gs-oy, -8px) * 0.5) !important;
+    animation-duration: calc(var(--gs-float-dur, 45s) * 3) !important;
+    --gs-orbit-dur: calc(var(--gs-orbit-dur, 20s) * 4) !important;
+    --gs-ox: calc(var(--gs-ox, 8px) * 0.3) !important;
+    --gs-oy: calc(var(--gs-oy, -8px) * 0.3) !important;
     --gs-float-delay: 0s !important;
+    --gs-rotate: calc(var(--gs-rotate, 30s) * 3) !important;
   }
+  .gs::before {
+    animation-duration: calc(var(--gs-rotate, 30s) * 3) !important;
+  }
+
 }
 
 /* HIGH-END DEVICES */
@@ -3210,12 +3215,7 @@ button:focus-visible {
 }
 
 @media (max-width: 768px) {
-  .terminal-body {
-    font-size: 0.75rem;
-    min-height: 260px;
-    max-height: 400px;
-  }
-  .term-output { min-height: 180px; }
+  .terminal-section { display: none; }
 }
 
 /* ==========================================

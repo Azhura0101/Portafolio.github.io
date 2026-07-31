@@ -623,16 +623,22 @@ if (messageTextarea) {
     });
 }
 
-// Floating planets scale parallax
+// Floating planets scale parallax (throttled on mobile)
 (function() {
     const planets = document.querySelectorAll('.gs:not(.gs-ring)');
     if (!planets.length) return;
+    const isMobile = window.innerWidth < 768;
     const state = [];
-    planets.forEach(p => {
-        state.push({ cur: 1, target: 1 });
-    });
+    planets.forEach(p => state.push({ cur: 1, target: 1 }));
+    let frame = 0;
 
     function update() {
+        frame++;
+        if (isMobile && frame % 3 !== 0) {
+            requestAnimationFrame(update);
+            return;
+        }
+
         const max = document.body.scrollHeight - window.innerHeight;
         const progress = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
 
@@ -642,7 +648,7 @@ if (messageTextarea) {
             const factor = parseFloat(p.dataset.scale) || (isSmall ? 1.5 : 0.55);
             st.target = isSmall ? 1 + progress * factor : 1 - progress * factor;
             st.target = Math.max(0.5, st.target);
-            st.cur += (st.target - st.cur) * 0.06;
+            st.cur += (st.target - st.cur) * (isMobile ? 0.03 : 0.06);
             p.style.setProperty('--gs-scale', st.cur);
         });
         requestAnimationFrame(update);

@@ -430,6 +430,7 @@
                     <div class="project-image">
                         <img src="img/black.webp" alt="Stride Base" loading="lazy">
                         <span class="featured-badge" data-i18n="proj_featured_badge">Destacado</span>
+                        <span class="status-badge produccion" data-i18n="badge_produccion">Comisionado</span>
                     </div>
                     <div class="project-content">
                         <h3 data-i18n="proj_flask_title">Stride Base</h3>
@@ -459,6 +460,7 @@
                     <div class="project-image">
                         <img src="img/Catalogo.webp" alt="Catálogo MP" loading="lazy">
                         <span class="featured-badge" data-i18n="proj_featured_badge">Destacado</span>
+                        <span class="status-badge produccion" data-i18n="badge_produccion">Comisionado</span>
                     </div>
                     <div class="project-content">
                         <h3 data-i18n="proj_catalogo_title">Catálogo MP</h3>
@@ -486,7 +488,7 @@
                 <div class="project-card reveal">
                     <div class="project-image">
                         <img src="img/juan.webp" alt="Donde Juan" loading="lazy">
-                        <span class="status-badge demo" data-i18n="badge_demo">Demo</span>
+                        <span class="status-badge produccion" data-i18n="badge_produccion">Comisionado</span>
                     </div>
                     <div class="project-content">
                         <h3 data-i18n="proj_bagre_title">Donde Juan</h3>
@@ -727,7 +729,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         new Starfield();
-        new Terminal();
+        if (window.innerWidth >= 768) new Terminal();
     });
 
     window.initSolarSystem = () => {
